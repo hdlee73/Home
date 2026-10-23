@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T05:54:18.867Z",
+  "updatedAt": "2026-10-23T11:43:24.466Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v1.6.7.apk",
             "size": 9365444,
-            "downloads": 21,
+            "downloads": 22,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk"
           },
           {
@@ -87,7 +87,7 @@
           {
             "name": "Everynote-v1.70.0.apk",
             "size": 125406866,
-            "downloads": 0,
+            "downloads": 1,
             "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
           },
           {
@@ -111,23 +111,23 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Everylaw",
       "homepage": null,
-      "pushedAt": "2026-10-23T02:33:29Z",
+      "pushedAt": "2026-10-23T08:37:39Z",
       "release": {
-        "tag": "v1.1.0",
-        "name": "Everylaw 1.1.0",
-        "publishedAt": "2026-10-23T02:33:29Z",
-        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.1.0",
-        "notes": "## What's Changed\n* 항·호·목 단위 위임 표시·검색과 PDF 범위 선택 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/7\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.0.4...v1.1.0",
+        "tag": "v1.2.1",
+        "name": "Everylaw 1.2.1",
+        "publishedAt": "2026-10-23T08:37:40Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.2.1",
+        "notes": "## What's Changed\n* v1.2.1: 검색창 잘림, 조 제목, 고정 작업 줄, 분할 토글 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/9\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.2.0...v1.2.1",
         "assets": [
           {
-            "name": "Everylaw-1.1.0.apk",
-            "size": 1995080,
-            "downloads": 6,
-            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.1.0/Everylaw-1.1.0.apk"
+            "name": "Everylaw-1.2.1.apk",
+            "size": 4027592,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.2.1/Everylaw-1.2.1.apk"
           }
         ],
-        "primaryAsset": "Everylaw-1.1.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.1.0"
+        "primaryAsset": "Everylaw-1.2.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.2.1"
       }
     },
     {
