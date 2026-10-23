@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.0.0">
+    <meta name="site-version" content="2.1.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
@@ -489,17 +489,12 @@
 
                 <!-- Guestbook & Interactive Inquiry Section -->
                 <section id="inquiry" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 space-y-4 scroll-mt-6">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                            <i class="fa-solid fa-lock text-blue-500"></i> 문의 남기기
-                        </h2>
-                        <button onclick="toggleAdminModal()" id="adminBtn" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1">
-                            <i class="fa-solid fa-key text-amber-500"></i> <span id="adminBtnText">관리자 로그인</span>
-                        </button>
-                    </div>
-                    
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-blue-500"></i> 문의 남기기
+                    </h2>
+
                     <p class="text-xs text-slate-500 leading-relaxed">
-                        🔒 남겨주신 연락처(전화번호, 이메일)와 문의 내용은 **관리자(이현덕)만 확인**할 수 있도록 비공개 처리됩니다.
+                        🔒 남겨주신 연락처와 문의 내용은 홈페이지에 공개되지 않고 <strong>이현덕의 메일(hdlee73@gmail.com)로만</strong> 전달됩니다.
                     </p>
 
                     <!-- Interactive Form -->
@@ -526,28 +521,13 @@
                             <textarea id="userMsg" required rows="3" placeholder="문의 및 메시지 내용을 작성해 주세요." 
                                       class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
                         </div>
-                        <button type="submit" 
+                        <!-- Spam trap: real visitors never fill this -->
+                        <input type="text" name="_honey" id="userHoney" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+                        <button type="submit" id="commentSubmit"
                                 class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs rounded-xl shadow-sm hover:shadow transition-all flex items-center justify-center gap-2">
                             <i class="fa-solid fa-paper-plane"></i> 메시지 보내기
                         </button>
                     </form>
-
-                    <!-- Dynamic Message List -->
-                    <div class="pt-4 border-t border-slate-100">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                                <span>접수된 문의 목록</span>
-                                <span id="commentCount" class="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full text-[10px]">1</span>
-                            </h3>
-                            <span id="adminStatusBadge" class="hidden text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
-                                🔓 관리자 조회 중
-                            </span>
-                        </div>
-                        
-                        <div id="commentList" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
-                            <!-- Dynamic Content Rendered by JS -->
-                        </div>
-                    </div>
 
                 </section>
 
@@ -616,28 +596,6 @@
 
     </div>
 
-    <!-- Admin Password Modal (No Plain Password Hint) -->
-    <div id="adminModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200">
-        <div class="bg-white rounded-2xl p-6 w-full max-w-xs shadow-xl space-y-4">
-            <div class="text-center">
-                <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-2">
-                    <i class="fa-solid fa-user-shield text-lg"></i>
-                </div>
-                <h3 class="font-bold text-slate-800 text-sm">관리자 본인 인증</h3>
-                <p class="text-xs text-slate-500 mt-1">이현덕 님 전용 문의 및 연락처 확인 모드입니다.</p>
-            </div>
-            <div>
-                <input type="password" id="adminPassword" placeholder="비밀번호 입력" 
-                       class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
-                <p id="adminError" class="text-[11px] text-red-500 text-center mt-1 hidden">비밀번호가 일치하지 않습니다.</p>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="closeAdminModal()" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium">취소</button>
-                <button onclick="verifyAdminPassword()" class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium">확인</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Changelog Modal -->
     <div id="changelogModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200 px-4">
         <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl space-y-4 max-h-[80vh] overflow-y-auto">
@@ -659,165 +617,63 @@
     </div>
 
     <script>
-        // Store inquiries in LocalStorage
-        let inquiries = JSON.parse(localStorage.getItem('hdlee_inquiries')) || [
-            {
-                id: 1,
-                name: "금융당국 관계자",
-                email: "visitor@example.com",
-                phone: "010-1234-5678",
-                msg: "자본시장 건전성을 위해 애써주셔서 감사합니다. 비공개로 연락처와 응원 메시지를 남깁니다.",
-                date: "2026.07.30"
-            }
-        ];
+        // 문의는 FormSubmit 을 통해 관리자 메일로만 전달되며 페이지에는 저장·표시하지 않는다.
+        const INQUIRY_ENDPOINT = 'https://formsubmit.co/ajax/hdlee73@gmail.com';
+        const INQUIRY_EMAIL = 'hdlee73@gmail.com';
 
-        let isAdmin = false;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderComments();
-        });
-
-        function handleCommentSubmit(e) {
+        async function handleCommentSubmit(e) {
             e.preventDefault();
-            
+
             const nameInput = document.getElementById('userName');
             const emailInput = document.getElementById('userEmail');
             const phoneInput = document.getElementById('userPhone');
             const msgInput = document.getElementById('userMsg');
+            const submitBtn = document.getElementById('commentSubmit');
 
             const name = nameInput.value.trim();
             const email = emailInput.value.trim();
             const phone = phoneInput.value.trim() || '미기재';
             const msg = msgInput.value.trim();
 
-            if(!name || !email || !msg) return;
+            if (!name || !email || !msg) return;
+            if (document.getElementById('userHoney').value) return;
 
-            const today = new Date();
-            const dateStr = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60');
 
-            const newInquiry = {
-                id: Date.now(),
-                name,
-                email,
-                phone,
-                msg,
-                date: dateStr
-            };
+            try {
+                const res = await fetch(INQUIRY_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify({
+                        _subject: `[홈페이지 문의] ${name}`,
+                        _template: 'table',
+                        _captcha: 'false',
+                        이름: name,
+                        이메일: email,
+                        전화번호: phone,
+                        문의내용: msg,
+                        _replyto: email,
+                    }),
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok || String(data.success) === 'false') throw new Error(data.message || res.status);
 
-            inquiries.unshift(newInquiry);
-            localStorage.setItem('hdlee_inquiries', JSON.stringify(inquiries));
-
-            renderComments();
-
-            // Reset form
-            nameInput.value = '';
-            emailInput.value = '';
-            phoneInput.value = '';
-            msgInput.value = '';
-
-            showToast('🔒 메시지가 전송되었습니다! (관리자 전용 비공개)');
-        }
-
-        function renderComments() {
-            const commentList = document.getElementById('commentList');
-            const countSpan = document.getElementById('commentCount');
-            const adminStatusBadge = document.getElementById('adminStatusBadge');
-            const adminBtnText = document.getElementById('adminBtnText');
-
-            countSpan.innerText = inquiries.length;
-
-            if (isAdmin) {
-                adminStatusBadge.classList.remove('hidden');
-                adminBtnText.innerText = "관리자 로그아웃";
-            } else {
-                adminStatusBadge.classList.add('hidden');
-                adminBtnText.innerText = "관리자 로그인";
+                nameInput.value = '';
+                emailInput.value = '';
+                phoneInput.value = '';
+                msgInput.value = '';
+                showToast('🔒 문의가 전달되었습니다. 확인 후 회신드리겠습니다.');
+            } catch (err) {
+                console.warn(err);
+                // 전송 서비스가 실패하면 방문자의 메일 앱으로 같은 내용을 보낼 수 있게 한다.
+                const body = `성함: ${name}\n회신 이메일: ${email}\n전화번호: ${phone}\n\n${msg}`;
+                location.href = `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(`[홈페이지 문의] ${name}`)}&body=${encodeURIComponent(body)}`;
+                showToast('메일 앱으로 문의를 보내 주세요.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60');
             }
-
-            if (inquiries.length === 0) {
-                commentList.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">등록된 문의가 없습니다.</p>`;
-                return;
-            }
-
-            commentList.innerHTML = inquiries.map(item => {
-                if (isAdmin) {
-                    // Admin View: Full Details Unlocked
-                    return `
-                        <div class="p-3.5 bg-amber-50/60 rounded-xl text-xs space-y-2 border border-amber-200/80 transition-all">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <i class="fa-solid fa-user-check text-blue-600"></i> ${escapeHtml(item.name)}
-                                </span>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-[10px] text-slate-400">${item.date}</span>
-                                    <button onclick="deleteInquiry(${item.id})" class="text-red-400 hover:text-red-600 text-[10px]" title="삭제">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 gap-1 text-[11px] bg-white/80 p-2 rounded-lg border border-amber-100 text-slate-700 font-mono">
-                                <div><i class="fa-regular fa-envelope text-blue-500 w-4"></i> ${escapeHtml(item.email)}</div>
-                                <div><i class="fa-solid fa-phone text-emerald-500 w-4"></i> ${escapeHtml(item.phone)}</div>
-                            </div>
-                            <p class="text-slate-800 text-xs whitespace-pre-line bg-white/50 p-2 rounded-lg">${escapeHtml(item.msg)}</p>
-                        </div>
-                    `;
-                } else {
-                    // Visitor View: Hidden / Protected
-                    const maskedName = item.name.length > 1 ? item.name[0] + '*'.repeat(item.name.length - 1) : item.name;
-                    return `
-                        <div class="p-3 bg-slate-50 rounded-xl text-xs space-y-1 border border-slate-100">
-                            <div class="flex justify-between items-center text-slate-500 text-[11px]">
-                                <span class="font-semibold text-slate-700 flex items-center gap-1.5">
-                                    <i class="fa-solid fa-lock text-slate-400"></i> ${escapeHtml(maskedName)} 님의 문의
-                                </span>
-                                <span>${item.date}</span>
-                            </div>
-                            <p class="text-slate-400 italic text-[11px] bg-slate-100/70 p-2 rounded-lg">
-                                🔒 연락처 및 상세 메시지는 이현덕 님만 볼 수 있도록 보호되어 있습니다.
-                            </p>
-                        </div>
-                    `;
-                }
-            }).join('');
-        }
-
-        function toggleAdminModal() {
-            if (isAdmin) {
-                isAdmin = false;
-                renderComments();
-                showToast('관리자 모드가 해제되었습니다.');
-            } else {
-                document.getElementById('adminModal').classList.remove('opacity-0', 'pointer-events-none');
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminError').classList.add('hidden');
-                document.getElementById('adminPassword').focus();
-            }
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        function verifyAdminPassword() {
-            const pwd = document.getElementById('adminPassword').value;
-            // Admin Password: 4505
-            if (pwd === '4505') {
-                isAdmin = true;
-                closeAdminModal();
-                renderComments();
-                showToast('🔑 관리자 인증 성공! 메시지 목록을 확인합니다.');
-            } else {
-                document.getElementById('adminError').classList.remove('hidden');
-            }
-        }
-
-        function deleteInquiry(id) {
-            if(!isAdmin) return;
-            inquiries = inquiries.filter(item => item.id !== id);
-            localStorage.setItem('hdlee_inquiries', JSON.stringify(inquiries));
-            renderComments();
-            showToast('문의 내역이 삭제되었습니다.');
         }
 
         function showToast(message) {
@@ -825,22 +681,12 @@
             const toastMsg = document.getElementById('toastMsg');
             toastMsg.innerText = message;
             toast.classList.remove('opacity-0', 'pointer-events-none');
-            
+
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'pointer-events-none');
             }, 3000);
         }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            return String(text)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
     </script>
-    <script src="assets/site.js?v=2.0.0"></script>
+    <script src="assets/site.js?v=2.1.0"></script>
 </body>
 </html>

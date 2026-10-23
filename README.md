@@ -1,7 +1,7 @@
 # 이현덕 개인 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: `version.json` 참고 (업데이트 내역 포함)
+- 현재 버전: v2.1.0 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -45,3 +45,9 @@
 
 - 워크플로는 Actions가 자동 발급하는 `GITHUB_TOKEN`만 사용하며, 저장소에 키나 비밀번호를 넣지 않습니다. 추가 키가 필요해지면 **Settings → Secrets and variables → Actions**에 등록합니다.
 - 저장소에 푸시할 수 있는 사람은 저장소 주인뿐이므로 다른 사람이 사이트를 바꿔 배포할 수 없습니다.
+
+## 문의 남기기
+
+문의 양식은 [FormSubmit](https://formsubmit.co)을 통해 hdlee73@gmail.com 으로 메일을 보냅니다. 내용은 홈페이지에 저장되거나 표시되지 않습니다.
+**처음 한 번** 문의가 들어오면 FormSubmit에서 확인(Activate) 메일이 오며, 그 메일의 버튼을 눌러야 이후 문의가 전달됩니다.
+전송에 실패하면 방문자의 메일 앱이 열려 같은 내용을 직접 보낼 수 있습니다.
