@@ -77,7 +77,7 @@
                     </div>
                     ${rel ? `<span class="flex-shrink-0 text-[11px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">${esc(rel.tag)}</span>` : ''}
                 </div>
-                <p class="text-slate-600 text-xs leading-relaxed flex-1">${esc(app.description) || '<span class="text-slate-400">설명이 아직 없습니다.</span>'}</p>
+                <p class="text-slate-600 text-xs leading-relaxed flex-1 whitespace-pre-line">${esc(app.description) || '<span class="text-slate-400">설명이 아직 없습니다.</span>'}</p>
                 ${topics ? `<div class="flex flex-wrap gap-1">${topics}</div>` : ''}
                 ${rel ? `<p class="text-[11px] text-slate-400">최신 릴리스 ${fmtDate(rel.publishedAt)}${primary ? ` · ${esc(primary.name)} ${fmtSize(primary.size)}` : ''}</p>` : ''}
                 <div class="flex flex-wrap gap-2 pt-1">
@@ -280,7 +280,33 @@
         document.addEventListener('visibilitychange', () => { if (!document.hidden) checkVersion(); });
     }
 
+    // ---------- 페이지 구분 (주소 #profile · #apps · #links, 뒤로가기는 직전 페이지) ----------
+
+    const PAGES = { profile: '이력', apps: '내 앱', links: '자료실' };
+    const BASE_TITLE = document.title;
+
+    function route() {
+        const hash = decodeURIComponent(location.hash.slice(1));
+        const page = hash === 'inquiry' ? 'profile' : (PAGES[hash] ? hash : 'profile');
+        document.querySelectorAll('[data-page]').forEach((el) => el.classList.toggle('hidden', el.dataset.page !== page));
+        document.querySelectorAll('[data-nav]').forEach((el) => {
+            const active = el.dataset.nav === (hash === 'inquiry' ? 'inquiry' : page);
+            el.classList.toggle('ring-2', active);
+            el.classList.toggle('ring-blue-500', active);
+            el.classList.toggle('bg-blue-50', active);
+            el.classList.toggle('bg-white', !active);
+            if (active) el.setAttribute('aria-current', 'page');
+            else el.removeAttribute('aria-current');
+        });
+        document.title = page === 'profile' ? BASE_TITLE : `${PAGES[page]} - ${BASE_TITLE}`;
+        if (hash === 'inquiry') document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', route);
+
     document.addEventListener('DOMContentLoaded', () => {
+        route();
         renderApps();
         initLinks();
         initVersion();

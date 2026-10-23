@@ -16,6 +16,7 @@
     let token = null;      // 잠금 해제된 동안 메모리에만 둔다
     let selected = [];     // 노출할 저장소 이름 (순서 = 표시 순서)
     let repos = [];        // 고를 수 있는 공개 저장소
+    let intros = {};       // 저장소 이름(소문자) → 관리자가 쓴 소개 문구
     let target = 'apps';   // 잠금 해제 후 열 화면: apps | links
 
     const $ = (id) => document.getElementById(id);
@@ -114,7 +115,7 @@
 
     function show(view) {
         ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
-        $('adminModalTitle').textContent = target === 'links' ? '자료실 링크 관리' : '노출할 앱 선택';
+        $('adminModalTitle').textContent = target === 'links' ? '자료실 링크 관리' : '앱 선택 · 소개';
         $('adminAppsModal').classList.remove('opacity-0', 'pointer-events-none');
         const focus = { adminSetupView: 'adminTokenInput', adminLoginView: 'adminPwInput' }[view];
         if (focus) setTimeout(() => $(focus).focus(), 50);
@@ -137,7 +138,8 @@
         const row = (r, i) => {
             const on = i !== null;
             return `
-                <li class="flex items-center gap-2 p-2.5 rounded-xl border ${on ? 'border-blue-200 bg-blue-50/60' : 'border-slate-100 bg-white'}">
+                <li class="p-2.5 rounded-xl border ${on ? 'border-blue-200 bg-blue-50/60' : 'border-slate-100 bg-white'}">
+                  <div class="flex items-center gap-2">
                     <input type="checkbox" data-toggle="${esc(r.name)}" ${on ? 'checked' : ''} class="w-4 h-4 accent-blue-600 flex-shrink-0">
                     <div class="flex-1 min-w-0">
                         <div class="text-xs font-semibold text-slate-800 truncate">${on ? `<span class="text-blue-600 mr-1">${i + 1}.</span>` : ''}${esc(r.name)}</div>
@@ -146,6 +148,10 @@
                     ${on ? `
                         <button type="button" data-up="${i}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-blue-600 disabled:opacity-30" ${i === 0 ? 'disabled' : ''} aria-label="위로"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
                         <button type="button" data-down="${i}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-blue-600 disabled:opacity-30" ${i === chosen.length - 1 ? 'disabled' : ''} aria-label="아래로"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>` : ''}
+                  </div>
+                  ${on ? `
+                    <textarea data-intro="${esc(r.name)}" rows="2" placeholder="앱 소개를 직접 쓰세요. 비워 두면 GitHub 저장소 설명을 씁니다."
+                              class="mt-2 w-full text-xs px-3 py-2 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y">${esc(intros[r.name.toLowerCase()] || '')}</textarea>` : ''}
                 </li>`;
         };
 
@@ -161,6 +167,9 @@
         try {
             const [{ config }, list] = await Promise.all([readConfig(), loadRepos()]);
             selected = [...(config.show || [])];
+            intros = Object.fromEntries(Object.entries(config.overrides || {})
+                .filter(([, v]) => v && v.description)
+                .map(([k, v]) => [k.toLowerCase(), v.description]));
             repos = list;
             renderList();
         } catch (e) {
@@ -177,7 +186,19 @@
         try {
             const { sha, config } = await readConfig();
             config.show = selected;
-            await writeJson(CONFIG_PATH, config, sha, `홈페이지 관리자 화면에서 노출 앱 변경 (${selected.length}개)`);
+            // 노출 중인 앱의 소개 문구를 overrides 에 반영한다 (기존 키의 대소문자는 유지).
+            const overrides = config.overrides || {};
+            for (const name of selected) {
+                const key = Object.keys(overrides).find((k) => k.toLowerCase() === name.toLowerCase()) || name;
+                const intro = (intros[name.toLowerCase()] || '').trim();
+                const entry = { ...(overrides[key] || {}) };
+                if (intro) entry.description = intro;
+                else delete entry.description;
+                if (Object.keys(entry).length) overrides[key] = entry;
+                else delete overrides[key];
+            }
+            config.overrides = overrides;
+            await writeJson(CONFIG_PATH, config, sha, `홈페이지 관리자 화면에서 노출 앱·소개 변경 (${selected.length}개)`);
             close();
             toast('✅ 저장했습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
         } catch (e) {
@@ -339,6 +360,10 @@
                 [selected[i], selected[j]] = [selected[j], selected[i]];
                 renderList();
             }
+        });
+        $('adminAppList').addEventListener('input', (e) => {
+            const name = e.target.dataset.intro;
+            if (name) intros[name.toLowerCase()] = e.target.value;
         });
         $('adminAppList').addEventListener('change', (e) => {
             const name = e.target.dataset.toggle;

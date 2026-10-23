@@ -1,10 +1,18 @@
 {
   "name": "이현덕 개인 홈페이지",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "released": "2026-10-23",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.5.0",
+      "date": "2026-10-23",
+      "items": [
+        "이력·내 앱·자료실을 각각 별도 페이지로 구분 (주소 #profile·#apps·#links, 뒤로가기 시 직전 페이지)",
+        "관리자 앱 선택 화면에서 앱별 소개 문구를 직접 작성 (비워 두면 GitHub 저장소 설명 사용)"
+      ]
+    },
     {
       "version": "2.4.0",
       "date": "2026-10-23",
