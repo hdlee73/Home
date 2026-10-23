@@ -1,128 +1,11 @@
 {
-  "updatedAt": "2026-10-23T05:04:01.279Z",
+  "updatedAt": "2026-10-23T05:54:18.867Z",
   "owner": "hdlee73",
   "apps": [
     {
-      "repo": "EngHub",
-      "name": "EngHub",
-      "description": "영어 사전 및 학습앱",
-      "icon": null,
-      "language": "Kotlin",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/EngHub",
-      "homepage": null,
-      "pushedAt": "2026-10-21T22:37:35Z",
-      "release": {
-        "tag": "v1.41.0",
-        "name": "EngHub v1.41.0",
-        "publishedAt": "2026-10-21T22:37:35Z",
-        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.41.0",
-        "notes": "## EngHub v1.41.0\n- 프리토킹·롤플레잉: 기기 안 음성 인식을 추가했습니다. 롤플레잉 목록 맨 위 ‘음성 인식’ 카드에서 모델(Whisper base.en, 약 160MB, 와이파이 권장)을 한 번 내려받으면, 구글 음성 서비스 없이 폰 안에서 인식해요. 그래서 ‘인터넷이 필요해요’ 오류가 나지 않고 오프라인에서도 되며, 억양이 있는 영어도 더 잘 알아듣는 편입니다. 말을 마치고 마이크를 누르면 1~3초 안에 글자로 바뀌어요(말하는 동안 실시간 글자는 나오지 않습니다). 카드의 스위치로 언제든 구글 인식으로 되돌릴 수 있고, 기기 안 인식이 실패하면 자동으로 구글 인식으로 바뀝니다.\n- 따라읽기 채점은 건드리지 않았습니다. (Whisper는 틀린 발음도 알아서 맞게 적는 경향이 있어 채점이 후해질 수 있어서)\n- 프리토킹·롤플레잉: Gemini Nano가 답을 다 쓰기 전에, 첫 문장이 완성되는 대로 바로 읽어 주기 시작합니다. 마지막 문장까지 읽은 뒤 마이크가 켜져요.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 인식 지연 시간·메모리 사용·인식 품질·문장 단위 읽기는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
-        "assets": [
-          {
-            "name": "EngHub-v1.41.0.apk",
-            "size": 146474703,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
-          }
-        ],
-        "primaryAsset": "EngHub-v1.41.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.41.0"
-      }
-    },
-    {
-      "repo": "Everynote_Win",
-      "name": "Everynote_Win",
-      "description": "윈도우용 노트 필기앱",
-      "icon": null,
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/Everynote_Win",
-      "homepage": null,
-      "pushedAt": "2026-10-21T21:55:48Z",
-      "release": {
-        "tag": "v3.36.0",
-        "name": "Everynote v3.36.0",
-        "publishedAt": "2026-10-21T21:55:48Z",
-        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.0",
-        "notes": "## Everynote for Windows v3.36.0\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- EPUB 리더가 전체 화면 책 읽기로 바뀌었습니다. 평소에는 본문만 보이고, 화면 가운데를 누르면 위쪽(뒤로·목차·설정·필기)과 아래쪽(쪽 번호·진행 슬라이더) 메뉴가 나타납니다. 좌우를 누르거나 ←/→·PageUp/PageDown·마우스 휠로 쪽을 넘깁니다.\r\n- 쪽 크기는 고정되고 글자 크기·줄 간격·여백을 바꾸면 전체 쪽 수가 달라집니다. 읽던 위치는 유지됩니다.\r\n- EPUB 책은 문서함의 ‘EPUB 책’ 항목에 따로 보관되고 읽은 정도가 표시됩니다. ",
-        "assets": [
-          {
-            "name": "Everynote-Setup-v3.36.0-arm64.exe",
-            "size": 83705190,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-arm64.exe"
-          },
-          {
-            "name": "Everynote-Setup-v3.36.0-x64.exe",
-            "size": 89549456,
-            "downloads": 1,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-x64.exe"
-          },
-          {
-            "name": "Everynote-v3.36.0-win-arm64.exe",
-            "size": 89561700,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-arm64.exe"
-          },
-          {
-            "name": "Everynote-v3.36.0-win-x64.exe",
-            "size": 94890345,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-x64.exe"
-          },
-          {
-            "name": "SHA256SUMS.txt",
-            "size": 392,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/SHA256SUMS.txt"
-          }
-        ],
-        "primaryAsset": "Everynote-Setup-v3.36.0-x64.exe",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.0"
-      }
-    },
-    {
-      "repo": "Everynote_And",
-      "name": "Everynote_And",
-      "description": "Android PDF reader with highlights, notes, bookmarks, recent documents, and annotation backup.",
-      "icon": null,
-      "language": "Java",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/Everynote_And",
-      "homepage": null,
-      "pushedAt": "2026-10-21T21:51:08Z",
-      "release": {
-        "tag": "v1.70.0",
-        "name": "Everynote v1.70.0",
-        "publishedAt": "2026-10-21T21:51:08Z",
-        "url": "https://github.com/hdlee73/Everynote_And/releases/tag/v1.70.0",
-        "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.0)\n- EPUB 리더를 전자책 앱처럼 바꿨습니다. 책이 화면 전체에 표시되고, 화면 가운데를 누르면 메뉴(목차·읽기 설정·필기·쪽 슬라이더)가 나타납니다. 왼쪽·오른쪽 가장자리를 누르거나 넘기면 쪽이 넘어가고, 볼륨 버튼으로도 넘길 수 있습니다.\n- 글자 크기·줄 간격·여백·글꼴을 바꾸면 쪽 크기는 그대로 두고 쪽 수가 달라지며, 읽던 위치는 유지됩니다. 화면 아래에 ‘현재 쪽 / 전체 쪽’이 표시됩니다.\n- 문서함 메뉴에 ‘EPUB 책’ 분류를 추가했습니다. EPUB 파일은 여기에 보관되고, 필기하려고 PDF로 변환하면 PDF는 기존 문서함에 저장됩니다.\n",
-        "assets": [
-          {
-            "name": "Everynote-v1.70.0.apk",
-            "size": 125406866,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
-          },
-          {
-            "name": "Everynote-v1.70.0.apk.sha256",
-            "size": 88,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk.sha256"
-          }
-        ],
-        "primaryAsset": "Everynote-v1.70.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote_And/zipball/v1.70.0"
-      }
-    },
-    {
       "repo": "FSS_insights",
       "name": "FSS_insights",
-      "description": "국내 기사를 시간순으로 모아보는 Android 앱",
+      "description": "뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 안드로이드앱",
       "icon": null,
       "language": "Kotlin",
       "topics": [],
@@ -155,9 +38,102 @@
       }
     },
     {
+      "repo": "EngHub",
+      "name": "EngHub",
+      "description": "영어 사전부터 스피킹, 리스닝, 리딩 등을 모두 학습할 수 있는 안드로이드앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EngHub",
+      "homepage": null,
+      "pushedAt": "2026-10-21T22:37:35Z",
+      "release": {
+        "tag": "v1.41.0",
+        "name": "EngHub v1.41.0",
+        "publishedAt": "2026-10-21T22:37:35Z",
+        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.41.0",
+        "notes": "## EngHub v1.41.0\n- 프리토킹·롤플레잉: 기기 안 음성 인식을 추가했습니다. 롤플레잉 목록 맨 위 ‘음성 인식’ 카드에서 모델(Whisper base.en, 약 160MB, 와이파이 권장)을 한 번 내려받으면, 구글 음성 서비스 없이 폰 안에서 인식해요. 그래서 ‘인터넷이 필요해요’ 오류가 나지 않고 오프라인에서도 되며, 억양이 있는 영어도 더 잘 알아듣는 편입니다. 말을 마치고 마이크를 누르면 1~3초 안에 글자로 바뀌어요(말하는 동안 실시간 글자는 나오지 않습니다). 카드의 스위치로 언제든 구글 인식으로 되돌릴 수 있고, 기기 안 인식이 실패하면 자동으로 구글 인식으로 바뀝니다.\n- 따라읽기 채점은 건드리지 않았습니다. (Whisper는 틀린 발음도 알아서 맞게 적는 경향이 있어 채점이 후해질 수 있어서)\n- 프리토킹·롤플레잉: Gemini Nano가 답을 다 쓰기 전에, 첫 문장이 완성되는 대로 바로 읽어 주기 시작합니다. 마지막 문장까지 읽은 뒤 마이크가 켜져요.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 인식 지연 시간·메모리 사용·인식 품질·문장 단위 읽기는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
+        "assets": [
+          {
+            "name": "EngHub-v1.41.0.apk",
+            "size": 146474703,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
+          }
+        ],
+        "primaryAsset": "EngHub-v1.41.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.41.0"
+      }
+    },
+    {
+      "repo": "Everynote_And",
+      "name": "Everynote_And",
+      "description": "PDF, HWP, DOC 등을 읽고 필기할 수 있는 안드로이드앱(HWP, DOC 등은 PDF로 변환), epub로 가능",
+      "icon": null,
+      "language": "Java",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everynote_And",
+      "homepage": null,
+      "pushedAt": "2026-10-21T21:51:08Z",
+      "release": {
+        "tag": "v1.70.0",
+        "name": "Everynote v1.70.0",
+        "publishedAt": "2026-10-21T21:51:08Z",
+        "url": "https://github.com/hdlee73/Everynote_And/releases/tag/v1.70.0",
+        "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.0)\n- EPUB 리더를 전자책 앱처럼 바꿨습니다. 책이 화면 전체에 표시되고, 화면 가운데를 누르면 메뉴(목차·읽기 설정·필기·쪽 슬라이더)가 나타납니다. 왼쪽·오른쪽 가장자리를 누르거나 넘기면 쪽이 넘어가고, 볼륨 버튼으로도 넘길 수 있습니다.\n- 글자 크기·줄 간격·여백·글꼴을 바꾸면 쪽 크기는 그대로 두고 쪽 수가 달라지며, 읽던 위치는 유지됩니다. 화면 아래에 ‘현재 쪽 / 전체 쪽’이 표시됩니다.\n- 문서함 메뉴에 ‘EPUB 책’ 분류를 추가했습니다. EPUB 파일은 여기에 보관되고, 필기하려고 PDF로 변환하면 PDF는 기존 문서함에 저장됩니다.\n",
+        "assets": [
+          {
+            "name": "Everynote-v1.70.0.apk",
+            "size": 125406866,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
+          },
+          {
+            "name": "Everynote-v1.70.0.apk.sha256",
+            "size": 88,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk.sha256"
+          }
+        ],
+        "primaryAsset": "Everynote-v1.70.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_And/zipball/v1.70.0"
+      }
+    },
+    {
+      "repo": "Everylaw",
+      "name": "Everylaw",
+      "description": "법과 조문 입력시 하부 내용까지 불러오는 안드로이드 앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everylaw",
+      "homepage": null,
+      "pushedAt": "2026-10-23T02:33:29Z",
+      "release": {
+        "tag": "v1.1.0",
+        "name": "Everylaw 1.1.0",
+        "publishedAt": "2026-10-23T02:33:29Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.1.0",
+        "notes": "## What's Changed\n* 항·호·목 단위 위임 표시·검색과 PDF 범위 선택 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/7\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.0.4...v1.1.0",
+        "assets": [
+          {
+            "name": "Everylaw-1.1.0.apk",
+            "size": 1995080,
+            "downloads": 6,
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.1.0/Everylaw-1.1.0.apk"
+          }
+        ],
+        "primaryAsset": "Everylaw-1.1.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.1.0"
+      }
+    },
+    {
       "repo": "Dailyhabit",
       "name": "Dailyhabit",
-      "description": "하루 해야할 일을 노티스 해주는 앱",
+      "description": "일주일간 일정 확인, todo list, 루틴, 맛집, 독서, 한줄일기 등의 기능을 가진 안드로이드 앱",
       "icon": null,
       "language": "Kotlin",
       "topics": [],
@@ -184,9 +160,62 @@
       }
     },
     {
+      "repo": "Everynote_Win",
+      "name": "Everynote_Win",
+      "description": "PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능",
+      "icon": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everynote_Win",
+      "homepage": null,
+      "pushedAt": "2026-10-21T21:55:48Z",
+      "release": {
+        "tag": "v3.36.0",
+        "name": "Everynote v3.36.0",
+        "publishedAt": "2026-10-21T21:55:48Z",
+        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.0",
+        "notes": "## Everynote for Windows v3.36.0\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- EPUB 리더가 전체 화면 책 읽기로 바뀌었습니다. 평소에는 본문만 보이고, 화면 가운데를 누르면 위쪽(뒤로·목차·설정·필기)과 아래쪽(쪽 번호·진행 슬라이더) 메뉴가 나타납니다. 좌우를 누르거나 ←/→·PageUp/PageDown·마우스 휠로 쪽을 넘깁니다.\r\n- 쪽 크기는 고정되고 글자 크기·줄 간격·여백을 바꾸면 전체 쪽 수가 달라집니다. 읽던 위치는 유지됩니다.\r\n- EPUB 책은 문서함의 ‘EPUB 책’ 항목에 따로 보관되고 읽은 정도가 표시됩니다. ",
+        "assets": [
+          {
+            "name": "Everynote-Setup-v3.36.0-arm64.exe",
+            "size": 83705190,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-arm64.exe"
+          },
+          {
+            "name": "Everynote-Setup-v3.36.0-x64.exe",
+            "size": 89549456,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-x64.exe"
+          },
+          {
+            "name": "Everynote-v3.36.0-win-arm64.exe",
+            "size": 89561700,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-arm64.exe"
+          },
+          {
+            "name": "Everynote-v3.36.0-win-x64.exe",
+            "size": 94890345,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-x64.exe"
+          },
+          {
+            "name": "SHA256SUMS.txt",
+            "size": 392,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/SHA256SUMS.txt"
+          }
+        ],
+        "primaryAsset": "Everynote-Setup-v3.36.0-x64.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.0"
+      }
+    },
+    {
       "repo": "SnapRead",
       "name": "SnapRead",
-      "description": "사진 찍고, 문자를 읽어서 번역해주는 앱",
+      "description": "사진을 찍어서 문자를 추출하거나 스캔 등을 할 수 있는 앱",
       "icon": null,
       "language": "JavaScript",
       "topics": [],
