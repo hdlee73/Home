@@ -1,17 +1,22 @@
-// 관리자: 홈페이지에서 '내 앱'에 노출할 앱을 고른다.
+// 관리자: 홈페이지에서 '내 앱'에 노출할 앱을 고르고, 자료실 링크를 추가·삭제한다.
 // 페이지 소스에는 비밀번호도 토큰도 없다. 관리자가 처음 한 번 GitHub 토큰(이 저장소 Contents 읽기/쓰기만)을 넣으면
 // 관리자가 정한 비밀번호로 암호화(PBKDF2 + AES-GCM)해 그 브라우저에만 저장하고, 이후에는 비밀번호로 잠금을 푼다.
-// 저장하면 data/apps-config.json 을 커밋하고, '앱 목록 갱신' 워크플로가 1~2분 뒤 홈페이지에 반영한다.
+// 앱 선택은 data/apps-config.json 을, 링크 삭제는 data/links.json 을 바로 커밋한다.
+// 링크 추가는 브라우저에서 다른 사이트의 제목·요약을 읽을 수 없으므로 data/link-requests/ 에 요청 파일을 커밋하고,
+// '링크 요청 처리' 워크플로가 제목·요약을 가져와 links.json 에 넣는다. 모두 1~2분 뒤 홈페이지에 반영된다.
 (() => {
     const OWNER = 'hdlee73';
     const REPO = 'Resume_LHD';
     const CONFIG_PATH = 'data/apps-config.json';
+    const LINKS_PATH = 'data/links.json';
+    const REQUEST_DIR = 'data/link-requests';
     const VAULT_KEY = 'hdlee_admin_vault_v1';
     const PBKDF2_ITERATIONS = 600000;
 
     let token = null;      // 잠금 해제된 동안 메모리에만 둔다
     let selected = [];     // 노출할 저장소 이름 (순서 = 표시 순서)
     let repos = [];        // 고를 수 있는 공개 저장소
+    let target = 'apps';   // 잠금 해제 후 열 화면: apps | links
 
     const $ = (id) => document.getElementById(id);
     const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
@@ -71,9 +76,26 @@
     const decodeContent = (b) => new TextDecoder().decode(unb64(b.replace(/\n/g, '')));
     const encodeContent = (s) => b64(new TextEncoder().encode(s));
 
+    async function readJson(path) {
+        const file = await gh(`/repos/${OWNER}/${REPO}/contents/${path}?ref=main`);
+        return { sha: file.sha, data: JSON.parse(decodeContent(file.content)) };
+    }
+
+    function writeJson(path, data, sha, message) {
+        return gh(`/repos/${OWNER}/${REPO}/contents/${path}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                message,
+                content: encodeContent(JSON.stringify(data, null, 2) + '\n'),
+                branch: 'main',
+                ...(sha ? { sha } : {}),
+            }),
+        });
+    }
+
     async function readConfig() {
-        const file = await gh(`/repos/${OWNER}/${REPO}/contents/${CONFIG_PATH}?ref=main`);
-        return { sha: file.sha, config: JSON.parse(decodeContent(file.content)) };
+        const { sha, data } = await readJson(CONFIG_PATH);
+        return { sha, config: data };
     }
 
     async function loadRepos() {
@@ -91,7 +113,8 @@
     // ---------- 화면 ----------
 
     function show(view) {
-        ['adminSetupView', 'adminLoginView', 'adminPanelView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
+        ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
+        $('adminModalTitle').textContent = target === 'links' ? '자료실 링크 관리' : '노출할 앱 선택';
         $('adminAppsModal').classList.remove('opacity-0', 'pointer-events-none');
         const focus = { adminSetupView: 'adminTokenInput', adminLoginView: 'adminPwInput' }[view];
         if (focus) setTimeout(() => $(focus).focus(), 50);
@@ -99,7 +122,7 @@
 
     function close() {
         $('adminAppsModal').classList.add('opacity-0', 'pointer-events-none');
-        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput'].forEach((id) => { $(id).value = ''; });
+        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput', 'adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags'].forEach((id) => { $(id).value = ''; });
         $('adminSetupError').textContent = '';
         $('adminLoginError').textContent = '';
     }
@@ -132,7 +155,7 @@
             rest.map((r) => row(r, null)).join('');
     }
 
-    async function openPanel() {
+    async function openAppsPanel() {
         show('adminPanelView');
         $('adminAppList').innerHTML = '<li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
         try {
@@ -154,16 +177,7 @@
         try {
             const { sha, config } = await readConfig();
             config.show = selected;
-            const content = JSON.stringify(config, null, 2) + '\n';
-            await gh(`/repos/${OWNER}/${REPO}/contents/${CONFIG_PATH}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    message: `홈페이지 관리자 화면에서 노출 앱 변경 (${selected.length}개)`,
-                    content: encodeContent(content),
-                    sha,
-                    branch: 'main',
-                }),
-            });
+            await writeJson(CONFIG_PATH, config, sha, `홈페이지 관리자 화면에서 노출 앱 변경 (${selected.length}개)`);
             close();
             toast('✅ 저장했습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
         } catch (e) {
@@ -191,7 +205,7 @@
             return (err.textContent = '토큰으로 저장소를 읽지 못했습니다. 저장소 선택과 Contents 권한을 확인해 주세요.');
         }
         await saveVault(t, p1);
-        openPanel();
+        openTarget();
     }
 
     async function login() {
@@ -199,10 +213,96 @@
         err.textContent = '';
         try {
             token = await openVault($('adminPwInput').value);
-            openPanel();
+            openTarget();
         } catch {
             err.textContent = '비밀번호가 일치하지 않습니다.';
         }
+    }
+
+    // ---------- 자료실 링크 ----------
+
+    const fmtDate = (iso) => (iso ? iso.slice(0, 10).replace(/-/g, '.') : '');
+
+    async function loadLinkList() {
+        const box = $('adminLinkList');
+        box.innerHTML = '<li class="text-xs text-slate-400 text-center py-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
+        try {
+            const { data } = await readJson(LINKS_PATH);
+            $('adminLinkCount').textContent = `${data.length}개`;
+            box.innerHTML = data.length
+                ? data.map((l) => `
+                    <li class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-100 bg-white">
+                        <i class="${l.type === 'youtube' ? 'fa-brands fa-youtube text-red-500' : l.type === 'blog' ? 'fa-solid fa-pen-nib text-emerald-500' : 'fa-solid fa-link text-blue-500'} text-xs w-4 text-center flex-shrink-0"></i>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-xs font-semibold text-slate-800 truncate">${esc(l.title)}</div>
+                            <div class="text-[11px] text-slate-400 truncate">${esc(l.category || '')} · ${fmtDate(l.addedAt)} · ${esc(l.url)}</div>
+                        </div>
+                        <button type="button" data-del-link="${esc(l.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-red-600 hover:border-red-200 flex-shrink-0" aria-label="삭제"><i class="fa-solid fa-trash text-[10px]"></i></button>
+                    </li>`).join('')
+                : '<li class="text-xs text-slate-400 text-center py-4">저장된 링크가 없습니다.</li>';
+        } catch (e) {
+            box.innerHTML = `<li class="text-xs text-red-500 text-center py-4">${e.status === 401 || e.status === 403 || e.status === 404
+                ? '토큰이 만료되었거나 권한이 없습니다. "토큰 다시 등록"을 눌러 주세요.'
+                : '목록을 불러오지 못했습니다.'}</li>`;
+        }
+    }
+
+    function openLinksPanel() {
+        show('adminLinksView');
+        setTimeout(() => $('adminLinkUrls').focus(), 50);
+        loadLinkList();
+    }
+
+    async function addLinks() {
+        const urls = [...new Set(($('adminLinkUrls').value.match(/https?:\/\/[^\s<>()"'`]+/g) || []))];
+        if (!urls.length) return toast('링크 주소(http/https)를 붙여 넣어 주세요.');
+        const btn = $('adminLinkAddBtn');
+        btn.disabled = true;
+        btn.classList.add('opacity-60');
+        try {
+            const id = `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+            await writeJson(`${REQUEST_DIR}/${id}.json`, {
+                urls,
+                category: $('adminLinkCategory').value,
+                title: urls.length === 1 ? $('adminLinkTitle').value.trim() : '',
+                summary: urls.length === 1 ? $('adminLinkSummary').value.trim() : '',
+                tags: $('adminLinkTags').value.split(/[,#\s]+/).map((t) => t.trim()).filter(Boolean),
+                requestedAt: new Date().toISOString(),
+            }, null, `홈페이지에서 링크 추가 요청 (${urls.length}개)`);
+            ['adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags'].forEach((i) => { $(i).value = ''; });
+            toast(`✅ 링크 ${urls.length}개를 보냈습니다. 제목·요약을 가져와 1~2분 뒤 자료실에 올라갑니다.`);
+        } catch {
+            toast('보내지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+        } finally {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60');
+        }
+    }
+
+    async function deleteLink(id) {
+        if (!confirm('이 링크를 자료실에서 삭제할까요?')) return;
+        try {
+            const { sha, data } = await readJson(LINKS_PATH);
+            const removed = data.find((l) => l.id === id);
+            if (!removed) return loadLinkList();
+            await writeJson(LINKS_PATH, data.filter((l) => l.id !== id), sha, `홈페이지에서 링크 삭제: ${removed.title}`.slice(0, 100));
+            toast('🗑️ 삭제했습니다. 1~2분 뒤 자료실에서 사라집니다.');
+            loadLinkList();
+        } catch (e) {
+            toast(e.status === 409 ? '목록이 방금 바뀌었습니다. 다시 시도해 주세요.' : '삭제하지 못했습니다.');
+            loadLinkList();
+        }
+    }
+
+    function openTarget() {
+        if (target === 'links') openLinksPanel();
+        else openAppsPanel();
+    }
+
+    function openFor(which) {
+        target = which;
+        if (token) openTarget();
+        else show(hasVault() ? 'adminLoginView' : 'adminSetupView');
     }
 
     function reset() {
@@ -214,9 +314,12 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         if (!$('adminAppsBtn')) return;
-        $('adminAppsBtn').addEventListener('click', () => {
-            if (token) openPanel();
-            else show(hasVault() ? 'adminLoginView' : 'adminSetupView');
+        $('adminAppsBtn').addEventListener('click', () => openFor('apps'));
+        $('linkAdminBtn').addEventListener('click', () => openFor('links'));
+        $('adminLinkAddBtn').addEventListener('click', addLinks);
+        $('adminLinkList').addEventListener('click', (e) => {
+            const del = e.target.closest('[data-del-link]');
+            if (del) deleteLink(del.dataset.delLink);
         });
         $('adminAppsModal').addEventListener('click', (e) => {
             if (e.target.id === 'adminAppsModal' || e.target.closest('[data-admin-close]')) close();
@@ -225,7 +328,7 @@
         $('adminLoginBtn').addEventListener('click', login);
         $('adminPwInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
         $('adminSaveBtn').addEventListener('click', save);
-        $('adminLockBtn').addEventListener('click', () => { token = null; close(); toast('🔒 관리자 화면을 잠갔습니다.'); });
+        document.querySelectorAll('[data-admin-lock]').forEach((b) => b.addEventListener('click', () => { token = null; close(); toast('🔒 관리자 화면을 잠갔습니다.'); }));
         document.querySelectorAll('[data-admin-reset]').forEach((b) => b.addEventListener('click', reset));
         $('adminAppList').addEventListener('click', (e) => {
             const up = e.target.closest('[data-up]');

@@ -1,0 +1,55 @@
+# 홈페이지 관리자 화면에서 추가한 링크 요청(data/link-requests/*.json)을 처리해 data/links.json 에 반영한다.
+# 저장소에 커밋할 수 있는 사람(저장소 주인)만 요청 파일을 만들 수 있다.
+name: 링크 요청 처리
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/link-requests/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+
+jobs:
+  process:
+    if: github.actor == github.repository_owner || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 요청 처리
+        run: |
+          shopt -s nullglob
+          for f in data/link-requests/*.json; do
+            echo "::group::$f"
+            REQUEST_FILE="$f" node scripts/manage-links.mjs add || echo "실패: $f"
+            git rm -q "$f"
+            echo "::endgroup::"
+          done
+
+      - name: 커밋 및 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/links.json data/link-requests
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+            exit 0
+          fi
+          git commit -m "홈페이지에서 추가한 링크 반영"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            sleep 5
+          done
