@@ -1,7 +1,7 @@
 # 이현덕 개인 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.1.0 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.2.0 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -13,17 +13,19 @@
 | `assets/site.js` | 내 앱·자료실 표시, 업데이트 내역, 새 버전 안내 |
 | `version.json` | 사이트 이름·버전·업데이트 내역 |
 | `data/apps.json` | 공개 앱 목록 (자동 생성) |
-| `data/apps-config.json` | 앱 목록에서 뺄 저장소, 이름·설명 덮어쓰기 |
+| `data/apps-config.json` | 홈페이지에 보일 앱 선택(`show`), 이름·설명 덮어쓰기 |
 | `data/links.json` | 자료실 링크 목록 (자동 생성) |
 
 ## 내 앱
 
-`앱 목록 갱신` 워크플로가 6시간마다 공개 저장소와 각 저장소의 **최신 릴리스**를 읽어 `data/apps.json`에 저장합니다.
-바로 반영하려면 GitHub의 **Actions → 앱 목록 갱신 → Run workflow**를 누르세요.
+**홈페이지에는 직접 고른 앱만 보입니다.** `data/apps-config.json`의 `show` 목록에 저장소 이름을 적으면 적은 순서대로 표시됩니다.
+GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edit/main/data/apps-config.json) → `show`에 이름 추가·삭제 → **Commit changes**를 누르면 1~2분 뒤 반영됩니다.
+고를 수 있는 공개 저장소 이름은 `data/apps.json`의 `candidates`에 있습니다.
 
-- 다운로드 버튼은 릴리스 파일 중 `.apk`, `.exe`, `.msi`, `.dmg`, `.zip` 순으로 대표 파일을 고릅니다.
-- 소개 문구는 저장소의 About(Description)을 씁니다. 따로 쓰고 싶으면 `data/apps-config.json`의 `overrides`에 저장소 이름으로 적습니다.
-- 목록에서 숨길 저장소는 `exclude`에 넣거나 `overrides`에서 `"hidden": true`로 지정합니다.
+`앱 목록 갱신` 워크플로가 6시간마다(그리고 설정 파일을 바꿀 때마다) 선택한 앱의 **최신 릴리스**를 읽어 `data/apps.json`에 저장합니다.
+
+- 다운로드 버튼은 릴리스 파일 중 `.apk`, `.exe`, `.msi`, `.dmg`, `.zip` 순으로 대표 파일을 고르며, 같은 종류면 일반 PC용(x64)을 ARM용보다 먼저 고릅니다.
+- 소개 문구는 저장소의 About(Description)을 씁니다. 따로 쓰고 싶으면 `overrides`에 저장소 이름으로 적습니다.
 
 ## 자료실 (링크 추가·삭제)
 

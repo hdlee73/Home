@@ -1,13 +1,29 @@
 {
   "owner": "hdlee73",
-  "exclude": ["resume_lhd", "hdlee73"],
+  "_설명": "show 에 적은 저장소만 홈페이지 '내 앱'에 보이며, 적은 순서대로 표시됩니다. 후보 목록은 data/apps.json 의 candidates 를 참고하세요.",
+  "show": [
+    "Everylaw",
+    "EveryCorp",
+    "EngHub",
+    "Everynote_Win",
+    "Everynote_And",
+    "FSS_insights",
+    "Realtime_trans",
+    "EveryVideo_win",
+    "EveryVideo",
+    "FSS_Insights_Win",
+    "EngHub_Win",
+    "Dailyhabit",
+    "InvestOn",
+    "DailyHabit_win",
+    "SnapRead",
+    "Watch_sentence"
+  ],
   "overrides": {
     "예시-저장소이름": {
       "name": "화면에 보일 앱 이름",
       "description": "저장소 설명 대신 보여줄 소개 문구",
-      "homepage": "https://example.com",
-      "order": 1,
-      "hidden": false
+      "homepage": "https://example.com"
     }
   }
 }

@@ -44,31 +44,6 @@
 
     // ---------- 내 앱 ----------
 
-    // apps.json 이 아직 비어 있을 때(최초 배포 직후) 브라우저에서 직접 GitHub API 로 읽는다.
-    async function loadAppsLive() {
-        const repos = await fetchJson(`https://api.github.com/users/${GITHUB_OWNER}/repos?type=owner&per_page=100&sort=pushed`);
-        const candidates = repos
-            .filter((r) => !r.fork && !r.archived && r.full_name.toLowerCase() !== SITE_REPO)
-            .slice(0, 15);
-        const apps = await Promise.all(candidates.map(async (r) => {
-            let release = null;
-            try {
-                const rel = await fetchJson(`https://api.github.com/repos/${r.full_name}/releases/latest`);
-                const assets = rel.assets.map((a) => ({ name: a.name, size: a.size, downloads: a.download_count, url: a.browser_download_url }));
-                release = {
-                    tag: rel.tag_name, name: rel.name || rel.tag_name, publishedAt: rel.published_at, url: rel.html_url,
-                    notes: (rel.body || '').slice(0, 600), assets, primaryAsset: assets.find((a) => /\.(apk|exe|msi|dmg|zip)$/i.test(a.name))?.name || assets[0]?.name || null,
-                    zipball: rel.zipball_url,
-                };
-            } catch { /* 릴리스 없음 */ }
-            return {
-                repo: r.name, name: r.name, description: r.description || '', language: r.language, topics: r.topics || [],
-                stars: r.stargazers_count, url: r.html_url, homepage: r.homepage, pushedAt: r.pushed_at, release,
-            };
-        }));
-        return apps.sort((a, b) => (!!b.release - !!a.release));
-    }
-
     function appCard(app) {
         const rel = app.release;
         const primary = rel?.assets.find((a) => a.name === rel.primaryAsset);
@@ -128,12 +103,8 @@
         const meta = document.getElementById('appMeta');
         if (!list) return;
         try {
-            let data = await fetchJson('data/apps.json');
-            let apps = data.apps || [];
-            if (!apps.length) {
-                apps = await loadAppsLive();
-                data = { updatedAt: new Date().toISOString() };
-            }
+            const data = await fetchJson('data/apps.json');
+            const apps = data.apps || [];
             if (!apps.length) {
                 list.innerHTML = `<p class="col-span-full text-xs text-slate-400 text-center py-6">공개된 앱이 아직 없습니다.</p>`;
                 return;

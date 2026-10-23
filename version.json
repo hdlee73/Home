@@ -1,10 +1,19 @@
 {
   "name": "이현덕 개인 홈페이지",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "released": "2026-10-23",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.2.0",
+      "date": "2026-10-23",
+      "items": [
+        "상단 메뉴(이력·내 앱·자료실·문의)를 큰 카드형 버튼으로 변경",
+        "내 앱은 관리자가 고른 앱만 표시 (data/apps-config.json 의 show 목록)",
+        "Windows 앱 다운로드 버튼이 일반 PC용(x64) 설치 파일을 우선 받도록 수정"
+      ]
+    },
     {
       "version": "2.1.0",
       "date": "2026-10-23",
