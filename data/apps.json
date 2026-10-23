@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T02:21:06.522Z",
+  "updatedAt": "2026-10-23T02:29:14.991Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,24 +12,23 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Everylaw",
       "homepage": null,
-      "pushedAt": "2026-10-23T01:50:41Z",
-      "order": null,
+      "pushedAt": "2026-10-23T02:28:47Z",
       "release": {
-        "tag": "v1.0.3",
-        "name": "Everylaw 1.0.3",
-        "publishedAt": "2026-10-23T01:35:03Z",
-        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.0.3",
-        "notes": "## What's Changed\n* XML 파서를 DOM에서 SAX로 교체 (DOMException 수정) by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/5\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.0.2...v1.0.3",
+        "tag": "v1.0.4",
+        "name": "Everylaw 1.0.4",
+        "publishedAt": "2026-10-23T02:24:32Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.0.4",
+        "notes": "## What's Changed\n* 하위 규정 연결 수정, 조문 인용 링크, 새 아이콘 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/6\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.0.3...v1.0.4",
         "assets": [
           {
-            "name": "Everylaw-1.0.3.apk",
-            "size": 1962476,
+            "name": "Everylaw-1.0.4.apk",
+            "size": 1978700,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.0.3/Everylaw-1.0.3.apk"
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.0.4/Everylaw-1.0.4.apk"
           }
         ],
-        "primaryAsset": "Everylaw-1.0.3.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.0.3"
+        "primaryAsset": "Everylaw-1.0.4.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.0.4"
       }
     },
     {
@@ -42,8 +41,7 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-10-23T01:29:15Z",
-      "order": null,
+      "pushedAt": "2026-10-23T02:27:24Z",
       "release": {
         "tag": "v1.0.4",
         "name": "EveryCorp v1.0.4",
@@ -79,7 +77,6 @@
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
       "pushedAt": "2026-10-21T22:37:35Z",
-      "order": null,
       "release": {
         "tag": "v1.41.0",
         "name": "EngHub v1.41.0",
@@ -109,7 +106,6 @@
       "url": "https://github.com/hdlee73/Everynote_Win",
       "homepage": null,
       "pushedAt": "2026-10-21T21:55:48Z",
-      "order": null,
       "release": {
         "tag": "v3.36.0",
         "name": "Everynote v3.36.0",
@@ -148,7 +144,7 @@
             "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/SHA256SUMS.txt"
           }
         ],
-        "primaryAsset": "Everynote-Setup-v3.36.0-arm64.exe",
+        "primaryAsset": "Everynote-Setup-v3.36.0-x64.exe",
         "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.0"
       }
     },
@@ -163,7 +159,6 @@
       "url": "https://github.com/hdlee73/Everynote_And",
       "homepage": null,
       "pushedAt": "2026-10-21T21:51:08Z",
-      "order": null,
       "release": {
         "tag": "v1.70.0",
         "name": "Everynote v1.70.0",
@@ -199,7 +194,6 @@
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
       "pushedAt": "2026-10-22T06:51:51Z",
-      "order": null,
       "release": {
         "tag": "v1.6.7",
         "name": "FSS Insights v1.6.7",
@@ -235,7 +229,6 @@
       "url": "https://github.com/hdlee73/Realtime_trans",
       "homepage": null,
       "pushedAt": "2026-10-20T13:22:03Z",
-      "order": null,
       "release": {
         "tag": "v1.0.4",
         "name": "v1.0.4",
@@ -271,7 +264,6 @@
       "url": "https://github.com/hdlee73/EveryVideo_win",
       "homepage": null,
       "pushedAt": "2026-10-20T04:07:23Z",
-      "order": null,
       "release": {
         "tag": "v1.0.1",
         "name": "EveryVideo for Windows v1.0.1",
@@ -307,7 +299,6 @@
       "url": "https://github.com/hdlee73/EveryVideo",
       "homepage": null,
       "pushedAt": "2026-10-20T04:04:02Z",
-      "order": null,
       "release": {
         "tag": "v1.0.1",
         "name": "EveryVideo v1.0.1",
@@ -342,7 +333,6 @@
       "url": "https://github.com/hdlee73/FSS_Insights_Win",
       "homepage": null,
       "pushedAt": "2026-10-19T05:21:47Z",
-      "order": null,
       "release": {
         "tag": "v1.5.0",
         "name": "FSS Insights for Windows v1.5.0",
@@ -378,7 +368,6 @@
       "url": "https://github.com/hdlee73/EngHub_Win",
       "homepage": null,
       "pushedAt": "2026-10-17T08:43:39Z",
-      "order": null,
       "release": {
         "tag": "v1.34.2",
         "name": "EngHub for Windows v1.34.2",
@@ -423,7 +412,7 @@
             "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-x64-1.34.2.zip"
           }
         ],
-        "primaryAsset": "EngHub-windows-arm64-1.34.2.exe",
+        "primaryAsset": "EngHub-windows-x64-1.34.2.exe",
         "zipball": "https://api.github.com/repos/hdlee73/EngHub_Win/zipball/v1.34.2"
       }
     },
@@ -438,7 +427,6 @@
       "url": "https://github.com/hdlee73/Dailyhabit",
       "homepage": null,
       "pushedAt": "2026-10-17T00:24:23Z",
-      "order": null,
       "release": {
         "tag": "v1.8.1",
         "name": "DailyHabit v1.8.1",
@@ -468,7 +456,6 @@
       "url": "https://github.com/hdlee73/InvestOn",
       "homepage": null,
       "pushedAt": "2026-10-15T05:49:34Z",
-      "order": null,
       "release": {
         "tag": "v1.0.14",
         "name": "InvestOn 1.0.14",
@@ -498,7 +485,6 @@
       "url": "https://github.com/hdlee73/DailyHabit_win",
       "homepage": null,
       "pushedAt": "2026-10-15T04:42:24Z",
-      "order": null,
       "release": {
         "tag": "v1.8.1",
         "name": "DailyHabit for Windows v1.8.1",
@@ -546,7 +532,6 @@
       "url": "https://github.com/hdlee73/SnapRead",
       "homepage": null,
       "pushedAt": "2026-10-13T02:31:46Z",
-      "order": null,
       "release": {
         "tag": "v1.7.0",
         "name": "Snap Read v1.7.0",
@@ -582,7 +567,6 @@
       "url": "https://github.com/hdlee73/Watch_sentence",
       "homepage": null,
       "pushedAt": "2026-10-06T09:04:22Z",
-      "order": null,
       "release": {
         "tag": "v1.0.0",
         "name": "Watch Sentence v1.0.0",
@@ -612,48 +596,28 @@
         "primaryAsset": "WatchSentence.exe",
         "zipball": "https://api.github.com/repos/hdlee73/Watch_sentence/zipball/v1.0.0"
       }
-    },
-    {
-      "repo": "EpubMaker",
-      "name": "EpubMaker",
-      "description": "epub 메이커",
-      "icon": null,
-      "language": "Kotlin",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/EpubMaker",
-      "homepage": null,
-      "pushedAt": "2026-10-21T21:57:19Z",
-      "order": null,
-      "release": null
-    },
-    {
-      "repo": "ETF-signal",
-      "name": "ETF-signal",
-      "description": "",
-      "icon": null,
-      "language": null,
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/ETF-signal",
-      "homepage": null,
-      "pushedAt": "2026-10-20T12:12:26Z",
-      "order": null,
-      "release": null
-    },
-    {
-      "repo": "Study_Helper_Win",
-      "name": "Study_Helper_Win",
-      "description": "",
-      "icon": null,
-      "language": "Python",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/Study_Helper_Win",
-      "homepage": null,
-      "pushedAt": "2026-09-14T07:53:35Z",
-      "order": null,
-      "release": null
     }
+  ],
+  "candidates": [
+    "Dailyhabit",
+    "DailyHabit_win",
+    "EngHub",
+    "EngHub_Win",
+    "EpubMaker",
+    "ETF-signal",
+    "EveryCorp",
+    "Everylaw",
+    "Everynote_And",
+    "Everynote_Win",
+    "EveryVideo",
+    "EveryVideo_win",
+    "FSS_insights",
+    "FSS_Insights_Win",
+    "InvestOn",
+    "Realtime_trans",
+    "Resume_LHD",
+    "SnapRead",
+    "Study_Helper_Win",
+    "Watch_sentence"
   ]
 }
