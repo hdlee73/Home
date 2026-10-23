@@ -1,0 +1,12 @@
+name: 🗑️ 링크 삭제
+description: 홈페이지 자료실에서 링크를 삭제합니다 (저장소 주인만 반영됨)
+title: "[링크 삭제] "
+labels: [link-remove]
+body:
+  - type: textarea
+    id: url
+    attributes:
+      label: 링크 주소
+      description: 삭제할 링크 주소. 한 줄에 하나씩.
+    validations:
+      required: true
