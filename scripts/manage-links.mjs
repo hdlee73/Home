@@ -1,6 +1,6 @@
 // GitHub 이슈로 받은 링크를 data/links.json 에 추가하거나 삭제한다.
 // 유튜브는 oEmbed 로 제목을, 그 밖의 링크는 Open Graph 메타데이터로 제목·요약·대표 이미지를 가져온다.
-// 사용: node scripts/manage-links.mjs add|remove  (ISSUE_BODY, ISSUE_NUMBER 환경변수 사용)
+// 사용: node scripts/manage-links.mjs add|remove  (ISSUE_BODY, ISSUE_NUMBER 또는 REQUEST_FILE 환경변수 사용)
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
 
 const LINKS_PATH = 'data/links.json';
@@ -173,7 +173,16 @@ async function describe(url) {
   }
 }
 
-const fields = parseIssueForm(body);
+// 홈페이지 관리자 화면이 커밋한 요청 파일(data/link-requests/*.json)도 이슈 양식과 같은 필드로 읽는다.
+const fields = process.env.REQUEST_FILE
+  ? (({ urls = [], category = '', title = '', summary = '', tags = '' }) => ({
+      링크: [].concat(urls).join('\n'),
+      분류: category,
+      제목: title,
+      요약: summary,
+      태그: [].concat(tags).join(', '),
+    }))(JSON.parse(await readFile(process.env.REQUEST_FILE, 'utf8')))
+  : parseIssueForm(body);
 const urlSource = Object.keys(fields).length ? field(fields, '링크') || body : body;
 const urls = extractUrls(urlSource);
 
@@ -186,7 +195,7 @@ const report = [];
 const sameUrl = (a, b) => a.replace(/\/+$/, '') === b.replace(/\/+$/, '');
 
 if (!urls.length) {
-  report.push('⚠️ 이슈 내용에서 링크(http/https 주소)를 찾지 못했습니다.');
+  report.push('⚠️ 링크(http/https 주소)를 찾지 못했습니다.');
 } else if (mode === 'remove') {
   for (const url of urls) {
     const before = links.length;

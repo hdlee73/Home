@@ -1,7 +1,6 @@
 // 내 앱 · 자료 링크 저장소 · 버전/업데이트 안내
 (() => {
     const GITHUB_OWNER = 'hdlee73';
-    const SITE_REPO = 'hdlee73/resume_lhd';
     const SITE_VERSION = document.querySelector('meta[name="site-version"]')?.content || '0.0.0';
     const LINKS_PAGE_SIZE = 9;
 
@@ -211,7 +210,6 @@
     async function initLinks() {
         const list = document.getElementById('linkList');
         if (!list) return;
-        document.getElementById('linkAddBtn').href = `https://github.com/${SITE_REPO}/issues/new?template=add-link.yml`;
         document.getElementById('linkFilters').addEventListener('click', (e) => {
             const btn = e.target.closest('button[data-cat]');
             if (!btn) return;

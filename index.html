@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.3.0">
+    <meta name="site-version" content="2.4.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
@@ -593,9 +593,9 @@
                     </span>
                     자료실
                 </h2>
-                <a id="linkAddBtn" href="#" target="_blank" rel="noopener" title="관리자 전용: GitHub 이슈로 링크를 추가합니다" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-plus text-amber-500"></i> 링크 추가 (관리자)
-                </a>
+                <button id="linkAdminBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-key text-amber-500"></i> 링크 관리 (관리자)
+                </button>
             </div>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
                 <div id="linkFilters" class="flex flex-wrap gap-2 flex-1"></div>
@@ -629,7 +629,7 @@
     <div id="adminAppsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200 px-4">
         <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
             <div class="flex items-center justify-between">
-                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-shield text-amber-500"></i> 노출할 앱 선택</h3>
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-shield text-amber-500"></i> <span id="adminModalTitle">노출할 앱 선택</span></h3>
                 <button data-admin-close type="button" class="text-slate-400 hover:text-slate-600" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
@@ -666,10 +666,47 @@
                 </div>
                 <ul id="adminAppList" class="space-y-1.5"></ul>
                 <div class="flex gap-2 pt-1">
-                    <button id="adminLockBtn" type="button" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-lock mr-1"></i> 잠그기</button>
+                    <button data-admin-lock type="button" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-lock mr-1"></i> 잠그기</button>
                     <button id="adminSaveBtn" type="button" class="flex-[2] py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-floppy-disk mr-1"></i> 저장하고 반영</button>
                 </div>
                 <button data-admin-reset type="button" class="w-full text-[11px] text-slate-400 hover:text-slate-600 underline underline-offset-2">토큰 다시 등록</button>
+            </div>
+
+            <!-- Link library panel -->
+            <div id="adminLinksView" class="hidden space-y-3">
+                <div class="space-y-2 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <label for="adminLinkUrls" class="block text-xs font-semibold text-slate-700">링크 추가</label>
+                    <textarea id="adminLinkUrls" rows="3" placeholder="유튜브·블로그 주소를 붙여 넣으세요 (여러 개면 한 줄에 하나씩)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="adminLinkCategory" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                            <option value="자동">분류: 자동</option>
+                            <option>유튜브</option>
+                            <option>블로그</option>
+                            <option>기사</option>
+                            <option>자료</option>
+                            <option>웹</option>
+                        </select>
+                        <input id="adminLinkTags" type="text" placeholder="태그 (예: 회계, AI)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <details class="text-[11px] text-slate-500">
+                        <summary class="cursor-pointer hover:text-blue-600">제목·요약 직접 쓰기 (선택, 링크 1개일 때)</summary>
+                        <div class="space-y-2 mt-2">
+                            <input id="adminLinkTitle" type="text" placeholder="비워 두면 자동으로 가져옵니다" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <textarea id="adminLinkSummary" rows="2" placeholder="요약 (비워 두면 자동)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                        </div>
+                    </details>
+                    <button id="adminLinkAddBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-plus mr-1"></i> 자료실에 추가</button>
+                </div>
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-700">
+                    <span>저장된 링크</span>
+                    <span id="adminLinkCount" class="text-blue-600"></span>
+                </div>
+                <ul id="adminLinkList" class="space-y-1.5 max-h-72 overflow-y-auto pr-1"></ul>
+                <button data-admin-lock type="button" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-lock mr-1"></i> 잠그기</button>
+                <div class="flex justify-between text-[11px] text-slate-400">
+                    <a href="https://github.com/hdlee73/Resume_LHD/issues/new?template=add-link.yml" target="_blank" rel="noopener" class="hover:text-slate-600 underline underline-offset-2">GitHub 이슈로 추가</a>
+                    <button data-admin-reset type="button" class="hover:text-slate-600 underline underline-offset-2">토큰 다시 등록</button>
+                </div>
             </div>
         </div>
     </div>
@@ -765,7 +802,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.3.0"></script>
-    <script src="assets/admin.js?v=2.3.0"></script>
+    <script src="assets/site.js?v=2.4.0"></script>
+    <script src="assets/admin.js?v=2.4.0"></script>
 </body>
 </html>
