@@ -1,5 +1,659 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-10-23T02:21:06.522Z",
   "owner": "hdlee73",
-  "apps": []
+  "apps": [
+    {
+      "repo": "Everylaw",
+      "name": "Everylaw",
+      "description": "법과 조문 입력시 하부 내용까지 불러오는 안드로이드 앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everylaw",
+      "homepage": null,
+      "pushedAt": "2026-10-23T01:50:41Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.3",
+        "name": "Everylaw 1.0.3",
+        "publishedAt": "2026-10-23T01:35:03Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.0.3",
+        "notes": "## What's Changed\n* XML 파서를 DOM에서 SAX로 교체 (DOMException 수정) by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/5\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.0.2...v1.0.3",
+        "assets": [
+          {
+            "name": "Everylaw-1.0.3.apk",
+            "size": 1962476,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.0.3/Everylaw-1.0.3.apk"
+          }
+        ],
+        "primaryAsset": "Everylaw-1.0.3.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.0.3"
+      }
+    },
+    {
+      "repo": "EveryCorp",
+      "name": "EveryCorp",
+      "description": "DART, KIND를 통해 기업정보 확인하는 앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EveryCorp",
+      "homepage": null,
+      "pushedAt": "2026-10-23T01:29:15Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.4",
+        "name": "EveryCorp v1.0.4",
+        "publishedAt": "2026-10-23T01:27:28Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.0.4",
+        "notes": "# EveryCorp v1.0.4 변경 내용\n\n- 감사보고서 탭: 같은 기수의 감사의견·감사인을 연결/별도로 구분해 표시\n- 공시 탭: 정기보고서는 DART 것만 표시(KIND 중복 제거)\n- 기업개황: 결산 핵심 지표 타일 제거, 재무표 숫자가 잘리던 문제 수정, 모든 금액을 억원으로 통일\n- 기업개황 5개년 추이에 EPS·PER·PBR 추가(PER·PBR은 12월 결산 상장사의 연말 종가 기준 추정)\n- 주가현황: 52주 최고·최저를 별도 카드 대신 가격 그래프 안에 표시\n- 채권 탭: 공공데이터포털 종목별 잔액 연동(서버 재배포 필요)\n",
+        "assets": [
+          {
+            "name": "everycorp-v1.0.4.apk",
+            "size": 2080287,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.0.4/everycorp-v1.0.4.apk"
+          },
+          {
+            "name": "everycorp-v1.0.4.apk.sha256",
+            "size": 87,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.0.4/everycorp-v1.0.4.apk.sha256"
+          }
+        ],
+        "primaryAsset": "everycorp-v1.0.4.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.0.4"
+      }
+    },
+    {
+      "repo": "EngHub",
+      "name": "EngHub",
+      "description": "영어 사전 및 학습앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EngHub",
+      "homepage": null,
+      "pushedAt": "2026-10-21T22:37:35Z",
+      "order": null,
+      "release": {
+        "tag": "v1.41.0",
+        "name": "EngHub v1.41.0",
+        "publishedAt": "2026-10-21T22:37:35Z",
+        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.41.0",
+        "notes": "## EngHub v1.41.0\n- 프리토킹·롤플레잉: 기기 안 음성 인식을 추가했습니다. 롤플레잉 목록 맨 위 ‘음성 인식’ 카드에서 모델(Whisper base.en, 약 160MB, 와이파이 권장)을 한 번 내려받으면, 구글 음성 서비스 없이 폰 안에서 인식해요. 그래서 ‘인터넷이 필요해요’ 오류가 나지 않고 오프라인에서도 되며, 억양이 있는 영어도 더 잘 알아듣는 편입니다. 말을 마치고 마이크를 누르면 1~3초 안에 글자로 바뀌어요(말하는 동안 실시간 글자는 나오지 않습니다). 카드의 스위치로 언제든 구글 인식으로 되돌릴 수 있고, 기기 안 인식이 실패하면 자동으로 구글 인식으로 바뀝니다.\n- 따라읽기 채점은 건드리지 않았습니다. (Whisper는 틀린 발음도 알아서 맞게 적는 경향이 있어 채점이 후해질 수 있어서)\n- 프리토킹·롤플레잉: Gemini Nano가 답을 다 쓰기 전에, 첫 문장이 완성되는 대로 바로 읽어 주기 시작합니다. 마지막 문장까지 읽은 뒤 마이크가 켜져요.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 인식 지연 시간·메모리 사용·인식 품질·문장 단위 읽기는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
+        "assets": [
+          {
+            "name": "EngHub-v1.41.0.apk",
+            "size": 146474703,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
+          }
+        ],
+        "primaryAsset": "EngHub-v1.41.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.41.0"
+      }
+    },
+    {
+      "repo": "Everynote_Win",
+      "name": "Everynote_Win",
+      "description": "윈도우용 노트 필기앱",
+      "icon": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everynote_Win",
+      "homepage": null,
+      "pushedAt": "2026-10-21T21:55:48Z",
+      "order": null,
+      "release": {
+        "tag": "v3.36.0",
+        "name": "Everynote v3.36.0",
+        "publishedAt": "2026-10-21T21:55:48Z",
+        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.0",
+        "notes": "## Everynote for Windows v3.36.0\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- EPUB 리더가 전체 화면 책 읽기로 바뀌었습니다. 평소에는 본문만 보이고, 화면 가운데를 누르면 위쪽(뒤로·목차·설정·필기)과 아래쪽(쪽 번호·진행 슬라이더) 메뉴가 나타납니다. 좌우를 누르거나 ←/→·PageUp/PageDown·마우스 휠로 쪽을 넘깁니다.\r\n- 쪽 크기는 고정되고 글자 크기·줄 간격·여백을 바꾸면 전체 쪽 수가 달라집니다. 읽던 위치는 유지됩니다.\r\n- EPUB 책은 문서함의 ‘EPUB 책’ 항목에 따로 보관되고 읽은 정도가 표시됩니다. ",
+        "assets": [
+          {
+            "name": "Everynote-Setup-v3.36.0-arm64.exe",
+            "size": 83705190,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-arm64.exe"
+          },
+          {
+            "name": "Everynote-Setup-v3.36.0-x64.exe",
+            "size": 89549456,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-x64.exe"
+          },
+          {
+            "name": "Everynote-v3.36.0-win-arm64.exe",
+            "size": 89561700,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-arm64.exe"
+          },
+          {
+            "name": "Everynote-v3.36.0-win-x64.exe",
+            "size": 94890345,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-x64.exe"
+          },
+          {
+            "name": "SHA256SUMS.txt",
+            "size": 392,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/SHA256SUMS.txt"
+          }
+        ],
+        "primaryAsset": "Everynote-Setup-v3.36.0-arm64.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.0"
+      }
+    },
+    {
+      "repo": "Everynote_And",
+      "name": "Everynote_And",
+      "description": "Android PDF reader with highlights, notes, bookmarks, recent documents, and annotation backup.",
+      "icon": null,
+      "language": "Java",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Everynote_And",
+      "homepage": null,
+      "pushedAt": "2026-10-21T21:51:08Z",
+      "order": null,
+      "release": {
+        "tag": "v1.70.0",
+        "name": "Everynote v1.70.0",
+        "publishedAt": "2026-10-21T21:51:08Z",
+        "url": "https://github.com/hdlee73/Everynote_And/releases/tag/v1.70.0",
+        "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.0)\n- EPUB 리더를 전자책 앱처럼 바꿨습니다. 책이 화면 전체에 표시되고, 화면 가운데를 누르면 메뉴(목차·읽기 설정·필기·쪽 슬라이더)가 나타납니다. 왼쪽·오른쪽 가장자리를 누르거나 넘기면 쪽이 넘어가고, 볼륨 버튼으로도 넘길 수 있습니다.\n- 글자 크기·줄 간격·여백·글꼴을 바꾸면 쪽 크기는 그대로 두고 쪽 수가 달라지며, 읽던 위치는 유지됩니다. 화면 아래에 ‘현재 쪽 / 전체 쪽’이 표시됩니다.\n- 문서함 메뉴에 ‘EPUB 책’ 분류를 추가했습니다. EPUB 파일은 여기에 보관되고, 필기하려고 PDF로 변환하면 PDF는 기존 문서함에 저장됩니다.\n",
+        "assets": [
+          {
+            "name": "Everynote-v1.70.0.apk",
+            "size": 125406866,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
+          },
+          {
+            "name": "Everynote-v1.70.0.apk.sha256",
+            "size": 88,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk.sha256"
+          }
+        ],
+        "primaryAsset": "Everynote-v1.70.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_And/zipball/v1.70.0"
+      }
+    },
+    {
+      "repo": "FSS_insights",
+      "name": "FSS_insights",
+      "description": "국내 기사를 시간순으로 모아보는 Android 앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/FSS_insights",
+      "homepage": null,
+      "pushedAt": "2026-10-22T06:51:51Z",
+      "order": null,
+      "release": {
+        "tag": "v1.6.7",
+        "name": "FSS Insights v1.6.7",
+        "publishedAt": "2026-10-20T13:38:56Z",
+        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v1.6.7",
+        "notes": "# FSS Insights v1.6.7 변경 내용\n\n- **한글 요약**: 보도자료·금융 리포트 제목 아래에 본문 요약을 한글로 보여줍니다(Gemini Nano 지원 기기). 요약 못 한 자료는 이유가 표시되고, 새로고침(↻)으로 다시 시도합니다.\n- **자료 수집 보완**: 자본시장연구원 20건 표시와 저자·제목 혼선 수정, 재정경제부 첨부파일 항목 제거, BCBS·MAS 제목·날짜 보정. 접속이 막힌 FCA는 제외했습니다.\n- **업데이트 안내**: 업데이트 설치 후 처음 열면 변경 내용을 팝업으로 보여줍니다.\n",
+        "assets": [
+          {
+            "name": "fss-insights-v1.6.7.apk",
+            "size": 9365444,
+            "downloads": 20,
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk"
+          },
+          {
+            "name": "fss-insights-v1.6.7.apk.sha256",
+            "size": 90,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk.sha256"
+          }
+        ],
+        "primaryAsset": "fss-insights-v1.6.7.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v1.6.7"
+      }
+    },
+    {
+      "repo": "Realtime_trans",
+      "name": "Realtime_trans",
+      "description": "실시간 번역 툴",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Realtime_trans",
+      "homepage": null,
+      "pushedAt": "2026-10-20T13:22:03Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.4",
+        "name": "v1.0.4",
+        "publishedAt": "2026-10-20T13:22:03Z",
+        "url": "https://github.com/hdlee73/Realtime_trans/releases/tag/v1.0.4",
+        "notes": "**Full Changelog**: https://github.com/hdlee73/Realtime_trans/compare/v1.0.3...v1.0.4",
+        "assets": [
+          {
+            "name": "RealtimeTrans-v1.0.4-debug.apk",
+            "size": 16716541,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Realtime_trans/releases/download/v1.0.4/RealtimeTrans-v1.0.4-debug.apk"
+          },
+          {
+            "name": "RealtimeTrans-v1.0.4.apk",
+            "size": 7316070,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Realtime_trans/releases/download/v1.0.4/RealtimeTrans-v1.0.4.apk"
+          }
+        ],
+        "primaryAsset": "RealtimeTrans-v1.0.4-debug.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Realtime_trans/zipball/v1.0.4"
+      }
+    },
+    {
+      "repo": "EveryVideo_win",
+      "name": "EveryVideo_win",
+      "description": "EveryVideo의 윈도우 버젼",
+      "icon": null,
+      "language": "C#",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EveryVideo_win",
+      "homepage": null,
+      "pushedAt": "2026-10-20T04:07:23Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.1",
+        "name": "EveryVideo for Windows v1.0.1",
+        "publishedAt": "2026-10-20T04:07:23Z",
+        "url": "https://github.com/hdlee73/EveryVideo_win/releases/tag/v1.0.1",
+        "notes": "EveryVideo for Windows v1.0.1\r\n\r\n재생바 다듬기 (v1.0.0 이후)\r\n\r\n설치: `EveryVideo-x.y.z-setup.exe` 실행 / 설치 없이 쓰려면 `…-portable.zip` 을 풀어 `EveryVideo.exe` 실행\r\n\r\nv1.0.1 바뀐 점\r\n- 재생바: 늘 깔려 있던 장면 그림(필름) 띠를 없애고 가는 막대 + 둥근 손잡이로 바꿈\r\n- 막대 위에 마우스를 올리거나 끄는 동안에만 그 시각의 장면 한 장과 시각이 막대 위에 떠서 따라다님\r\n- 구간은 막대를 감싸는 주황 띠, A-B 는 막대 아래 파란 띠로 표시\r\n\r\nv1.0.0 (첫 안정판, v0.2.2 ~ v0.4.0 통합)\r\n\r\n새 화면 (작업 도구형)\r\n- 밝은 테마: 밝은 틀 + 어두운 동영상 화면, 파란 포인트 색\r\n- 왼쪽 아이콘 줄: 열기 · 폴더 · 네트워크 · 웹 링크 · 드라이브 · 구간 · 목록 · 즐겨찾기 · 정보\r\n- 오른쪽 첫 탭 '구간·캡쳐': 구간 카드와 화면 캡쳐 · GIF · 장면 모음 · 구간 추가 · 저장 버튼\r\n- 기본 창 크기를 1320×820 으로 키움 (화면보다 크면 맞춰 줄임)\r\n\r\n새 기능\r\n- WebDAV 서버 (N",
+        "assets": [
+          {
+            "name": "EveryVideo-1.0.1-setup.exe",
+            "size": 125369637,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryVideo_win/releases/download/v1.0.1/EveryVideo-1.0.1-setup.exe"
+          },
+          {
+            "name": "EveryVideo-1.0.1-win-x64-portable.zip",
+            "size": 171078572,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EveryVideo_win/releases/download/v1.0.1/EveryVideo-1.0.1-win-x64-portable.zip"
+          }
+        ],
+        "primaryAsset": "EveryVideo-1.0.1-setup.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryVideo_win/zipball/v1.0.1"
+      }
+    },
+    {
+      "repo": "EveryVideo",
+      "name": "EveryVideo",
+      "description": "동영상 재생기",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EveryVideo",
+      "homepage": null,
+      "pushedAt": "2026-10-20T04:04:02Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.1",
+        "name": "EveryVideo v1.0.1",
+        "publishedAt": "2026-10-20T04:04:03Z",
+        "url": "https://github.com/hdlee73/EveryVideo/releases/tag/v1.0.1",
+        "notes": "## EveryVideo 1.0.1\n\n재생 화면 다듬기\n\n- 재생바: 늘 깔려 있던 장면 그림(필름) 띠를 없애고 가는 막대로 바꿈. 막대 위에 마우스를 올리거나 손가락으로 끄는 동안에만 그 시각의 장면 한 장과 시각이 막대 바로 위에 떠서 따라다님\n- 큰 화면(태블릿·DeX) 가로: 위 막대에 '도구 패널 숨기기/보이기' 버튼 추가 (키보드 P). 접어 두면 다음에도 접힌 채로 열림\n- 오른쪽 도구 패널에서도 전체화면 버튼까지 아이콘이 모두 한 줄에 보이도록 맞춤 (전체화면 ↔ 원래 화면을 언제든 오갈 수 있음)\n- 패널 윗부분 정리: 재생바를 패널 폭 가득 쓰고, 재생 시각과 길이는 막대 아래 양끝에 작게 표시. 밝은 패널에서 막대의 남은 부분이 보이도록 회색으로\n\n## EveryVideo 1.0.0\n\n첫 안정판 (0.5.0 ~ 0.5.2 통합)\n\n- 새 재생 화면 (작업 도구형): 폰을 세로로 들면 위에 동영상, 아래에 밝은 작업 패널 (재생 조작 · 구간·캡쳐 · 재생목록 · 즐겨찾기)\n- 가로로 돌리거나 전체화면 버튼을 누르면 영상만 크게, 태블릿 가로 화면은 오른쪽에 작업 패널\n- 필름 타임라인: 재생 막대 뒤에 장면 그림이 깔려 원하는 곳을 찾기",
+        "assets": [
+          {
+            "name": "EveryVideo-1.0.1.apk",
+            "size": 17603248,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EveryVideo/releases/download/v1.0.1/EveryVideo-1.0.1.apk"
+          }
+        ],
+        "primaryAsset": "EveryVideo-1.0.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryVideo/zipball/v1.0.1"
+      }
+    },
+    {
+      "repo": "FSS_Insights_Win",
+      "name": "FSS_Insights_Win",
+      "description": "FSS Insights for Windows - 금융 뉴스·시장동향·보도자료 조회 데스크톱 프로그램 (Android 앱 FSS Insights 와 동일)",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [
+        "compose-multiplatform",
+        "desktop",
+        "kotlin",
+        "windows"
+      ],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/FSS_Insights_Win",
+      "homepage": null,
+      "pushedAt": "2026-10-19T05:21:47Z",
+      "order": null,
+      "release": {
+        "tag": "v1.5.0",
+        "name": "FSS Insights for Windows v1.5.0",
+        "publishedAt": "2026-10-19T05:21:48Z",
+        "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/tag/v1.5.0",
+        "notes": "# FSS Insights for Windows v1.5.0 변경 내용\r\n\r\n- Android 앱 **FSS Insights v1.5.0(versionCode 42)** 과 같은 기능을 Windows 데스크톱 프로그램으로 옮겼습니다.\r\n- 화면·기능·동작이 Android 앱과 동일합니다: 오늘의 브리핑, 뉴스 검색, 금융시장 동향, 금융회사, 금융관련 리포트, 보도자료, 제재공시·유권해석·비조치의견서·행정지도, 참고 자료실, 주요사이트, 알림, 앱 정보.\r\n- 같은 앱 아이콘(흰 바탕에 파란 입체 돋보기와 오르는 막대)을 사용합니다.\r\n- 검색 방식, 30대 언론 필터, 기간 필터, `AND`/`OR`/괄호/따옴표 문구 검색, `-단어` 제외 검색, 중복 제거, 결과 집계를 그대로 지원합니다.\r\n- 기사 원문은 별도 창에서 열리고, 원문 열기·기사 링크 복사·PDF 저장을 제공합니다. PDF는 Microsoft Edge(없으면 Chrome)의 인쇄 기능으로 저장합니다.\r\n- 알림은 Windows 작업 표시줄 트레이 풍선으로 표시되며, 백그라운드 확인 주기는 Android와 같습니다.\r\n- 새 버전 확인은 이 저장소(`hdlee73/FSS_Insights_Wi",
+        "assets": [
+          {
+            "name": "fss-insights-windows-v1.5.0.msi",
+            "size": 102822312,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v1.5.0/fss-insights-windows-v1.5.0.msi"
+          },
+          {
+            "name": "fss-insights-windows-v1.5.0.msi.sha256",
+            "size": 99,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v1.5.0/fss-insights-windows-v1.5.0.msi.sha256"
+          }
+        ],
+        "primaryAsset": "fss-insights-windows-v1.5.0.msi",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_Insights_Win/zipball/v1.5.0"
+      }
+    },
+    {
+      "repo": "EngHub_Win",
+      "name": "EngHub_Win",
+      "description": "EngHub의 윈도우 버전",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EngHub_Win",
+      "homepage": null,
+      "pushedAt": "2026-10-17T08:43:39Z",
+      "order": null,
+      "release": {
+        "tag": "v1.34.2",
+        "name": "EngHub for Windows v1.34.2",
+        "publishedAt": "2026-10-17T08:43:39Z",
+        "url": "https://github.com/hdlee73/EngHub_Win/releases/tag/v1.34.2",
+        "notes": "## EngHub for Windows v1.34.2\n- 문서 → MP3(온라인 음성)가 “음성 합성에 실패했습니다 … (서버 시간 불일치)”로 끝나던 문제를 고쳤습니다. (원인: Microsoft가 읽어주기 서비스의 접속 토큰을 버전 2 방식으로 바꿨는데 앱이 예전 방식을 보내 서버가 403으로 거부했어요. PC 시계는 정상이었습니다. 이제 변환이 다시 되고, 실패하면 인터넷 연결과 PC 시계를 확인하라고 안내합니다.)\n- 창 왼쪽에 항상 보이는 메뉴(사이드바)와 상단 메뉴 표시줄(파일·학습·연습·보기·도움말), 알림 영역(트레이) 아이콘을 추가했습니다. Ctrl+1~9 = 화면 전환, Ctrl+K = 단어장 검색, Ctrl+Q = 종료, Esc = 뒤로가기입니다. 트레이 아이콘을 눌러 창을 다시 열 수도 있어요.\n- 창 위치·크기와 마지막 화면을 기억해 다음에 켤 때 그대로 열립니다. (모니터 구성이 바뀌어 창이 화면 밖으로 나가면 화면 안으로 되돌립니다.)\n- 폴더·파일 선택 창이 메인 창 뒤로 숨어 앱이 멈춘 것처럼 보이던 문제를 고쳤습니다. (대화상자를 메인 창 앞에 띄웁니다.)\n- Speaking: 고른 마이크가 실제 받아쓰기에 쓰이도록 고쳤습니다",
+        "assets": [
+          {
+            "name": "EngHub-windows-arm64-1.34.2.exe",
+            "size": 161551872,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-arm64-1.34.2.exe"
+          },
+          {
+            "name": "EngHub-windows-arm64-1.34.2.msi",
+            "size": 160850560,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-arm64-1.34.2.msi"
+          },
+          {
+            "name": "EngHub-windows-arm64-1.34.2.zip",
+            "size": 160540906,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-arm64-1.34.2.zip"
+          },
+          {
+            "name": "EngHub-windows-x64-1.34.2.exe",
+            "size": 164494336,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-x64-1.34.2.exe"
+          },
+          {
+            "name": "EngHub-windows-x64-1.34.2.msi",
+            "size": 163793334,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-x64-1.34.2.msi"
+          },
+          {
+            "name": "EngHub-windows-x64-1.34.2.zip",
+            "size": 163595931,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EngHub_Win/releases/download/v1.34.2/EngHub-windows-x64-1.34.2.zip"
+          }
+        ],
+        "primaryAsset": "EngHub-windows-arm64-1.34.2.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub_Win/zipball/v1.34.2"
+      }
+    },
+    {
+      "repo": "Dailyhabit",
+      "name": "Dailyhabit",
+      "description": "하루 해야할 일을 노티스 해주는 앱",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Dailyhabit",
+      "homepage": null,
+      "pushedAt": "2026-10-17T00:24:23Z",
+      "order": null,
+      "release": {
+        "tag": "v1.8.1",
+        "name": "DailyHabit v1.8.1",
+        "publishedAt": "2026-10-17T00:24:19Z",
+        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.8.1",
+        "notes": "## DailyHabit v1.8.1 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- **고친 점: 뒤로 가기** — 이제 앱이 바로 닫히지 않고 직전 화면으로 돌아갑니다. 기도문·다른 탭에서는 목록·첫 탭으로, 처음까지 돌아오면 메뉴가 열리고, 메뉴에서 한 번 더 누르면 앱이 닫힙니다.\n\n**설치:** `DailyHabit-1.8.1.apk",
+        "assets": [
+          {
+            "name": "DailyHabit-1.8.1.apk",
+            "size": 18221622,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.8.1/DailyHabit-1.8.1.apk"
+          }
+        ],
+        "primaryAsset": "DailyHabit-1.8.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.8.1"
+      }
+    },
+    {
+      "repo": "InvestOn",
+      "name": "InvestOn",
+      "description": "투자온 — 한국 관심종목과 한국·미국 포트폴리오, 목표가격 알림 Android 앱",
+      "icon": null,
+      "language": "Java",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/InvestOn",
+      "homepage": null,
+      "pushedAt": "2026-10-15T05:49:34Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.14",
+        "name": "InvestOn 1.0.14",
+        "publishedAt": "2026-10-15T05:49:35Z",
+        "url": "https://github.com/hdlee73/InvestOn/releases/tag/v1.0.14",
+        "notes": "## What's Changed\r\n* 지수 칸 수치 오른쪽 정렬, 릴리스 노트 정리 (v1.0.13) by @hdlee73 in https://github.com/hdlee73/InvestOn/pull/5\r\n\r\n\r\n**Full Changelog**: https://github.com/hdlee73/InvestOn/compare/v1.0.12...v1.0.14",
+        "assets": [
+          {
+            "name": "InvestOn-1.0.14.apk",
+            "size": 148505,
+            "downloads": 4,
+            "url": "https://github.com/hdlee73/InvestOn/releases/download/v1.0.14/InvestOn-1.0.14.apk"
+          }
+        ],
+        "primaryAsset": "InvestOn-1.0.14.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/InvestOn/zipball/v1.0.14"
+      }
+    },
+    {
+      "repo": "DailyHabit_win",
+      "name": "DailyHabit_win",
+      "description": "Dailyhavit의 윈도우 버전",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/DailyHabit_win",
+      "homepage": null,
+      "pushedAt": "2026-10-15T04:42:24Z",
+      "order": null,
+      "release": {
+        "tag": "v1.8.1",
+        "name": "DailyHabit for Windows v1.8.1",
+        "publishedAt": "2026-10-15T04:42:10Z",
+        "url": "https://github.com/hdlee73/DailyHabit_win/releases/tag/v1.8.1",
+        "notes": "## DailyHabit for Windows v1.8.1 (일반용)\n안드로이드 DailyHabit v1.8.1과 같은 기능·디자인·아이콘입니다.\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정 (설정에서 캘린더의 비공개 iCal 주소 연결)\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모) · 독서 목표\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음\n- 일기·맛집 엑셀 저장, 백업 파일 저장·복원 (휴대폰 앱 백업과 호환)\n- 원하는 시각의 아침 알림 (윈도우 알림 · 오늘 일정 · 루틴)\n- 앱 정보에서 업데이트 확인 · 내려받아 바로 설치, 새 버전 알림\n- 창을 닫아도 트레이에서 알림, Windows 시작 시 자동 실행\n\n**v1.8.1 고친 점: 자동 업데이트**\n- v1.7.0에서 ‘업데이트’를 눌러도 설치가 되지 않고 같은 안내가 계속 뜨던 문제를 고쳤습니다. 일반 PC인데 ARM PC용 설치 파일을 받아서 생긴 문제로, 이 버전부터는 v1.7.0의 자동 업데이트도 PC에 맞는 파일을 받습니다.\n- 설치",
+        "assets": [
+          {
+            "name": "DailyHabit-1.8.1.exe",
+            "size": 116471296,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/DailyHabit_win/releases/download/v1.8.1/DailyHabit-1.8.1.exe"
+          },
+          {
+            "name": "DailyHabit-1.8.1.msi",
+            "size": 115867583,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/DailyHabit_win/releases/download/v1.8.1/DailyHabit-1.8.1.msi"
+          },
+          {
+            "name": "DailyHabit-arm64-1.8.1.exe",
+            "size": 113390080,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/DailyHabit_win/releases/download/v1.8.1/DailyHabit-arm64-1.8.1.exe"
+          },
+          {
+            "name": "DailyHabit-arm64-1.8.1.msi",
+            "size": 112792284,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/DailyHabit_win/releases/download/v1.8.1/DailyHabit-arm64-1.8.1.msi"
+          }
+        ],
+        "primaryAsset": "DailyHabit-1.8.1.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/DailyHabit_win/zipball/v1.8.1"
+      }
+    },
+    {
+      "repo": "SnapRead",
+      "name": "SnapRead",
+      "description": "사진 찍고, 문자를 읽어서 번역해주는 앱",
+      "icon": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/SnapRead",
+      "homepage": null,
+      "pushedAt": "2026-10-13T02:31:46Z",
+      "order": null,
+      "release": {
+        "tag": "v1.7.0",
+        "name": "Snap Read v1.7.0",
+        "publishedAt": "2026-10-13T02:31:47Z",
+        "url": "https://github.com/hdlee73/SnapRead/releases/tag/v1.7.0",
+        "notes": "Snap Read 안드로이드 앱 1.7.0\n\n- **SnapRead-1.7.0.apk** : 휴대폰에 바로 설치 (출처를 알 수 없는 앱 설치 허용 필요)\n- **SnapRead-1.7.0.aab** : Google Play Console 업로드용\n\n\n",
+        "assets": [
+          {
+            "name": "SnapRead-1.7.0.aab",
+            "size": 29688974,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.aab"
+          },
+          {
+            "name": "SnapRead-1.7.0.apk",
+            "size": 54164360,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.apk"
+          }
+        ],
+        "primaryAsset": "SnapRead-1.7.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/SnapRead/zipball/v1.7.0"
+      }
+    },
+    {
+      "repo": "Watch_sentence",
+      "name": "Watch_sentence",
+      "description": "",
+      "icon": null,
+      "language": "C#",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Watch_sentence",
+      "homepage": null,
+      "pushedAt": "2026-10-06T09:04:22Z",
+      "order": null,
+      "release": {
+        "tag": "v1.0.0",
+        "name": "Watch Sentence v1.0.0",
+        "publishedAt": "2026-10-06T09:04:22Z",
+        "url": "https://github.com/hdlee73/Watch_sentence/releases/tag/v1.0.0",
+        "notes": "Windows 10/11 (x64)용 단일 실행 파일입니다. 설치 없이 `WatchSentence.exe`를 실행하세요.\n⚠️ 이 빌드는 아직 코드 서명이 되어 있지 않습니다. 처음 실행할 때 SmartScreen 경고가 뜨면 \"추가 정보 → 실행\"을 누르세요.\n\n\n**Full Changelog**: https://github.com/hdlee73/Watch_sentence/commits/v1.0.0",
+        "assets": [
+          {
+            "name": "SHA256SUMS.txt",
+            "size": 184,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Watch_sentence/releases/download/v1.0.0/SHA256SUMS.txt"
+          },
+          {
+            "name": "WatchSentence-1.0.0-win-x64.zip",
+            "size": 66364186,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Watch_sentence/releases/download/v1.0.0/WatchSentence-1.0.0-win-x64.zip"
+          },
+          {
+            "name": "WatchSentence.exe",
+            "size": 71764218,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Watch_sentence/releases/download/v1.0.0/WatchSentence.exe"
+          }
+        ],
+        "primaryAsset": "WatchSentence.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/Watch_sentence/zipball/v1.0.0"
+      }
+    },
+    {
+      "repo": "EpubMaker",
+      "name": "EpubMaker",
+      "description": "epub 메이커",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/EpubMaker",
+      "homepage": null,
+      "pushedAt": "2026-10-21T21:57:19Z",
+      "order": null,
+      "release": null
+    },
+    {
+      "repo": "ETF-signal",
+      "name": "ETF-signal",
+      "description": "",
+      "icon": null,
+      "language": null,
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/ETF-signal",
+      "homepage": null,
+      "pushedAt": "2026-10-20T12:12:26Z",
+      "order": null,
+      "release": null
+    },
+    {
+      "repo": "Study_Helper_Win",
+      "name": "Study_Helper_Win",
+      "description": "",
+      "icon": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Study_Helper_Win",
+      "homepage": null,
+      "pushedAt": "2026-09-14T07:53:35Z",
+      "order": null,
+      "release": null
+    }
+  ]
 }
