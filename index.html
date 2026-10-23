@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.4.0">
+    <meta name="site-version" content="2.5.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
@@ -71,7 +71,7 @@
     <div class="max-w-5xl mx-auto space-y-8">
 
         <!-- Top Profile Navigation Header -->
-        <header class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+        <header data-page="profile" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
             <!-- Decorative Accent Blur -->
             <div class="absolute -top-16 -right-16 w-64 h-64 bg-blue-50 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -126,28 +126,28 @@
 
         <!-- Section Navigation -->
         <nav class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <a href="#profile" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+            <a href="#profile" data-nav="profile" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-id-card"></i></span>
                 <span class="min-w-0">
                     <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">이력</span>
                     <span class="block text-[11px] sm:text-xs text-slate-500 truncate">경력 · 학력 · 자격</span>
                 </span>
             </a>
-            <a href="#apps" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+            <a href="#apps" data-nav="apps" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-mobile-screen-button"></i></span>
                 <span class="min-w-0">
                     <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">내 앱</span>
                     <span class="block text-[11px] sm:text-xs text-slate-500 truncate">직접 만든 앱 다운로드</span>
                 </span>
             </a>
-            <a href="#links" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+            <a href="#links" data-nav="links" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-bookmark"></i></span>
                 <span class="min-w-0">
                     <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">자료실</span>
                     <span class="block text-[11px] sm:text-xs text-slate-500 truncate">유튜브 · 블로그 모음</span>
                 </span>
             </a>
-            <a href="#inquiry" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+            <a href="#inquiry" data-nav="inquiry" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-envelope"></i></span>
                 <span class="min-w-0">
                     <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">문의</span>
@@ -156,7 +156,7 @@
             </a>
         </nav>
 
-        <div id="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-6">
+        <div id="profile" data-page="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-6">
         
             <!-- Left Main Column (Overview, Core Competencies, Key Achievements) -->
             <div class="lg:col-span-2 space-y-8">
@@ -560,7 +560,7 @@
         </div>
 
         <!-- My Apps (public GitHub repositories with latest release downloads) -->
-        <section id="apps" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
+        <section id="apps" data-page="apps" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
                     <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
@@ -585,7 +585,7 @@
         </section>
 
         <!-- Link Library (YouTube embeds, blog summaries) -->
-        <section id="links" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
+        <section id="links" data-page="links" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
                     <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
@@ -629,7 +629,7 @@
     <div id="adminAppsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200 px-4">
         <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
             <div class="flex items-center justify-between">
-                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-shield text-amber-500"></i> <span id="adminModalTitle">노출할 앱 선택</span></h3>
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-shield text-amber-500"></i> <span id="adminModalTitle">앱 선택 · 소개</span></h3>
                 <button data-admin-close type="button" class="text-slate-400 hover:text-slate-600" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
@@ -661,7 +661,7 @@
             <!-- Selection panel -->
             <div id="adminPanelView" class="hidden space-y-3">
                 <div class="flex items-center justify-between text-[11px] text-slate-500">
-                    <span>체크한 앱만 홈페이지에 보이며, 화살표로 순서를 바꿉니다.</span>
+                    <span>체크한 앱만 보이며, 화살표로 순서를 바꾸고 칸에 소개를 씁니다.</span>
                     <span id="adminSelectedCount" class="flex-shrink-0 font-semibold text-blue-600"></span>
                 </div>
                 <ul id="adminAppList" class="space-y-1.5"></ul>
@@ -802,7 +802,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.4.0"></script>
-    <script src="assets/admin.js?v=2.4.0"></script>
+    <script src="assets/site.js?v=2.5.0"></script>
+    <script src="assets/admin.js?v=2.5.0"></script>
 </body>
 </html>
