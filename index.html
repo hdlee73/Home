@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="site-version" content="2.0.0">
+    <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,6 +62,12 @@
 </head>
 <body class="antialiased min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8 selection:bg-blue-100 selection:text-blue-900">
 
+    <!-- New Version Banner (shown when a newer deployment is detected) -->
+    <div id="updateBanner" class="hidden fixed top-0 inset-x-0 z-50 bg-blue-600 text-white text-xs sm:text-sm px-4 py-2.5 flex items-center justify-center gap-3 shadow-md">
+        <span><i class="fa-solid fa-arrows-rotate mr-1"></i> 홈페이지 새 버전(<span id="updateBannerVersion"></span>)이 배포되었습니다.</span>
+        <button id="updateReloadBtn" class="px-2.5 py-1 rounded-lg bg-white text-blue-700 font-semibold hover:bg-blue-50">새로고침</button>
+    </div>
+
     <div class="max-w-5xl mx-auto space-y-8">
 
         <!-- Top Profile Navigation Header -->
@@ -116,7 +124,15 @@
             </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Section Navigation -->
+        <nav class="flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
+            <a href="#profile" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-id-card mr-1.5 text-blue-500"></i>이력</a>
+            <a href="#apps" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-mobile-screen-button mr-1.5 text-blue-500"></i>내 앱</a>
+            <a href="#links" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-bookmark mr-1.5 text-blue-500"></i>자료실</a>
+            <a href="#inquiry" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-envelope mr-1.5 text-blue-500"></i>문의</a>
+        </nav>
+
+        <div id="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-6">
         
             <!-- Left Main Column (Overview, Core Competencies, Key Achievements) -->
             <div class="lg:col-span-2 space-y-8">
@@ -472,7 +488,7 @@
                 </section>
 
                 <!-- Guestbook & Interactive Inquiry Section -->
-                <section class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 space-y-4">
+                <section id="inquiry" class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 space-y-4 scroll-mt-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-lock text-blue-500"></i> 문의 남기기
@@ -539,8 +555,62 @@
 
         </div>
 
+        <!-- My Apps (public GitHub repositories with latest release downloads) -->
+        <section id="apps" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
+                    <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </span>
+                    내 앱
+                    <span id="appMeta" class="text-xs font-normal text-slate-400"></span>
+                </h2>
+                <a href="https://github.com/hdlee73?tab=repositories" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                    <i class="fa-brands fa-github"></i> GitHub 전체 보기
+                </a>
+            </div>
+            <p class="text-xs text-slate-500 mb-5">직접 만든 공개 앱입니다. 각 앱의 <strong>최신 릴리스</strong>를 바로 내려받을 수 있습니다.</p>
+            <div id="appList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p class="col-span-full text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 앱 정보를 불러오는 중...</p>
+            </div>
+        </section>
+
+        <!-- Link Library (YouTube embeds, blog summaries) -->
+        <section id="links" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
+                    <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </span>
+                    자료실
+                </h2>
+                <a id="linkAddBtn" href="#" target="_blank" rel="noopener" title="관리자 전용: GitHub 이슈로 링크를 추가합니다" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus text-amber-500"></i> 링크 추가 (관리자)
+                </a>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+                <div id="linkFilters" class="flex flex-wrap gap-2 flex-1"></div>
+                <div class="relative sm:w-56">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input id="linkSearch" type="search" placeholder="제목·요약·태그 검색"
+                           class="w-full text-xs pl-8 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+            </div>
+            <div id="linkList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <p class="col-span-full text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 자료를 불러오는 중...</p>
+            </div>
+            <div class="text-center mt-5">
+                <button id="linkMore" type="button" class="hidden px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-xs font-medium transition-all">
+                    더 보기 <i class="fa-solid fa-chevron-down ml-1"></i>
+                </button>
+            </div>
+        </section>
+
         <!-- Footer -->
-        <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200/60">
+        <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200/60 space-y-1.5">
+            <p class="font-semibold text-slate-500">이현덕 개인 홈페이지 <span data-site-version class="ml-1 px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[10px]"></span></p>
+            <p>만든이: 이현덕 (<a href="mailto:hdlee73@gmail.com" class="hover:text-blue-600">hdlee73@gmail.com</a>)
+                · <button id="changelogBtn" type="button" class="hover:text-blue-600 underline underline-offset-2">업데이트 내역</button></p>
             <p>© 2026 이현덕 (HYUN DUK LEE). All rights reserved.</p>
         </footer>
 
@@ -564,6 +634,20 @@
             <div class="flex gap-2">
                 <button onclick="closeAdminModal()" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium">취소</button>
                 <button onclick="verifyAdminPassword()" class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Changelog Modal -->
+    <div id="changelogModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200 px-4">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl space-y-4 max-h-[80vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-blue-500"></i> 업데이트 내역</h3>
+                <button data-close type="button" class="text-slate-400 hover:text-slate-600" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-[11px] text-slate-400">현재 보고 계신 버전: <span data-site-version></span> · 새 버전이 배포되면 화면 상단에 새로고침 안내가 표시됩니다.</p>
+            <div id="changelogList" class="space-y-4">
+                <p class="text-xs text-slate-400">불러오는 중...</p>
             </div>
         </div>
     </div>
@@ -757,5 +841,6 @@
                 .replace(/'/g, "&#039;");
         }
     </script>
+    <script src="assets/site.js?v=2.0.0"></script>
 </body>
 </html>

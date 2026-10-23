@@ -1,0 +1,13 @@
+{
+  "owner": "hdlee73",
+  "exclude": ["resume_lhd", "hdlee73"],
+  "overrides": {
+    "예시-저장소이름": {
+      "name": "화면에 보일 앱 이름",
+      "description": "저장소 설명 대신 보여줄 소개 문구",
+      "homepage": "https://example.com",
+      "order": 1,
+      "hidden": false
+    }
+  }
+}

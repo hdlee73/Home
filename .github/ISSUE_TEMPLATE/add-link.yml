@@ -1,0 +1,40 @@
+name: 🔗 링크 추가
+description: 홈페이지 자료실에 유튜브·블로그 등 링크를 추가합니다 (저장소 주인만 반영됨)
+title: "[링크] "
+labels: [link]
+body:
+  - type: textarea
+    id: url
+    attributes:
+      label: 링크 주소
+      description: 한 줄에 하나씩 여러 개를 넣어도 됩니다.
+      placeholder: https://www.youtube.com/watch?v=...
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: 분류
+      options:
+        - 자동
+        - 유튜브
+        - 블로그
+        - 기사
+        - 자료
+        - 웹
+      default: 0
+  - type: input
+    id: title
+    attributes:
+      label: 제목 (선택)
+      description: 비워 두면 페이지에서 자동으로 가져옵니다.
+  - type: textarea
+    id: summary
+    attributes:
+      label: 요약 (선택)
+      description: 비워 두면 페이지 설명(Open Graph)을 자동으로 가져옵니다.
+  - type: input
+    id: tags
+    attributes:
+      label: 태그 (선택)
+      placeholder: 회계, 자본시장, AI
