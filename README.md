@@ -1,7 +1,7 @@
 # 이현덕 개인 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.2.0 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.3.0 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -18,7 +18,13 @@
 
 ## 내 앱
 
-**홈페이지에는 직접 고른 앱만 보입니다.** `data/apps-config.json`의 `show` 목록에 저장소 이름을 적으면 적은 순서대로 표시됩니다.
+**홈페이지에는 직접 고른 앱만 보입니다.** 가장 쉬운 방법은 홈페이지 '내 앱'의 **앱 선택 (관리자)** 버튼입니다.
+
+- 처음 한 번: [Fine-grained 토큰](https://github.com/settings/personal-access-tokens/new)을 만들어(저장소 Resume_LHD만, Contents: Read and write) 붙여 넣고 관리자 비밀번호를 정합니다. 토큰은 그 비밀번호로 암호화(PBKDF2 + AES-GCM)되어 그 브라우저에만 저장되며, 소스나 저장소에는 남지 않습니다.
+- 다음부터: 비밀번호만 넣고 체크·순서 변경 → **저장하고 반영**. 1~2분 뒤 반영됩니다.
+- 다른 기기·브라우저에서는 토큰을 다시 한 번 등록해야 하고, 토큰이 만료되면 새로 만들어 **토큰 다시 등록**을 누릅니다.
+
+직접 파일을 고쳐도 됩니다. `data/apps-config.json`의 `show` 목록에 저장소 이름을 적으면 적은 순서대로 표시됩니다.
 GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edit/main/data/apps-config.json) → `show`에 이름 추가·삭제 → **Commit changes**를 누르면 1~2분 뒤 반영됩니다.
 고를 수 있는 공개 저장소 이름은 `data/apps.json`의 `candidates`에 있습니다.
 
@@ -45,6 +51,7 @@ GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edi
 
 ## 보안
 
+- 관리자 화면의 비밀번호는 서버로 전송되지 않고, 기기에 저장된 암호화 토큰을 푸는 데만 쓰입니다.
 - 워크플로는 Actions가 자동 발급하는 `GITHUB_TOKEN`만 사용하며, 저장소에 키나 비밀번호를 넣지 않습니다. 추가 키가 필요해지면 **Settings → Secrets and variables → Actions**에 등록합니다.
 - 저장소에 푸시할 수 있는 사람은 저장소 주인뿐이므로 다른 사람이 사이트를 바꿔 배포할 수 없습니다.
 
