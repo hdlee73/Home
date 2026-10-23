@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.2.0">
+    <meta name="site-version" content="2.3.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
@@ -569,9 +569,14 @@
                     내 앱
                     <span id="appMeta" class="text-xs font-normal text-slate-400"></span>
                 </h2>
-                <a href="https://github.com/hdlee73?tab=repositories" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-600 font-medium transition-all flex items-center gap-1.5">
-                    <i class="fa-brands fa-github"></i> GitHub 전체 보기
-                </a>
+                <div class="flex items-center gap-2">
+                    <button id="adminAppsBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-key text-amber-500"></i> 앱 선택 (관리자)
+                    </button>
+                    <a href="https://github.com/hdlee73?tab=repositories" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                        <i class="fa-brands fa-github"></i> GitHub 전체 보기
+                    </a>
+                </div>
             </div>
             <p class="text-xs text-slate-500 mb-5">직접 만든 공개 앱입니다. 각 앱의 <strong>최신 릴리스</strong>를 바로 내려받을 수 있습니다.</p>
             <div id="appList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -618,6 +623,55 @@
             <p>© 2026 이현덕 (HYUN DUK LEE). All rights reserved.</p>
         </footer>
 
+    </div>
+
+    <!-- Admin: choose which apps are shown (no password or token in this source) -->
+    <div id="adminAppsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-200 px-4">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-shield text-amber-500"></i> 노출할 앱 선택</h3>
+                <button data-admin-close type="button" class="text-slate-400 hover:text-slate-600" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- First time on this browser: register a GitHub token, protected by a password -->
+            <div id="adminSetupView" class="hidden space-y-3">
+                <p class="text-xs text-slate-600 leading-relaxed">이 브라우저에서 처음 한 번만 설정합니다. GitHub 토큰은 아래 비밀번호로 암호화되어 <strong>이 기기에만</strong> 저장되고, 홈페이지 소스에는 남지 않습니다.</p>
+                <ol class="list-decimal pl-5 text-[11px] text-slate-500 space-y-1">
+                    <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" class="text-blue-600 hover:underline">GitHub 토큰 만들기</a> (Fine-grained token)</li>
+                    <li>Repository access: <strong>Only select repositories → Resume_LHD</strong></li>
+                    <li>Permissions → Repository → <strong>Contents: Read and write</strong></li>
+                    <li>만든 토큰(github_pat_…)을 아래에 붙여 넣기</li>
+                </ol>
+                <input id="adminTokenInput" type="password" autocomplete="off" placeholder="github_pat_..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono">
+                <input id="adminNewPw" type="password" autocomplete="new-password" placeholder="관리자 비밀번호 정하기 (8자 이상)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input id="adminNewPw2" type="password" autocomplete="new-password" placeholder="비밀번호 확인" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <p id="adminSetupError" class="text-[11px] text-red-500"></p>
+                <button id="adminSetupBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium">등록하고 열기</button>
+            </div>
+
+            <!-- Unlock with the password -->
+            <div id="adminLoginView" class="hidden space-y-3">
+                <p class="text-xs text-slate-600">관리자 비밀번호를 입력하세요.</p>
+                <input id="adminPwInput" type="password" autocomplete="current-password" placeholder="비밀번호" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                <p id="adminLoginError" class="text-[11px] text-red-500 text-center"></p>
+                <button id="adminLoginBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium">확인</button>
+                <button data-admin-reset type="button" class="w-full text-[11px] text-slate-400 hover:text-slate-600 underline underline-offset-2">비밀번호를 잊었어요 (토큰 다시 등록)</button>
+            </div>
+
+            <!-- Selection panel -->
+            <div id="adminPanelView" class="hidden space-y-3">
+                <div class="flex items-center justify-between text-[11px] text-slate-500">
+                    <span>체크한 앱만 홈페이지에 보이며, 화살표로 순서를 바꿉니다.</span>
+                    <span id="adminSelectedCount" class="flex-shrink-0 font-semibold text-blue-600"></span>
+                </div>
+                <ul id="adminAppList" class="space-y-1.5"></ul>
+                <div class="flex gap-2 pt-1">
+                    <button id="adminLockBtn" type="button" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-lock mr-1"></i> 잠그기</button>
+                    <button id="adminSaveBtn" type="button" class="flex-[2] py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-floppy-disk mr-1"></i> 저장하고 반영</button>
+                </div>
+                <button data-admin-reset type="button" class="w-full text-[11px] text-slate-400 hover:text-slate-600 underline underline-offset-2">토큰 다시 등록</button>
+            </div>
+        </div>
     </div>
 
     <!-- Changelog Modal -->
@@ -711,6 +765,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.2.0"></script>
+    <script src="assets/site.js?v=2.3.0"></script>
+    <script src="assets/admin.js?v=2.3.0"></script>
 </body>
 </html>
