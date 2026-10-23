@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.1.0">
+    <meta name="site-version" content="2.2.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 (HYUN DUK LEE) - 개인 프로필</title>
     <!-- Tailwind CSS CDN -->
@@ -125,11 +125,35 @@
         </header>
 
         <!-- Section Navigation -->
-        <nav class="flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-medium">
-            <a href="#profile" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-id-card mr-1.5 text-blue-500"></i>이력</a>
-            <a href="#apps" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-mobile-screen-button mr-1.5 text-blue-500"></i>내 앱</a>
-            <a href="#links" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-bookmark mr-1.5 text-blue-500"></i>자료실</a>
-            <a href="#inquiry" class="px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all"><i class="fa-solid fa-envelope mr-1.5 text-blue-500"></i>문의</a>
+        <nav class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <a href="#profile" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-id-card"></i></span>
+                <span class="min-w-0">
+                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">이력</span>
+                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">경력 · 학력 · 자격</span>
+                </span>
+            </a>
+            <a href="#apps" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                <span class="min-w-0">
+                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">내 앱</span>
+                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">직접 만든 앱 다운로드</span>
+                </span>
+            </a>
+            <a href="#links" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-bookmark"></i></span>
+                <span class="min-w-0">
+                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">자료실</span>
+                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">유튜브 · 블로그 모음</span>
+                </span>
+            </a>
+            <a href="#inquiry" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-envelope"></i></span>
+                <span class="min-w-0">
+                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">문의</span>
+                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">메일로 문의 남기기</span>
+                </span>
+            </a>
         </nav>
 
         <div id="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-6">
@@ -687,6 +711,6 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.1.0"></script>
+    <script src="assets/site.js?v=2.2.0"></script>
 </body>
 </html>
