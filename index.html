@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.9.6">
+    <meta name="site-version" content="2.9.7">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 홈페이지</title>
     <meta name="description" content="공인회계사 이현덕의 홈페이지입니다. 이력과 직접 만든 앱, 유튜브·블로그 자료실을 모아 두었습니다.">
@@ -52,7 +52,9 @@
             font-family: 'Pretendard', sans-serif;
             background-color: #f8fafc;
             color: #334155;
+            overflow-wrap: anywhere; /* 긴 글자·파일명·주소가 박스 밖으로 나가지 않고 줄바꿈 */
         }
+        img, iframe { max-width: 100%; }
         /* Custom subtle scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -143,32 +145,32 @@
 
         <!-- Section Navigation -->
         <nav class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <a href="#profile" data-nav="profile" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
-                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-id-card"></i></span>
-                <span class="min-w-0">
-                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">Experience</span>
-                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">경력 · 학력 · 자격</span>
+            <a href="#profile" data-nav="profile" class="group flex items-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-10 h-10 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-lg sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-id-card"></i></span>
+                <span class="min-w-0 flex-1">
+                    <span class="block text-base sm:text-lg lg:text-xl leading-tight font-extrabold text-slate-800 group-hover:text-blue-700">Experience</span>
+                    <span class="block text-[11px] sm:text-xs leading-snug text-slate-500">경력 · 학력 · 자격</span>
                 </span>
             </a>
-            <a href="#apps" data-nav="apps" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
-                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-mobile-screen-button"></i></span>
-                <span class="min-w-0">
-                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">My Apps</span>
-                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">직접 만든 앱 다운로드</span>
+            <a href="#apps" data-nav="apps" class="group flex items-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-10 h-10 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-lg sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                <span class="min-w-0 flex-1">
+                    <span class="block text-base sm:text-lg lg:text-xl leading-tight font-extrabold text-slate-800 group-hover:text-blue-700">My Apps</span>
+                    <span class="block text-[11px] sm:text-xs leading-snug text-slate-500">직접 만든 앱 다운로드</span>
                 </span>
             </a>
-            <a href="#links" data-nav="links" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
-                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-bookmark"></i></span>
-                <span class="min-w-0">
-                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">Resources</span>
-                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">유용한 자료 모음</span>
+            <a href="#links" data-nav="links" class="group flex items-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-10 h-10 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-lg sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-bookmark"></i></span>
+                <span class="min-w-0 flex-1">
+                    <span class="block text-base sm:text-lg lg:text-xl leading-tight font-extrabold text-slate-800 group-hover:text-blue-700">Resources</span>
+                    <span class="block text-[11px] sm:text-xs leading-snug text-slate-500">유용한 자료 모음</span>
                 </span>
             </a>
-            <a href="#board" data-nav="board" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
-                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-comments"></i></span>
-                <span class="min-w-0">
-                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">Board</span>
-                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">공지 · 방문자 글</span>
+            <a href="#board" data-nav="board" class="group flex items-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-10 h-10 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 text-white flex items-center justify-center text-lg sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-comments"></i></span>
+                <span class="min-w-0 flex-1">
+                    <span class="block text-base sm:text-lg lg:text-xl leading-tight font-extrabold text-slate-800 group-hover:text-blue-700">Board</span>
+                    <span class="block text-[11px] sm:text-xs leading-snug text-slate-500">공지 · 방문자 글</span>
                 </span>
             </a>
         </nav>
@@ -815,7 +817,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.9.6"></script>
-    <script src="assets/admin.js?v=2.9.6"></script>
+    <script src="assets/site.js?v=2.9.7"></script>
+    <script src="assets/admin.js?v=2.9.7"></script>
 </body>
 </html>
