@@ -37,7 +37,29 @@
     "image": null,
     "category": "구글 드라이브",
     "tags": [],
-    "addedAt": "2026-10-24T11:29:04.728Z"
+    "addedAt": "2026-10-24T11:29:04.728Z",
+    "files": [
+      {
+        "id": "1UX7DY_ehuotJFp8xFcH-Gt2QQ3WUqa3n",
+        "name": "01_금융투자",
+        "folder": true
+      },
+      {
+        "id": "1yIeLrU6lwBWzMtp9hF6WwdyMq-UdDY1e",
+        "name": "02_Tokenization",
+        "folder": true
+      },
+      {
+        "id": "18RfINadG7Qpa-hKgtRiQf9jbp-5HVezi",
+        "name": "03_AI, IT",
+        "folder": true
+      },
+      {
+        "id": "13zB1EvtvVSoio9mxAPI3t8UkglP6DYDw",
+        "name": "10_기타자료",
+        "folder": true
+      }
+    ]
   },
   {
     "id": "mvmb22fpccy4",
