@@ -68,7 +68,7 @@
                             ${app.icon ? `<img src="${safeUrl(app.icon)}" alt="" class="w-full h-full rounded-xl object-cover">` : '<i class="fa-solid fa-cube"></i>'}
                         </span>
                         <div class="min-w-0">
-                            <h3 class="font-bold text-slate-800 text-sm sm:text-base truncate">${esc(app.name)}</h3>
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base break-words">${esc(app.name)}</h3>
                             <div class="text-[11px] text-slate-400 flex items-center gap-2">
                                 ${app.language ? `<span><i class="fa-solid fa-code mr-0.5"></i>${esc(app.language)}</span>` : ''}
                                 ${app.stars ? `<span><i class="fa-solid fa-star text-amber-400 mr-0.5"></i>${app.stars}</span>` : ''}
@@ -156,8 +156,8 @@
         if (!files.length && link.title) files = [{ id: link.driveId, name: link.title, folder: link.driveApp === 'folder' }];
         const rows = files.slice(0, DRIVE_FILES_SHOWN).map((f) => {
             const href = f.folder ? `https://drive.google.com/drive/folders/${f.id}` : link.driveApp === 'folder' ? `https://drive.google.com/file/d/${f.id}/view` : d.open(f.id);
-            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-center gap-2.5 py-2.5 text-sm text-slate-700 hover:text-blue-600">
-                        <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0"></i><span class="truncate">${esc(f.name)}</span></a></li>`;
+            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-start gap-2.5 py-2.5 text-sm text-slate-700 hover:text-blue-600">
+                        <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0 mt-0.5"></i><span class="min-w-0 break-words">${esc(f.name)}</span></a></li>`;
         }).join('');
         return `
             <article class="col-span-full rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-2">
@@ -175,7 +175,7 @@
             `<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px]">#${esc(t)}</span>`).join('');
         const footer = `
             <div class="flex items-center justify-between gap-2 text-[11px] text-slate-400">
-                <span class="truncate">${esc(link.site || '')}</span>
+                <span class="min-w-0 break-words">${esc(link.site || '')}</span>
                 <span class="flex-shrink-0">${fmtDate(link.addedAt)}</span>
             </div>`;
 
@@ -373,7 +373,7 @@
                     <details class="group py-3">
                         <summary class="flex items-center gap-2 cursor-pointer list-none">
                             ${n.pinned ? '<span class="text-[10px] px-1.5 py-0.5 rounded bg-violet-100 text-violet-700 font-semibold flex-shrink-0">고정</span>' : ''}
-                            <span class="flex-1 min-w-0 text-sm font-semibold text-slate-800 truncate">${esc(n.title)}</span>
+                            <span class="flex-1 min-w-0 text-sm font-semibold text-slate-800 break-words">${esc(n.title)}</span>
                             <span class="text-[11px] text-slate-400 flex-shrink-0">${fmtDate(n.createdAt)}</span>
                             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
                         </summary>
@@ -451,7 +451,7 @@
                 <li class="py-4">
                     <div class="flex items-center gap-2 mb-1.5">
                         <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-[11px] font-bold flex-shrink-0">${esc(p.name.slice(0, 1))}</span>
-                        <span class="text-sm font-semibold text-slate-800 truncate">${esc(p.name.slice(0, 30))}</span>
+                        <span class="min-w-0 text-sm font-semibold text-slate-800 break-words">${esc(p.name.slice(0, 30))}</span>
                         <span class="text-[11px] text-slate-400 ml-auto flex-shrink-0">${p.time ? `${fmtDate(p.time)} ${String(p.time.getHours()).padStart(2, '0')}:${String(p.time.getMinutes()).padStart(2, '0')}` : esc(p.timeText)}</span>
                     </div>
                     <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words pl-9">${esc(p.body)}</p>
