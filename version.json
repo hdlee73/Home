@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.9.5",
+  "version": "2.9.6",
   "released": "2026-10-24",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.9.6",
+      "date": "2026-10-24",
+      "items": [
+        "메뉴 이름을 영어로 변경: Experience, My Apps, Resources, Board (설명은 한국어 유지)"
+      ]
+    },
     {
       "version": "2.9.5",
       "date": "2026-10-24",

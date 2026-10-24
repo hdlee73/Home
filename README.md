@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.9.5 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.9.6 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -9,8 +9,8 @@
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 홈페이지 본문. 첫 화면(프로필 카드와 메뉴)·주요경력(`#profile`)·내가 만든 앱(`#apps`)·자료실(`#links`)·게시판(`#board`)을 페이지처럼 나눠 보여줌 |
-| `assets/site.js` | 내가 만든 앱·자료실 표시, 업데이트 내역, 새 버전 안내 |
+| `index.html` | 홈페이지 본문. 첫 화면(프로필 카드와 메뉴)·Experience(`#profile`)·My Apps(`#apps`)·Resources(`#links`)·Board(`#board`)을 페이지처럼 나눠 보여줌 |
+| `assets/site.js` | My Apps·Resources 표시, 업데이트 내역, 새 버전 안내 |
 | `version.json` | 사이트 이름·버전·업데이트 내역 |
 | `data/apps.json` | 공개 앱 목록 (자동 생성) |
 | `data/apps-config.json` | 홈페이지에 보일 앱 선택(`show`), 이름·설명 덮어쓰기 |
@@ -20,9 +20,9 @@
 | `data/board-config.json` | 방문자 게시판(구글 설문지·응답 시트 주소, 승인제 여부) |
 | `data/analytics.json` | 방문자 수 집계(구글 애널리틱스 측정 ID) |
 
-## 내가 만든 앱
+## My Apps
 
-**홈페이지에는 직접 고른 앱만 보입니다.** 가장 쉬운 방법은 홈페이지 '내가 만든 앱'의 **앱 선택 (관리자)** 버튼입니다.
+**홈페이지에는 직접 고른 앱만 보입니다.** 가장 쉬운 방법은 홈페이지 'My Apps'의 **앱 선택 (관리자)** 버튼입니다.
 
 - 처음 한 번: [Fine-grained 토큰](https://github.com/settings/personal-access-tokens/new)을 만들어(저장소 Resume_LHD만, Contents: Read and write) 붙여 넣고 관리자 비밀번호를 정합니다. 토큰은 그 비밀번호로 암호화(PBKDF2 + AES-GCM)되어 그 브라우저에만 저장되며, 소스나 저장소에는 남지 않습니다.
 - 다음부터: 비밀번호만 넣고 체크·순서 변경, 앱별 **소개 문구** 입력 → **저장하고 반영**. 1~2분 뒤 반영됩니다.
