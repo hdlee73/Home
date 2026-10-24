@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "released": "2026-10-24",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.9.3",
+      "date": "2026-10-24",
+      "items": [
+        "프로필 소개 문구 변경"
+      ]
+    },
     {
       "version": "2.9.2",
       "date": "2026-10-24",
