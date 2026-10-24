@@ -2,6 +2,7 @@
 // 유튜브는 oEmbed 로 제목을, 그 밖의 링크는 Open Graph 메타데이터로 제목·요약·대표 이미지를 가져온다.
 // 사용: node scripts/manage-links.mjs add|remove  (ISSUE_BODY, ISSUE_NUMBER 또는 REQUEST_FILE 환경변수 사용)
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { listDriveFolder } from './drive-list.mjs';
 
 const LINKS_PATH = 'data/links.json';
 const mode = process.argv[2] || 'add';
@@ -157,10 +158,14 @@ async function describeDrive(url, drive) {
   } catch (e) {
     console.warn(`드라이브 정보를 읽지 못함: ${url} (${e.message})`);
   }
+  // 홈페이지는 구글 화면을 임베드하지 않고 파일 이름 목록만 보여준다.
+  const files =
+    drive.app === 'folder' ? await listDriveFolder(drive.id) : title ? [{ id: drive.id, name: clean(title, 200), folder: false }] : null;
   return {
     type: 'gdrive',
     driveApp: drive.app,
     driveId: drive.id,
+    ...(files ? { files } : {}),
     title: clean(title || DRIVE_LABEL[drive.app], 200),
     summary: clean(summary, 300),
     site: DRIVE_LABEL[drive.app],
