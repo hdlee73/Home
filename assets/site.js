@@ -119,29 +119,54 @@
 
     // ---------- 자료 링크 저장소 ----------
 
+    const CATEGORY_ORDER = ['유튜브', '블로그', '구글 드라이브', '웹'];
     const linkState = { all: [], category: '전체', query: '', shown: LINKS_PAGE_SIZE };
 
-    // 구글 드라이브: 폴더는 파일 목록, 파일·문서는 미리보기를 바로 보여준다 ('링크가 있는 모든 사용자' 공유일 때).
+    // 구글 드라이브: 구글 화면(게시자·수정자 표시 등)을 임베드하지 않고, 설명과 첨부파일 이름만 카드로 보여준다.
+    // 파일 이름은 워크플로(scripts/drive-list.mjs)가 data/links.json 의 files 에 저장한다. '링크가 있는 모든 사용자' 공유가 필요하다.
     const DRIVE = {
-        folder: { icon: 'fa-solid fa-folder-open', embed: (id) => `https://drive.google.com/embeddedfolderview?id=${id}#list`, open: (id) => `https://drive.google.com/drive/folders/${id}` },
-        file: { icon: 'fa-solid fa-file', embed: (id) => `https://drive.google.com/file/d/${id}/preview`, open: (id) => `https://drive.google.com/file/d/${id}/view`, download: (id) => `https://drive.google.com/uc?export=download&id=${id}` },
-        document: { icon: 'fa-solid fa-file-word', embed: (id) => `https://docs.google.com/document/d/${id}/preview`, open: (id) => `https://docs.google.com/document/d/${id}/edit`, download: (id) => `https://docs.google.com/document/d/${id}/export?format=pdf` },
-        spreadsheets: { icon: 'fa-solid fa-table', embed: (id) => `https://docs.google.com/spreadsheets/d/${id}/preview`, open: (id) => `https://docs.google.com/spreadsheets/d/${id}/edit`, download: (id) => `https://docs.google.com/spreadsheets/d/${id}/export?format=xlsx` },
-        presentation: { icon: 'fa-solid fa-display', embed: (id) => `https://docs.google.com/presentation/d/${id}/preview`, open: (id) => `https://docs.google.com/presentation/d/${id}/edit`, download: (id) => `https://docs.google.com/presentation/d/${id}/export/pdf` },
+        folder: { icon: 'fa-solid fa-folder-open', open: (id) => `https://drive.google.com/drive/folders/${id}` },
+        file: { icon: 'fa-solid fa-file', open: (id) => `https://drive.google.com/file/d/${id}/view`, download: (id) => `https://drive.google.com/uc?export=download&id=${id}` },
+        document: { icon: 'fa-solid fa-file-word', open: (id) => `https://docs.google.com/document/d/${id}/edit`, download: (id) => `https://docs.google.com/document/d/${id}/export?format=pdf` },
+        spreadsheets: { icon: 'fa-solid fa-table', open: (id) => `https://docs.google.com/spreadsheets/d/${id}/edit`, download: (id) => `https://docs.google.com/spreadsheets/d/${id}/export?format=xlsx` },
+        presentation: { icon: 'fa-solid fa-display', open: (id) => `https://docs.google.com/presentation/d/${id}/edit`, download: (id) => `https://docs.google.com/presentation/d/${id}/export/pdf` },
     };
+
+    const DRIVE_FILES_SHOWN = 8;
+
+    function fileIcon(name, folder) {
+        if (folder) return 'fa-solid fa-folder text-amber-400';
+        const ext = (String(name).match(/\.([\w]+)$/) || [])[1]?.toLowerCase() || '';
+        if (ext === 'pdf') return 'fa-solid fa-file-pdf text-red-400';
+        if (['doc', 'docx', 'hwp', 'hwpx', 'txt'].includes(ext)) return 'fa-solid fa-file-word text-blue-400';
+        if (['xls', 'xlsx', 'csv'].includes(ext)) return 'fa-solid fa-file-excel text-emerald-500';
+        if (['ppt', 'pptx'].includes(ext)) return 'fa-solid fa-file-powerpoint text-orange-400';
+        if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(ext)) return 'fa-solid fa-file-image text-violet-400';
+        if (['mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav'].includes(ext)) return 'fa-solid fa-file-video text-pink-400';
+        if (['zip', '7z', 'rar'].includes(ext)) return 'fa-solid fa-file-zipper text-slate-400';
+        return 'fa-solid fa-file text-slate-400';
+    }
 
     function driveCard(link, tags, footer) {
         const d = DRIVE[link.driveApp] || DRIVE.file;
         const id = link.driveId;
+        const files = (Array.isArray(link.files) ? link.files : []).filter((f) => /^[\w-]{10,}$/.test(f?.id || ''));
+        const rows = files.slice(0, DRIVE_FILES_SHOWN).map((f) => {
+            const href = f.folder ? `https://drive.google.com/drive/folders/${f.id}` : `https://drive.google.com/file/d/${f.id}/view`;
+            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-center gap-2 py-1.5 text-xs text-slate-700 hover:text-blue-600">
+                        <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0"></i><span class="truncate">${esc(f.name)}</span></a></li>`;
+        }).join('');
         return `
-            <article class="rounded-2xl bg-slate-50 border border-slate-100 overflow-hidden flex flex-col ${link.driveApp === 'folder' ? 'sm:col-span-2' : ''}">
-                <div class="relative w-full ${link.driveApp === 'folder' ? 'h-80' : 'aspect-[4/3]'} bg-white border-b border-slate-100">
-                    <iframe class="absolute inset-0 w-full h-full" loading="lazy" src="${d.embed(id)}" title="${esc(link.title)}" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-                </div>
+            <article class="rounded-2xl bg-slate-50 border border-slate-100 hover:border-amber-200 overflow-hidden flex flex-col transition-all">
                 <div class="p-4 space-y-2 flex-1 flex flex-col">
                     <span class="self-start text-[10px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full"><i class="fa-brands fa-google-drive mr-1"></i>${esc(link.category || '구글 드라이브')}</span>
                     <a href="${d.open(id)}" target="_blank" rel="noopener" class="font-bold text-slate-800 text-sm leading-snug hover:text-blue-600 line-clamp-2"><i class="${d.icon} text-amber-500 mr-1"></i>${esc(link.title)}</a>
                     ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-3">${esc(link.summary)}</p>` : ''}
+                    ${rows ? `<div class="rounded-xl bg-white border border-slate-100 px-3 py-1">
+                        <div class="text-[10px] font-semibold text-slate-400 pt-1.5">첨부파일 ${files.length}개</div>
+                        <ul class="divide-y divide-slate-50">${rows}</ul>
+                        ${files.length > DRIVE_FILES_SHOWN ? `<div class="text-[11px] text-slate-400 py-1.5">외 ${files.length - DRIVE_FILES_SHOWN}개 · 폴더 열기에서 전체 보기</div>` : ''}
+                    </div>` : ''}
                     ${tags ? `<div class="flex flex-wrap gap-1">${tags}</div>` : ''}
                     <div class="mt-auto pt-1 space-y-2">
                         ${footer}
@@ -238,7 +263,26 @@
             more.classList.add('hidden');
             return;
         }
-        list.innerHTML = items.slice(0, linkState.shown).map(linkCard).join('');
+        // 같은 분류끼리 묶어서 분류별 제목 아래에 보여준다 (분류 안에서는 최근에 추가한 순서).
+        const order = (c) => { const i = CATEGORY_ORDER.indexOf(c); return i < 0 ? CATEGORY_ORDER.length : i; };
+        const shown = items
+            .map((l, i) => ({ l, i }))
+            .sort((a, b) => order(a.l.category) - order(b.l.category) || String(a.l.category || '').localeCompare(String(b.l.category || '')) || a.i - b.i)
+            .map((x) => x.l)
+            .slice(0, linkState.shown);
+        const groups = [];
+        for (const l of shown) {
+            const name = l.category || '기타';
+            let g = groups.find((x) => x.name === name);
+            if (!g) groups.push((g = { name, items: [] }));
+            g.items.push(l);
+        }
+        list.innerHTML = groups.map((g) => `
+            <div class="col-span-full flex items-center gap-2 ${g === groups[0] ? '' : 'mt-3'}">
+                <h3 class="text-sm font-bold text-slate-700">${esc(g.name)}</h3>
+                <span class="text-[11px] text-slate-400">${items.filter((l) => (l.category || '기타') === g.name).length}</span>
+                <span class="flex-1 h-px bg-slate-100"></span>
+            </div>${g.items.map(linkCard).join('')}`).join('');
         more.classList.toggle('hidden', items.length <= linkState.shown);
     }
 
@@ -453,12 +497,29 @@
         const embed = formEmbedUrl(boardConfig.formUrl);
         const writeBtn = document.getElementById('boardWriteBtn');
         writeBtn.classList.toggle('hidden', !embed);
+        const box = document.getElementById('boardWriteBox');
+        const frame = document.getElementById('boardFormFrame');
+        let frameLoads = 0;
+        const closeWrite = () => {
+            box.classList.add('hidden');
+            frame.removeAttribute('src');
+        };
         writeBtn.addEventListener('click', () => {
-            const box = document.getElementById('boardWriteBox');
-            const frame = document.getElementById('boardFormFrame');
-            if (!frame.src) frame.src = embed;
-            box.classList.toggle('hidden');
-            if (!box.classList.contains('hidden')) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!box.classList.contains('hidden')) return closeWrite();
+            frameLoads = 0;
+            frame.src = embed;
+            box.classList.remove('hidden');
+            box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        // 설문지 화면이 두 번째로 불러와지면(첫 번째는 양식, 두 번째는 '응답이 기록되었습니다') 제출된 것으로 보고 목록으로 돌아온다.
+        // 시트에 글이 들어가는 데 몇 초 걸려서 목록을 두 번 읽는다.
+        frame.addEventListener('load', () => {
+            if (!frame.getAttribute('src') || ++frameLoads < 2) return;
+            closeWrite();
+            if (window.showToast) window.showToast('✅ 글이 등록되었습니다.');
+            document.getElementById('boardPostList').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(loadBoardPosts, 2000);
+            setTimeout(loadBoardPosts, 7000);
         });
         document.getElementById('boardRefreshBtn').addEventListener('click', () => { renderNotices(); loadBoardPosts(); });
         document.getElementById('boardPostList').addEventListener('click', (e) => {
