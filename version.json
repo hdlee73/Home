@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.9.4",
+  "version": "2.9.5",
   "released": "2026-10-24",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.9.5",
+      "date": "2026-10-24",
+      "items": [
+        "메뉴 이름 변경: '이력' → '주요경력', '내 앱' → '내가 만든 앱'"
+      ]
+    },
     {
       "version": "2.9.4",
       "date": "2026-10-24",
