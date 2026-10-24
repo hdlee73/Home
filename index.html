@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.7.0">
+    <meta name="site-version" content="2.7.1">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 홈페이지</title>
     <meta name="description" content="공인회계사 이현덕의 홈페이지입니다. 이력과 직접 만든 앱, 유튜브·블로그 자료실을 모아 두었습니다.">
@@ -688,7 +688,6 @@
             <p class="font-semibold text-slate-500">이현덕 홈페이지 <span data-site-version class="ml-1 px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[10px]"></span></p>
             <p>만든이: 이현덕 (<a href="mailto:hdlee73@gmail.com" class="hover:text-blue-600">hdlee73@gmail.com</a>)
                 · <button id="changelogBtn" type="button" class="hover:text-blue-600 underline underline-offset-2">업데이트 내역</button></p>
-            <p id="visitorCount" class="hidden"><i class="fa-solid fa-eye mr-1"></i>방문 <span></span></p>
             <p>© 2026 이현덕 (HYUN DUK LEE). All rights reserved.</p>
         </footer>
 
@@ -766,9 +765,9 @@
                     <input id="adminSheetUrl" type="url" placeholder="응답 시트 주소 https://docs.google.com/spreadsheets/d/..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <label class="flex items-start gap-2 text-[11px] text-slate-600"><input id="adminModeration" type="checkbox" class="w-4 h-4 mt-0.5 accent-blue-600"> <span>승인한 글만 보이기 (시트에 <strong>공개</strong> 열을 만들고 보일 글에 O 입력)</span></label>
                     <p class="text-[11px] text-slate-500">글 삭제: 시트에서 그 행을 지우거나 <strong>숨김</strong> 열에 X를 넣으면 홈페이지에서 바로 사라집니다.</p>
-                    <div class="text-xs font-semibold text-slate-700 pt-2">방문자 수 (GoatCounter)</div>
-                    <p class="text-[11px] text-slate-500"><a href="https://www.goatcounter.com/signup" target="_blank" rel="noopener" class="text-blue-600 hover:underline">GoatCounter 무료 가입</a>에서 정한 코드(예: hdlee73)를 넣으세요. 쿠키 없이 집계합니다.</p>
-                    <input id="adminGoatcounter" type="text" placeholder="코드 (예: hdlee73)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div class="text-xs font-semibold text-slate-700 pt-2">방문자 수 (구글 애널리틱스)</div>
+                    <p class="text-[11px] text-slate-500"><a href="https://analytics.google.com" target="_blank" rel="noopener" class="text-blue-600 hover:underline">구글 애널리틱스</a>에서 웹 스트림을 만들고 받은 <strong>측정 ID</strong>(G-로 시작)를 넣으세요.</p>
+                    <input id="adminGaId" type="text" placeholder="측정 ID (예: G-AB12CD34EF)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <a id="adminStatsLink" href="#" target="_blank" rel="noopener" class="hidden text-[11px] text-blue-600 hover:underline"><i class="fa-solid fa-chart-line mr-1"></i>방문자 통계 보기</a>
                     <button id="adminBoardSaveBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-floppy-disk mr-1"></i> 설정 저장</button>
                 </div>
@@ -909,7 +908,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.7.0"></script>
-    <script src="assets/admin.js?v=2.7.0"></script>
+    <script src="assets/site.js?v=2.7.1"></script>
+    <script src="assets/admin.js?v=2.7.1"></script>
 </body>
 </html>

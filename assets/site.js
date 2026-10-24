@@ -469,37 +469,22 @@
         loadBoardPosts();
     }
 
-    // ---------- 방문자 수 (GoatCounter: 쿠키 없이 집계, data/analytics.json 의 코드로 켠다) ----------
-
-    let goatcounterCode = '';
+    // ---------- 방문자 수 (구글 애널리틱스: data/analytics.json 의 측정 ID로 켠다) ----------
 
     async function initAnalytics() {
+        let id = '';
         try {
-            goatcounterCode = ((await fetchJson('data/analytics.json')).goatcounter || '').trim().toLowerCase();
+            id = ((await fetchJson('data/analytics.json')).ga || '').trim().toUpperCase();
         } catch {}
-        if (!/^[a-z0-9-]{2,50}$/.test(goatcounterCode)) return;
-        if (!['localhost', '127.0.0.1'].includes(location.hostname)) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.dataset.goatcounter = `https://${goatcounterCode}.goatcounter.com/count`;
-            script.src = 'https://gc.zgo.at/count.js';
-            document.head.appendChild(script);
-        }
-        // 대시보드 설정에서 'Allow adding visitor counts on your website'를 켜야 숫자가 보인다.
-        try {
-            const res = await fetch(`https://${goatcounterCode}.goatcounter.com/counter/TOTAL.json`);
-            if (!res.ok) return;
-            const { count } = await res.json();
-            const el = document.getElementById('visitorCount');
-            if (el && count) {
-                el.querySelector('span').textContent = `${count}회`;
-                el.classList.remove('hidden');
-            }
-        } catch {}
-    }
-
-    function countPageView() {
-        if (window.goatcounter?.count) window.goatcounter.count({ path: location.pathname + location.hash });
+        if (!/^G-[A-Z0-9]{4,20}$/.test(id) || ['localhost', '127.0.0.1'].includes(location.hostname)) return;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+        document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', id);
     }
 
     const PAGES = { profile: '이력', apps: '내 앱', links: '자료실', board: '게시판' };
@@ -523,7 +508,7 @@
         else window.scrollTo(0, 0);
     }
 
-    window.addEventListener('hashchange', () => { route(); countPageView(); });
+    window.addEventListener('hashchange', route);
 
     document.addEventListener('DOMContentLoaded', () => {
         route();

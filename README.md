@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.7.0 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.7.1 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -17,7 +17,7 @@
 | `data/links.json` | 자료실 링크 목록 (자동 생성) |
 | `data/notices.json` | 게시판 공지 |
 | `data/board-config.json` | 방문자 게시판(구글 설문지·응답 시트 주소, 승인제 여부) |
-| `data/analytics.json` | 방문자 수 집계(GoatCounter 코드) |
+| `data/analytics.json` | 방문자 수 집계(구글 애널리틱스 측정 ID) |
 
 ## 내 앱
 
@@ -70,8 +70,8 @@ GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edi
 
 ## 방문자 수
 
-[GoatCounter](https://www.goatcounter.com)(무료, 쿠키 없음)로 셉니다. 가입할 때 정한 코드(예: `hdlee73`)를 게시판 관리 화면의 **방문자 수** 칸에 넣고 저장하면 집계가 시작됩니다.
-통계는 `https://코드.goatcounter.com`에서 봅니다. GoatCounter 설정에서 **Allow adding visitor counts on your website**를 켜면 홈페이지 하단에 방문 횟수가 표시됩니다.
+[구글 애널리틱스](https://analytics.google.com)로 셉니다. 계정·속성을 만들고 **웹 스트림**에 `https://hdlee73.github.io/Resume_LHD/`를 등록하면 `G-`로 시작하는 **측정 ID**가 나옵니다.
+게시판 관리 화면의 **방문자 수** 칸에 측정 ID를 넣고 저장하면 집계가 시작되고, 통계는 구글 애널리틱스 웹·앱의 **보고서**에서 봅니다. 측정 ID는 공개돼도 되는 값입니다.
 
 ## 버전 올리기
 

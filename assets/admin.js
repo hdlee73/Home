@@ -353,15 +353,15 @@
             $('adminFormUrl').value = board.formUrl || '';
             $('adminSheetUrl').value = board.sheetUrl || '';
             $('adminModeration').checked = !!board.moderation;
-            $('adminGoatcounter').value = stats.goatcounter || '';
+            $('adminGaId').value = stats.ga || '';
             updateStatsLink();
         } catch {}
     }
 
     function updateStatsLink() {
-        const code = $('adminGoatcounter').value.trim();
-        $('adminStatsLink').classList.toggle('hidden', !code);
-        if (code) $('adminStatsLink').href = `https://${code}.goatcounter.com`;
+        const id = $('adminGaId').value.trim();
+        $('adminStatsLink').classList.toggle('hidden', !id);
+        $('adminStatsLink').href = 'https://analytics.google.com';
     }
 
     function openBoardPanel() {
@@ -419,10 +419,10 @@
     async function saveBoardSettings() {
         const formUrl = $('adminFormUrl').value.trim();
         const sheetUrl = $('adminSheetUrl').value.trim();
-        const code = $('adminGoatcounter').value.trim().toLowerCase();
+        const gaId = $('adminGaId').value.trim().toUpperCase();
         if (formUrl && !/^https:\/\/docs\.google\.com\/forms\/d\//.test(formUrl)) return toast('설문지 주소는 https://docs.google.com/forms/d/... 형식이어야 합니다. (보내기 → 링크에서 URL 단축을 끄세요)');
         if (sheetUrl && !/^https:\/\/docs\.google\.com\/spreadsheets\/d\/[\w-]{20,}/.test(sheetUrl)) return toast('시트 주소는 https://docs.google.com/spreadsheets/d/... 형식이어야 합니다.');
-        if (code && !/^[a-z0-9-]{2,50}$/.test(code)) return toast('GoatCounter 코드는 영문 소문자·숫자·-만 쓸 수 있습니다.');
+        if (gaId && !/^G-[A-Z0-9]{4,20}$/.test(gaId)) return toast('측정 ID는 G-로 시작합니다. (예: G-AB12CD34EF)');
         const btn = $('adminBoardSaveBtn');
         btn.disabled = true;
         btn.classList.add('opacity-60');
@@ -432,8 +432,8 @@
             if (JSON.stringify(nextBoard) !== JSON.stringify(board.data)) {
                 await writeJson(BOARD_PATH, nextBoard, board.sha, '홈페이지에서 방문자 게시판 설정 변경');
             }
-            if (code !== (stats.data.goatcounter || '')) {
-                await writeJson(ANALYTICS_PATH, { ...stats.data, goatcounter: code }, stats.sha, '홈페이지에서 방문자 수 설정 변경');
+            if (gaId !== (stats.data.ga || '')) {
+                await writeJson(ANALYTICS_PATH, { ga: gaId }, stats.sha, '홈페이지에서 방문자 수 설정 변경');
             }
             updateStatsLink();
             toast('✅ 저장했습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
@@ -472,7 +472,7 @@
         $('boardAdminBtn').addEventListener('click', () => openFor('board'));
         $('adminNoticeAddBtn').addEventListener('click', addNotice);
         $('adminBoardSaveBtn').addEventListener('click', saveBoardSettings);
-        $('adminGoatcounter').addEventListener('input', updateStatsLink);
+        $('adminGaId').addEventListener('input', updateStatsLink);
         $('adminNoticeList').addEventListener('click', (e) => {
             const del = e.target.closest('[data-del-notice]');
             if (del) deleteNotice(del.dataset.delNotice);
