@@ -121,6 +121,39 @@
 
     const linkState = { all: [], category: '전체', query: '', shown: LINKS_PAGE_SIZE };
 
+    // 구글 드라이브: 폴더는 파일 목록, 파일·문서는 미리보기를 바로 보여준다 ('링크가 있는 모든 사용자' 공유일 때).
+    const DRIVE = {
+        folder: { icon: 'fa-solid fa-folder-open', embed: (id) => `https://drive.google.com/embeddedfolderview?id=${id}#list`, open: (id) => `https://drive.google.com/drive/folders/${id}` },
+        file: { icon: 'fa-solid fa-file', embed: (id) => `https://drive.google.com/file/d/${id}/preview`, open: (id) => `https://drive.google.com/file/d/${id}/view`, download: (id) => `https://drive.google.com/uc?export=download&id=${id}` },
+        document: { icon: 'fa-solid fa-file-word', embed: (id) => `https://docs.google.com/document/d/${id}/preview`, open: (id) => `https://docs.google.com/document/d/${id}/edit`, download: (id) => `https://docs.google.com/document/d/${id}/export?format=pdf` },
+        spreadsheets: { icon: 'fa-solid fa-table', embed: (id) => `https://docs.google.com/spreadsheets/d/${id}/preview`, open: (id) => `https://docs.google.com/spreadsheets/d/${id}/edit`, download: (id) => `https://docs.google.com/spreadsheets/d/${id}/export?format=xlsx` },
+        presentation: { icon: 'fa-solid fa-display', embed: (id) => `https://docs.google.com/presentation/d/${id}/preview`, open: (id) => `https://docs.google.com/presentation/d/${id}/edit`, download: (id) => `https://docs.google.com/presentation/d/${id}/export/pdf` },
+    };
+
+    function driveCard(link, tags, footer) {
+        const d = DRIVE[link.driveApp] || DRIVE.file;
+        const id = link.driveId;
+        return `
+            <article class="rounded-2xl bg-slate-50 border border-slate-100 overflow-hidden flex flex-col ${link.driveApp === 'folder' ? 'sm:col-span-2' : ''}">
+                <div class="relative w-full ${link.driveApp === 'folder' ? 'h-80' : 'aspect-[4/3]'} bg-white border-b border-slate-100">
+                    <iframe class="absolute inset-0 w-full h-full" loading="lazy" src="${d.embed(id)}" title="${esc(link.title)}" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="p-4 space-y-2 flex-1 flex flex-col">
+                    <span class="self-start text-[10px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full"><i class="fa-brands fa-google-drive mr-1"></i>${esc(link.category || '구글 드라이브')}</span>
+                    <a href="${d.open(id)}" target="_blank" rel="noopener" class="font-bold text-slate-800 text-sm leading-snug hover:text-blue-600 line-clamp-2"><i class="${d.icon} text-amber-500 mr-1"></i>${esc(link.title)}</a>
+                    ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-3">${esc(link.summary)}</p>` : ''}
+                    ${tags ? `<div class="flex flex-wrap gap-1">${tags}</div>` : ''}
+                    <div class="mt-auto pt-1 space-y-2">
+                        ${footer}
+                        <div class="flex flex-wrap gap-3 text-xs font-medium">
+                            <a href="${d.open(id)}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700">${link.driveApp === 'folder' ? '폴더 열기' : '열기'} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+                            ${d.download ? `<a href="${d.download(id)}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700">다운로드 <i class="fa-solid fa-download text-[10px]"></i></a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            </article>`;
+    }
+
     function linkCard(link) {
         const tags = (link.tags || []).map((t) =>
             `<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px]">#${esc(t)}</span>`).join('');
@@ -129,6 +162,8 @@
                 <span class="truncate">${esc(link.site || '')}</span>
                 <span class="flex-shrink-0">${fmtDate(link.addedAt)}</span>
             </div>`;
+
+        if (link.type === 'gdrive' && /^[\w-]{10,}$/.test(link.driveId || '')) return driveCard(link, tags, footer);
 
         if (link.type === 'youtube' && /^[\w-]{6,}$/.test(link.videoId || '')) {
             return `

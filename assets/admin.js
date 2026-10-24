@@ -253,7 +253,7 @@
             box.innerHTML = data.length
                 ? data.map((l) => `
                     <li class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-100 bg-white">
-                        <i class="${l.type === 'youtube' ? 'fa-brands fa-youtube text-red-500' : l.type === 'blog' ? 'fa-solid fa-pen-nib text-emerald-500' : 'fa-solid fa-link text-blue-500'} text-xs w-4 text-center flex-shrink-0"></i>
+                        <i class="${l.type === 'youtube' ? 'fa-brands fa-youtube text-red-500' : l.type === 'blog' ? 'fa-solid fa-pen-nib text-emerald-500' : l.type === 'gdrive' ? 'fa-brands fa-google-drive text-amber-500' : 'fa-solid fa-link text-blue-500'} text-xs w-4 text-center flex-shrink-0"></i>
                         <div class="flex-1 min-w-0">
                             <div class="text-xs font-semibold text-slate-800 truncate">${esc(l.title)}</div>
                             <div class="text-[11px] text-slate-400 truncate">${esc(l.category || '')} · ${fmtDate(l.addedAt)} · ${esc(l.url)}</div>

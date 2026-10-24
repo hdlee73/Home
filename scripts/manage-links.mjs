@@ -116,7 +116,61 @@ function firstParagraph(html) {
   return paras[0] || '';
 }
 
+// 구글 드라이브·문서 링크: { app: file|folder|document|spreadsheets|presentation, id }
+function googleDrive(url) {
+  try {
+    const u = new URL(url);
+    if (u.hostname === 'drive.google.com') {
+      const folder = u.pathname.match(/\/folders\/([\w-]{10,})/);
+      if (folder) return { app: 'folder', id: folder[1] };
+      const file = u.pathname.match(/\/file\/d\/([\w-]{10,})/);
+      if (file) return { app: 'file', id: file[1] };
+      const id = u.searchParams.get('id');
+      if (id && /^[\w-]{10,}$/.test(id)) return { app: 'file', id };
+    }
+    if (u.hostname === 'docs.google.com') {
+      const m = u.pathname.match(/^\/(document|spreadsheets|presentation)\/d\/([\w-]{10,})/);
+      if (m) return { app: m[1], id: m[2] };
+    }
+  } catch {}
+  return null;
+}
+
+const DRIVE_LABEL = {
+  folder: 'Google Drive 폴더',
+  file: 'Google Drive 파일',
+  document: 'Google 문서',
+  spreadsheets: 'Google 스프레드시트',
+  presentation: 'Google 프레젠테이션',
+};
+
+async function describeDrive(url, drive) {
+  let title = '';
+  let summary = '';
+  try {
+    const { html } = await fetchText(url);
+    title = (metaContent(html, ['og:title']) ||
+      decodeEntities(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '').trim())
+      .replace(/\s+-\s+Google (Drive|Docs|Sheets|Slides|문서|스프레드시트|프레젠테이션|드라이브)\s*$/i, '');
+    summary = metaContent(html, ['og:description', 'description']);
+    if (/^(Google (Drive|Docs|Sheets|Slides)|Sign-in|로그인)/i.test(title)) title = ''; // 비공개 링크는 로그인 화면이 온다
+  } catch (e) {
+    console.warn(`드라이브 정보를 읽지 못함: ${url} (${e.message})`);
+  }
+  return {
+    type: 'gdrive',
+    driveApp: drive.app,
+    driveId: drive.id,
+    title: clean(title || DRIVE_LABEL[drive.app], 200),
+    summary: clean(summary, 300),
+    site: DRIVE_LABEL[drive.app],
+    image: null,
+  };
+}
+
 async function describe(url) {
+  const drive = googleDrive(url);
+  if (drive) return describeDrive(url, drive);
   const vid = youtubeId(url);
   if (vid) {
     let title = '';
@@ -224,7 +278,7 @@ if (!urls.length) {
       ...meta,
       ...(single && customTitle ? { title: customTitle } : {}),
       ...(single && customSummary ? { summary: customSummary } : {}),
-      category: category && category !== '자동' ? category : meta.type === 'youtube' ? '유튜브' : meta.type === 'blog' ? '블로그' : '웹',
+      category: category && category !== '자동' ? category : { youtube: '유튜브', blog: '블로그', gdrive: '구글 드라이브' }[meta.type] || '웹',
       tags,
       addedAt: new Date().toISOString(),
       ...(issueNumber ? { issue: issueNumber } : {}),
