@@ -14,6 +14,9 @@
     const NOTICES_PATH = 'data/notices.json';
     const BOARD_PATH = 'data/board-config.json';
     const ANALYTICS_PATH = 'data/analytics.json';
+    const PROFILE_PATH = 'data/profile.json';
+    const PHOTO_PATH = 'assets/profile.jpg';
+    const RESUME_PATH = 'resume.pdf';
     const VAULT_KEY = 'hdlee_admin_vault_v1';
     const PBKDF2_ITERATIONS = 600000;
 
@@ -118,8 +121,8 @@
     // ---------- 화면 ----------
 
     function show(view) {
-        ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView', 'adminBoardView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
-        $('adminModalTitle').textContent = { links: '자료실 링크 관리', board: '게시판 관리' }[target] || '앱 선택 · 소개';
+        ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView', 'adminBoardView', 'adminProfileView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
+        $('adminModalTitle').textContent = { links: '자료실 링크 관리', board: '게시판 관리', profile: '사진 · 이력서 변경' }[target] || '앱 선택 · 소개';
         $('adminAppsModal').classList.remove('opacity-0', 'pointer-events-none');
         const focus = { adminSetupView: 'adminTokenInput', adminLoginView: 'adminPwInput' }[view];
         if (focus) setTimeout(() => $(focus).focus(), 50);
@@ -127,7 +130,8 @@
 
     function close() {
         $('adminAppsModal').classList.add('opacity-0', 'pointer-events-none');
-        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput', 'adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags', 'adminNoticeTitle', 'adminNoticeBody'].forEach((id) => { $(id).value = ''; });
+        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput', 'adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags', 'adminNoticeTitle', 'adminNoticeBody', 'adminPhotoFile', 'adminResumeFile'].forEach((id) => { $(id).value = ''; });
+        $('adminPhotoPreview').classList.add('hidden');
         $('adminSetupError').textContent = '';
         $('adminLoginError').textContent = '';
     }
@@ -445,8 +449,105 @@
         }
     }
 
+    // ---------- 프로필 사진 · 이력서 ----------
+
+    const MAX_RESUME_BYTES = 20 * 1024 * 1024;
+    let photoBlob = null;
+
+    function bytesToB64(bytes) {
+        let bin = '';
+        for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+        return btoa(bin);
+    }
+
+    // 가운데를 정사각형으로 잘라 640px JPEG 로 줄인다.
+    async function resizePhoto(file) {
+        const bmp = await createImageBitmap(file);
+        const side = Math.min(bmp.width, bmp.height);
+        const size = Math.min(640, side);
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = size;
+        canvas.getContext('2d').drawImage(bmp, (bmp.width - side) / 2, (bmp.height - side) / 2, side, side, 0, 0, size, size);
+        return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('resize'))), 'image/jpeg', 0.88));
+    }
+
+    async function putFile(path, base64, message) {
+        let sha;
+        try {
+            sha = (await gh(`/repos/${OWNER}/${REPO}/contents/${path}?ref=main`)).sha;
+        } catch (e) {
+            if (e.status !== 404) throw e;
+        }
+        return gh(`/repos/${OWNER}/${REPO}/contents/${path}`, {
+            method: 'PUT',
+            body: JSON.stringify({ message, content: base64, branch: 'main', ...(sha ? { sha } : {}) }),
+        });
+    }
+
+    async function touchProfile(patch) {
+        let sha = null;
+        let data = {};
+        try { ({ sha, data } = await readJson(PROFILE_PATH)); } catch (e) { if (e.status !== 404) throw e; }
+        await writeJson(PROFILE_PATH, { ...data, ...patch }, sha, '홈페이지에서 프로필 정보 변경');
+    }
+
+    function openProfilePanel() {
+        show('adminProfileView');
+    }
+
+    async function onPhotoPicked() {
+        const file = $('adminPhotoFile').files[0];
+        photoBlob = null;
+        $('adminPhotoPreview').classList.add('hidden');
+        if (!file) return;
+        try {
+            photoBlob = await resizePhoto(file);
+            $('adminPhotoPreview').src = URL.createObjectURL(photoBlob);
+            $('adminPhotoPreview').classList.remove('hidden');
+        } catch {
+            toast('이미지를 읽지 못했습니다. JPG·PNG 사진을 골라 주세요.');
+        }
+    }
+
+    async function withBusy(btnId, work) {
+        const btn = $(btnId);
+        btn.disabled = true;
+        btn.classList.add('opacity-60');
+        try { await work(); } finally {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60');
+        }
+    }
+
+    const uploadPhoto = () => withBusy('adminPhotoBtn', async () => {
+        if (!photoBlob) return toast('먼저 사진을 골라 주세요.');
+        try {
+            await putFile(PHOTO_PATH, bytesToB64(new Uint8Array(await photoBlob.arrayBuffer())), '홈페이지에서 프로필 사진 변경');
+            await touchProfile({ photo: PHOTO_PATH, photoUpdatedAt: new Date().toISOString() });
+            toast('✅ 사진을 올렸습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
+        } catch (e) {
+            toast(e.status === 409 ? '파일이 방금 바뀌었습니다. 다시 시도해 주세요.' : '올리지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+        }
+    });
+
+    const uploadResume = () => withBusy('adminResumeBtn', async () => {
+        const file = $('adminResumeFile').files[0];
+        if (!file) return toast('먼저 PDF 파일을 골라 주세요.');
+        if (!/\.pdf$/i.test(file.name) && file.type !== 'application/pdf') return toast('PDF 파일만 올릴 수 있습니다.');
+        if (file.size > MAX_RESUME_BYTES) return toast('20MB 이하 파일만 올릴 수 있습니다.');
+        try {
+            await putFile(RESUME_PATH, bytesToB64(new Uint8Array(await file.arrayBuffer())), '홈페이지에서 이력서 변경');
+            await touchProfile({ resumeUpdatedAt: new Date().toISOString() });
+            $('adminResumeFile').value = '';
+            toast('✅ 이력서를 올렸습니다. 1~2분 뒤 다운로드에 반영됩니다.');
+        } catch (e) {
+            toast(e.status === 409 ? '파일이 방금 바뀌었습니다. 다시 시도해 주세요.' : '올리지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+        }
+    });
+
     function openTarget() {
-        if (target === 'links') openLinksPanel();
+        if (target === 'profile') openProfilePanel();
+        else if (target === 'links') openLinksPanel();
         else if (target === 'board') openBoardPanel();
         else openAppsPanel();
     }
@@ -470,6 +571,10 @@
         $('linkAdminBtn').addEventListener('click', () => openFor('links'));
         $('adminLinkAddBtn').addEventListener('click', addLinks);
         $('boardAdminBtn').addEventListener('click', () => openFor('board'));
+        $('profileAdminBtn').addEventListener('click', () => openFor('profile'));
+        $('adminPhotoFile').addEventListener('change', onPhotoPicked);
+        $('adminPhotoBtn').addEventListener('click', uploadPhoto);
+        $('adminResumeBtn').addEventListener('click', uploadResume);
         $('adminNoticeAddBtn').addEventListener('click', addNotice);
         $('adminBoardSaveBtn').addEventListener('click', saveBoardSettings);
         $('adminGaId').addEventListener('input', updateStatsLink);

@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.8.0 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.9.0 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -9,12 +9,13 @@
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 홈페이지 본문. 이력(`#profile`, 문의 포함)·내 앱(`#apps`)·자료실(`#links`)·게시판(`#board`)을 페이지처럼 나눠 보여줌 |
+| `index.html` | 홈페이지 본문. 첫 화면(프로필 카드와 메뉴)·이력(`#profile`)·내 앱(`#apps`)·자료실(`#links`)·게시판(`#board`)을 페이지처럼 나눠 보여줌 |
 | `assets/site.js` | 내 앱·자료실 표시, 업데이트 내역, 새 버전 안내 |
 | `version.json` | 사이트 이름·버전·업데이트 내역 |
 | `data/apps.json` | 공개 앱 목록 (자동 생성) |
 | `data/apps-config.json` | 홈페이지에 보일 앱 선택(`show`), 이름·설명 덮어쓰기 |
 | `data/links.json` | 자료실 링크 목록 (자동 생성) |
+| `data/profile.json` | 프로필 사진·이력서 교체 시각(캐시 갱신용) |
 | `data/notices.json` | 게시판 공지 |
 | `data/board-config.json` | 방문자 게시판(구글 설문지·응답 시트 주소, 승인제 여부) |
 | `data/analytics.json` | 방문자 수 집계(구글 애널리틱스 측정 ID) |
@@ -85,8 +86,10 @@ GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edi
 - 워크플로는 Actions가 자동 발급하는 `GITHUB_TOKEN`만 사용하며, 저장소에 키나 비밀번호를 넣지 않습니다. 추가 키가 필요해지면 **Settings → Secrets and variables → Actions**에 등록합니다.
 - 저장소에 푸시할 수 있는 사람은 저장소 주인뿐이므로 다른 사람이 사이트를 바꿔 배포할 수 없습니다.
 
-## 문의 남기기
+## 문의
 
-문의 양식은 [FormSubmit](https://formsubmit.co)을 통해 hdlee73@gmail.com 으로 메일을 보냅니다. 내용은 홈페이지에 저장되거나 표시되지 않습니다.
-**처음 한 번** 문의가 들어오면 FormSubmit에서 확인(Activate) 메일이 오며, 그 메일의 버튼을 눌러야 이후 문의가 전달됩니다.
-전송에 실패하면 방문자의 메일 앱이 열려 같은 내용을 직접 보낼 수 있습니다.
+'문의' 메뉴는 폼 없이 바로 메일 앱(hdlee73@gmail.com)을 엽니다. 서버나 외부 전송 서비스를 쓰지 않습니다.
+
+## 프로필 사진 · 이력서 바꾸기
+
+첫 화면 프로필 카드의 **사진 · 이력서 변경 (관리자)** → 관리자 비밀번호 → 파일 선택 → 올리기. 사진은 가운데를 정사각형으로 잘라 640px로 줄여 `assets/profile.jpg`로, 이력서는 20MB 이하 PDF를 `resume.pdf`로 저장(커밋)하며 1~2분 뒤 반영됩니다. 올린 사진이 없으면 기본 `Study2.png`를 씁니다.
