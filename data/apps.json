@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T11:05:50.200Z",
+  "updatedAt": "2026-10-24T16:00:00.006Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v1.6.7.apk",
             "size": 9365444,
-            "downloads": 24,
+            "downloads": 26,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk"
           },
           {
@@ -58,7 +58,7 @@
           {
             "name": "EngHub-v1.41.0.apk",
             "size": 146474703,
-            "downloads": 0,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
           }
         ],
@@ -87,7 +87,7 @@
           {
             "name": "Everynote-v1.70.0.apk",
             "size": 125406866,
-            "downloads": 1,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
           },
           {
@@ -111,23 +111,23 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Everylaw",
       "homepage": null,
-      "pushedAt": "2026-10-24T03:34:10Z",
+      "pushedAt": "2026-10-24T12:55:35Z",
       "release": {
-        "tag": "v1.6.0",
-        "name": "Everylaw 1.6.0",
-        "publishedAt": "2026-10-24T03:34:10Z",
-        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.6.0",
-        "notes": "## What's Changed\n* v1.6.0: 결과 안에서 찾기와 항목 숨기기 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/13\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.5.0...v1.6.0",
+        "tag": "v1.7.2",
+        "name": "Everylaw 1.7.2",
+        "publishedAt": "2026-10-24T12:55:35Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.7.2",
+        "notes": "## What's Changed\n* v1.7.2: 법령명 없는 키워드 검색의 조문 누락 개선 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/16\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.7.1...v1.7.2",
         "assets": [
           {
-            "name": "Everylaw-1.6.0.apk",
-            "size": 4060360,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.6.0/Everylaw-1.6.0.apk"
+            "name": "Everylaw-1.7.2.apk",
+            "size": 4076748,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.7.2/Everylaw-1.7.2.apk"
           }
         ],
-        "primaryAsset": "Everylaw-1.6.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.6.0"
+        "primaryAsset": "Everylaw-1.7.2.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.7.2"
       }
     },
     {
@@ -151,7 +151,7 @@
           {
             "name": "DailyHabit-1.8.1.apk",
             "size": 18221622,
-            "downloads": 0,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.8.1/DailyHabit-1.8.1.apk"
           }
         ],
@@ -239,7 +239,7 @@
           {
             "name": "SnapRead-1.7.0.apk",
             "size": 54164360,
-            "downloads": 0,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.apk"
           }
         ],
@@ -263,9 +263,9 @@
     "EveryVideo_win",
     "FSS_insights",
     "FSS_Insights_Win",
+    "Home",
     "InvestOn",
     "Realtime_trans",
-    "Resume_LHD",
     "SnapRead",
     "Study_Helper_Win",
     "Watch_sentence"
