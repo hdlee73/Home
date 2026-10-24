@@ -119,9 +119,9 @@
 
     // ---------- 자료 링크 저장소 ----------
 
-    // 드라이브 항목은 '구글 드라이브' 대신 폴더 이름을 분류로 쓴다.
-    const catOf = (l) => (l.type === 'gdrive' ? l.title || '참고자료' : l.category) || '';
-    const CATEGORY_ORDER = ['유튜브', '블로그', '구글 드라이브', '웹'];
+    // 분류 이름과 순서(고정): 드라이브 폴더 이름(예: 참고자료) → 유튜브 링크 → 블로그 링크 → 기타자료
+    const catOf = (l) => ({ gdrive: l.title || '참고자료', youtube: '유튜브 링크', blog: '블로그 링크' }[l.type] || '기타자료');
+    const rankOf = (l) => ({ gdrive: 0, youtube: 1, blog: 2 }[l.type] ?? 3);
     const linkState = { all: [], category: '전체', query: '', shown: LINKS_PAGE_SIZE };
 
     // 구글 드라이브: 구글 화면(게시자·수정자 표시 등)을 임베드하지 않고, 설명과 첨부파일 이름만 카드로 보여준다.
@@ -192,7 +192,7 @@
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-4 space-y-2 flex-1 flex flex-col">
-                        <span class="self-start text-[10px] font-semibold bg-red-100 text-red-600 px-2 py-0.5 rounded-full"><i class="fa-brands fa-youtube mr-1"></i>${esc(link.category || '유튜브')}</span>
+                        <span class="self-start text-[10px] font-semibold bg-red-100 text-red-600 px-2 py-0.5 rounded-full"><i class="fa-brands fa-youtube mr-1"></i>${esc(catOf(link))}</span>
                         <a href="${safeUrl(link.url)}" target="_blank" rel="noopener" class="font-bold text-slate-800 text-sm leading-snug hover:text-blue-600 line-clamp-2">${esc(link.title)}</a>
                         ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-3">${esc(link.summary)}</p>` : ''}
                         ${tags ? `<div class="flex flex-wrap gap-1">${tags}</div>` : ''}
@@ -202,8 +202,8 @@
         }
 
         const badge = link.type === 'blog'
-            ? `<span class="text-[10px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full"><i class="fa-solid fa-pen-nib mr-1"></i>${esc(link.category || '블로그')}</span>`
-            : `<span class="text-[10px] font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full"><i class="fa-solid fa-link mr-1"></i>${esc(link.category || '웹')}</span>`;
+            ? `<span class="text-[10px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full"><i class="fa-solid fa-pen-nib mr-1"></i>${esc(catOf(link))}</span>`
+            : `<span class="text-[10px] font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full"><i class="fa-solid fa-link mr-1"></i>${esc(catOf(link))}</span>`;
         return `
             <article class="rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 overflow-hidden flex flex-col transition-all">
                 ${link.image ? `
@@ -234,7 +234,8 @@
 
     function renderLinkFilters() {
         const box = document.getElementById('linkFilters');
-        const cats = ['전체', ...new Set(linkState.all.map(catOf).filter(Boolean))];
+        const sorted = linkState.all.map((l, i) => ({ l, i })).sort((x, y) => rankOf(x.l) - rankOf(y.l) || x.i - y.i).map((x) => x.l);
+        const cats = ['전체', ...new Set(sorted.map(catOf))];
         box.innerHTML = cats.map((c) => {
             const count = c === '전체' ? linkState.all.length : linkState.all.filter((l) => catOf(l) === c).length;
             const active = c === linkState.category;
@@ -255,10 +256,9 @@
             return;
         }
         // 같은 분류끼리 묶어서 분류별 제목 아래에 보여준다 (분류 안에서는 최근에 추가한 순서).
-        const order = (c) => { const i = CATEGORY_ORDER.indexOf(c); return i < 0 ? CATEGORY_ORDER.length : i; };
         const shown = items
             .map((l, i) => ({ l, i }))
-            .sort((a, b) => order(catOf(a.l)) - order(catOf(b.l)) || catOf(a.l).localeCompare(catOf(b.l)) || a.i - b.i)
+            .sort((a, b) => rankOf(a.l) - rankOf(b.l) || catOf(a.l).localeCompare(catOf(b.l)) || a.i - b.i)
             .map((x) => x.l)
             .slice(0, linkState.shown);
         const groups = [];
