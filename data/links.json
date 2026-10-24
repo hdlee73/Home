@@ -1,5 +1,19 @@
 [
   {
+    "id": "mvmbg34ooxkq",
+    "url": "https://drive.google.com/drive/folders/1B-b5ABFDgKQBZ8zR6a4gkZPVhUIn-AmG?usp=sharing",
+    "type": "gdrive",
+    "driveApp": "folder",
+    "driveId": "1B-b5ABFDgKQBZ8zR6a4gkZPVhUIn-AmG",
+    "title": "참고자료",
+    "summary": "",
+    "site": "Google Drive 폴더",
+    "image": null,
+    "category": "구글 드라이브",
+    "tags": [],
+    "addedAt": "2026-10-24T11:29:04.728Z"
+  },
+  {
     "id": "mvmb22fpccy4",
     "url": "https://youtu.be/TGoAN5L_oPI?si=JtU5_zgotU5OfZCw",
     "type": "youtube",
