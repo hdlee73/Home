@@ -1,7 +1,8 @@
 // 관리자: 홈페이지에서 '내 앱'에 노출할 앱을 고르고, 자료실 링크를 추가·삭제한다.
 // 페이지 소스에는 비밀번호도 토큰도 없다. 관리자가 처음 한 번 GitHub 토큰(이 저장소 Contents 읽기/쓰기만)을 넣으면
 // 관리자가 정한 비밀번호로 암호화(PBKDF2 + AES-GCM)해 그 브라우저에만 저장하고, 이후에는 비밀번호로 잠금을 푼다.
-// 앱 선택은 data/apps-config.json 을, 링크 삭제는 data/links.json 을 바로 커밋한다.
+// 앱 선택은 data/apps-config.json 을, 링크 삭제는 data/links.json 을, 공지는 data/notices.json 을,
+// 방문자 게시판·방문자 수 설정은 data/board-config.json·data/analytics.json 을 바로 커밋한다.
 // 링크 추가는 브라우저에서 다른 사이트의 제목·요약을 읽을 수 없으므로 data/link-requests/ 에 요청 파일을 커밋하고,
 // '링크 요청 처리' 워크플로가 제목·요약을 가져와 links.json 에 넣는다. 모두 1~2분 뒤 홈페이지에 반영된다.
 (() => {
@@ -10,6 +11,9 @@
     const CONFIG_PATH = 'data/apps-config.json';
     const LINKS_PATH = 'data/links.json';
     const REQUEST_DIR = 'data/link-requests';
+    const NOTICES_PATH = 'data/notices.json';
+    const BOARD_PATH = 'data/board-config.json';
+    const ANALYTICS_PATH = 'data/analytics.json';
     const VAULT_KEY = 'hdlee_admin_vault_v1';
     const PBKDF2_ITERATIONS = 600000;
 
@@ -17,7 +21,7 @@
     let selected = [];     // 노출할 저장소 이름 (순서 = 표시 순서)
     let repos = [];        // 고를 수 있는 공개 저장소
     let intros = {};       // 저장소 이름(소문자) → 관리자가 쓴 소개 문구
-    let target = 'apps';   // 잠금 해제 후 열 화면: apps | links
+    let target = 'apps';   // 잠금 해제 후 열 화면: apps | links | board
 
     const $ = (id) => document.getElementById(id);
     const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
@@ -114,8 +118,8 @@
     // ---------- 화면 ----------
 
     function show(view) {
-        ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
-        $('adminModalTitle').textContent = target === 'links' ? '자료실 링크 관리' : '앱 선택 · 소개';
+        ['adminSetupView', 'adminLoginView', 'adminPanelView', 'adminLinksView', 'adminBoardView'].forEach((id) => $(id).classList.toggle('hidden', id !== view));
+        $('adminModalTitle').textContent = { links: '자료실 링크 관리', board: '게시판 관리' }[target] || '앱 선택 · 소개';
         $('adminAppsModal').classList.remove('opacity-0', 'pointer-events-none');
         const focus = { adminSetupView: 'adminTokenInput', adminLoginView: 'adminPwInput' }[view];
         if (focus) setTimeout(() => $(focus).focus(), 50);
@@ -123,7 +127,7 @@
 
     function close() {
         $('adminAppsModal').classList.add('opacity-0', 'pointer-events-none');
-        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput', 'adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags'].forEach((id) => { $(id).value = ''; });
+        ['adminTokenInput', 'adminNewPw', 'adminNewPw2', 'adminPwInput', 'adminLinkUrls', 'adminLinkTitle', 'adminLinkSummary', 'adminLinkTags', 'adminNoticeTitle', 'adminNoticeBody'].forEach((id) => { $(id).value = ''; });
         $('adminSetupError').textContent = '';
         $('adminLoginError').textContent = '';
     }
@@ -315,8 +319,135 @@
         }
     }
 
+    // ---------- 게시판: 공지 · 방문자 게시판 · 방문자 수 ----------
+
+    const authError = (e) => e.status === 401 || e.status === 403 || e.status === 404;
+
+    async function loadNoticeList() {
+        const box = $('adminNoticeList');
+        box.innerHTML = '<li class="text-xs text-slate-400 text-center py-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
+        try {
+            const { data } = await readJson(NOTICES_PATH);
+            $('adminNoticeCount').textContent = `${data.length}개`;
+            box.innerHTML = data.length
+                ? data.map((n) => `
+                    <li class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-100 bg-white">
+                        <i class="fa-solid ${n.pinned ? 'fa-thumbtack text-violet-500' : 'fa-bullhorn text-slate-400'} text-xs w-4 text-center flex-shrink-0"></i>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-xs font-semibold text-slate-800 truncate">${esc(n.title)}</div>
+                            <div class="text-[11px] text-slate-400">${fmtDate(n.createdAt)}</div>
+                        </div>
+                        <button type="button" data-del-notice="${esc(n.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-red-600 hover:border-red-200 flex-shrink-0" aria-label="삭제"><i class="fa-solid fa-trash text-[10px]"></i></button>
+                    </li>`).join('')
+                : '<li class="text-xs text-slate-400 text-center py-4">올린 공지가 없습니다.</li>';
+        } catch (e) {
+            box.innerHTML = `<li class="text-xs text-red-500 text-center py-4">${authError(e)
+                ? '토큰이 만료되었거나 권한이 없습니다. "토큰 다시 등록"을 눌러 주세요.'
+                : '목록을 불러오지 못했습니다.'}</li>`;
+        }
+    }
+
+    async function loadBoardSettings() {
+        try {
+            const [{ data: board }, { data: stats }] = await Promise.all([readJson(BOARD_PATH), readJson(ANALYTICS_PATH)]);
+            $('adminFormUrl').value = board.formUrl || '';
+            $('adminSheetUrl').value = board.sheetUrl || '';
+            $('adminModeration').checked = !!board.moderation;
+            $('adminGoatcounter').value = stats.goatcounter || '';
+            updateStatsLink();
+        } catch {}
+    }
+
+    function updateStatsLink() {
+        const code = $('adminGoatcounter').value.trim();
+        $('adminStatsLink').classList.toggle('hidden', !code);
+        if (code) $('adminStatsLink').href = `https://${code}.goatcounter.com`;
+    }
+
+    function openBoardPanel() {
+        show('adminBoardView');
+        setTimeout(() => $('adminNoticeTitle').focus(), 50);
+        loadNoticeList();
+        loadBoardSettings();
+    }
+
+    async function addNotice() {
+        const title = $('adminNoticeTitle').value.trim();
+        const body = $('adminNoticeBody').value.trim();
+        if (!title) return toast('공지 제목을 넣어 주세요.');
+        const btn = $('adminNoticeAddBtn');
+        btn.disabled = true;
+        btn.classList.add('opacity-60');
+        try {
+            const { sha, data } = await readJson(NOTICES_PATH);
+            const notice = {
+                id: `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`,
+                title,
+                body,
+                pinned: $('adminNoticePinned').checked,
+                createdAt: new Date().toISOString(),
+            };
+            await writeJson(NOTICES_PATH, [notice, ...data], sha, `홈페이지에서 공지 추가: ${title}`.slice(0, 100));
+            $('adminNoticeTitle').value = '';
+            $('adminNoticeBody').value = '';
+            $('adminNoticePinned').checked = false;
+            toast('✅ 공지를 올렸습니다. 1~2분 뒤 게시판에 나타납니다.');
+            loadNoticeList();
+        } catch (e) {
+            toast(e.status === 409 ? '목록이 방금 바뀌었습니다. 다시 시도해 주세요.' : '올리지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+        } finally {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60');
+        }
+    }
+
+    async function deleteNotice(id) {
+        if (!confirm('이 공지를 삭제할까요?')) return;
+        try {
+            const { sha, data } = await readJson(NOTICES_PATH);
+            const removed = data.find((n) => n.id === id);
+            if (!removed) return loadNoticeList();
+            await writeJson(NOTICES_PATH, data.filter((n) => n.id !== id), sha, `홈페이지에서 공지 삭제: ${removed.title}`.slice(0, 100));
+            toast('🗑️ 삭제했습니다. 1~2분 뒤 게시판에서 사라집니다.');
+            loadNoticeList();
+        } catch (e) {
+            toast(e.status === 409 ? '목록이 방금 바뀌었습니다. 다시 시도해 주세요.' : '삭제하지 못했습니다.');
+            loadNoticeList();
+        }
+    }
+
+    async function saveBoardSettings() {
+        const formUrl = $('adminFormUrl').value.trim();
+        const sheetUrl = $('adminSheetUrl').value.trim();
+        const code = $('adminGoatcounter').value.trim().toLowerCase();
+        if (formUrl && !/^https:\/\/docs\.google\.com\/forms\/d\//.test(formUrl)) return toast('설문지 주소는 https://docs.google.com/forms/d/... 형식이어야 합니다. (보내기 → 링크에서 URL 단축을 끄세요)');
+        if (sheetUrl && !/^https:\/\/docs\.google\.com\/spreadsheets\/d\/[\w-]{20,}/.test(sheetUrl)) return toast('시트 주소는 https://docs.google.com/spreadsheets/d/... 형식이어야 합니다.');
+        if (code && !/^[a-z0-9-]{2,50}$/.test(code)) return toast('GoatCounter 코드는 영문 소문자·숫자·-만 쓸 수 있습니다.');
+        const btn = $('adminBoardSaveBtn');
+        btn.disabled = true;
+        btn.classList.add('opacity-60');
+        try {
+            const [board, stats] = await Promise.all([readJson(BOARD_PATH), readJson(ANALYTICS_PATH)]);
+            const nextBoard = { ...board.data, formUrl, sheetUrl, moderation: $('adminModeration').checked };
+            if (JSON.stringify(nextBoard) !== JSON.stringify(board.data)) {
+                await writeJson(BOARD_PATH, nextBoard, board.sha, '홈페이지에서 방문자 게시판 설정 변경');
+            }
+            if (code !== (stats.data.goatcounter || '')) {
+                await writeJson(ANALYTICS_PATH, { ...stats.data, goatcounter: code }, stats.sha, '홈페이지에서 방문자 수 설정 변경');
+            }
+            updateStatsLink();
+            toast('✅ 저장했습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
+        } catch (e) {
+            toast(e.status === 409 ? '설정이 방금 바뀌었습니다. 다시 시도해 주세요.' : '저장하지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+        } finally {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60');
+        }
+    }
+
     function openTarget() {
         if (target === 'links') openLinksPanel();
+        else if (target === 'board') openBoardPanel();
         else openAppsPanel();
     }
 
@@ -338,6 +469,14 @@
         $('adminAppsBtn').addEventListener('click', () => openFor('apps'));
         $('linkAdminBtn').addEventListener('click', () => openFor('links'));
         $('adminLinkAddBtn').addEventListener('click', addLinks);
+        $('boardAdminBtn').addEventListener('click', () => openFor('board'));
+        $('adminNoticeAddBtn').addEventListener('click', addNotice);
+        $('adminBoardSaveBtn').addEventListener('click', saveBoardSettings);
+        $('adminGoatcounter').addEventListener('input', updateStatsLink);
+        $('adminNoticeList').addEventListener('click', (e) => {
+            const del = e.target.closest('[data-del-notice]');
+            if (del) deleteNotice(del.dataset.delNotice);
+        });
         $('adminLinkList').addEventListener('click', (e) => {
             const del = e.target.closest('[data-del-link]');
             if (del) deleteLink(del.dataset.delLink);

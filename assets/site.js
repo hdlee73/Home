@@ -1,4 +1,4 @@
-// 내 앱 · 자료 링크 저장소 · 버전/업데이트 안내
+// 내 앱 · 자료 링크 저장소 · 게시판 · 방문자 수 · 버전/업데이트 안내
 (() => {
     const GITHUB_OWNER = 'hdlee73';
     const SITE_VERSION = document.querySelector('meta[name="site-version"]')?.content || '0.0.0';
@@ -317,7 +317,192 @@
 
     // ---------- 페이지 구분 (주소 #profile · #apps · #links, 뒤로가기는 직전 페이지) ----------
 
-    const PAGES = { profile: '이력', apps: '내 앱', links: '자료실' };
+    // ---------- 게시판: 공지(data/notices.json) + 방문자 글(구글 설문지 → 응답 시트) ----------
+
+    const BOARD_PAGE_SIZE = 10;
+    let boardConfig = null;
+    let boardPosts = [];
+    let boardShown = BOARD_PAGE_SIZE;
+
+    async function renderNotices() {
+        const box = document.getElementById('noticeList');
+        if (!box) return;
+        let notices = [];
+        try {
+            notices = await fetchJson('data/notices.json');
+        } catch {}
+        notices.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.createdAt).localeCompare(String(a.createdAt)));
+        box.innerHTML = notices.length
+            ? notices.map((n) => `
+                <li>
+                    <details class="group py-3">
+                        <summary class="flex items-center gap-2 cursor-pointer list-none">
+                            ${n.pinned ? '<span class="text-[10px] px-1.5 py-0.5 rounded bg-violet-100 text-violet-700 font-semibold flex-shrink-0">고정</span>' : ''}
+                            <span class="flex-1 min-w-0 text-sm font-semibold text-slate-800 truncate">${esc(n.title)}</span>
+                            <span class="text-[11px] text-slate-400 flex-shrink-0">${fmtDate(n.createdAt)}</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        ${n.body ? `<p class="mt-2 text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words">${esc(n.body)}</p>` : ''}
+                    </details>
+                </li>`).join('')
+            : '<li class="text-xs text-slate-400 text-center py-6">아직 공지가 없습니다.</li>';
+    }
+
+    const sheetId = (url) => (String(url || '').match(/\/spreadsheets\/d\/([\w-]{20,})/) || [])[1] || null;
+
+    function formEmbedUrl(url) {
+        try {
+            const u = new URL(url);
+            if (u.hostname !== 'docs.google.com' || !u.pathname.startsWith('/forms/d/')) return null;
+            u.pathname = u.pathname.replace(/\/(viewform|edit|formResponse)?\/?$/, '/viewform');
+            u.search = '?embedded=true';
+            u.hash = '';
+            return u.toString();
+        } catch {
+            return null;
+        }
+    }
+
+    // 공개된 시트는 Google Visualization 응답(JSONP)으로 읽는다. CORS·API 키가 필요 없다.
+    function loadSheet(id) {
+        return new Promise((resolve, reject) => {
+            const cb = `__boardSheet${Date.now()}`;
+            const script = document.createElement('script');
+            const done = () => { delete window[cb]; script.remove(); clearTimeout(timer); };
+            const timer = setTimeout(() => { done(); reject(new Error('timeout')); }, 15000);
+            window[cb] = (res) => {
+                done();
+                if (res?.status === 'error') reject(new Error('sheet'));
+                else resolve(res.table);
+            };
+            script.onerror = () => { done(); reject(new Error('network')); };
+            script.src = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?headers=1&tqx=responseHandler:${cb}&_=${Date.now()}`;
+            document.head.appendChild(script);
+        });
+    }
+
+    const cellText = (c) => (c == null ? '' : String(c.f ?? c.v ?? '').trim());
+
+    function cellTime(c) {
+        const m = String(c?.v ?? '').match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+)(?:,(\d+))?)?\)$/);
+        return m ? new Date(m[1], m[2], m[3], m[4] || 0, m[5] || 0, m[6] || 0) : null;
+    }
+
+    function tableToPosts(table, moderation) {
+        const labels = table.cols.map((c) => String(c.label || '').trim().toLowerCase());
+        const find = (words, fallback) => {
+            const i = labels.findIndex((l) => words.some((w) => l.includes(w)));
+            return i >= 0 ? i : fallback;
+        };
+        const iTime = find(['타임스탬프', 'timestamp'], 0);
+        const iName = find(['이름', '닉네임', 'name'], 1);
+        const iBody = find(['내용', '글', 'message', 'content'], 2);
+        const iShow = find(['공개', 'approve'], -1);
+        const iHide = find(['숨김', 'hide'], -1);
+        return table.rows
+            .map((r) => r.c || [])
+            .filter((c) => cellText(c[iBody]))
+            .filter((c) => !(iHide >= 0 && cellText(c[iHide])))
+            .filter((c) => !moderation || (iShow >= 0 && /^(o|y|yes|공개|ㅇ|v|✔|true)$/i.test(cellText(c[iShow]))))
+            .map((c) => ({ time: cellTime(c[iTime]), timeText: cellText(c[iTime]), name: cellText(c[iName]) || '방문자', body: cellText(c[iBody]).slice(0, 3000) }))
+            .sort((a, b) => (b.time || 0) - (a.time || 0));
+    }
+
+    function renderBoardPosts() {
+        const box = document.getElementById('boardPostList');
+        const list = boardPosts.slice(0, boardShown);
+        box.innerHTML = boardPosts.length
+            ? list.map((p) => `
+                <li class="py-4">
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-[11px] font-bold flex-shrink-0">${esc(p.name.slice(0, 1))}</span>
+                        <span class="text-sm font-semibold text-slate-800 truncate">${esc(p.name.slice(0, 30))}</span>
+                        <span class="text-[11px] text-slate-400 ml-auto flex-shrink-0">${p.time ? `${fmtDate(p.time)} ${String(p.time.getHours()).padStart(2, '0')}:${String(p.time.getMinutes()).padStart(2, '0')}` : esc(p.timeText)}</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words pl-9">${esc(p.body)}</p>
+                </li>`).join('') + (boardPosts.length > boardShown
+                ? '<li class="pt-4 text-center"><button type="button" data-board-more class="text-xs px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium">더 보기</button></li>'
+                : '')
+            : `<li class="text-xs text-slate-400 text-center py-6">${boardConfig?.moderation ? '아직 공개된 글이 없습니다. 첫 글을 남겨 주세요!' : '아직 글이 없습니다. 첫 글을 남겨 주세요!'}</li>`;
+    }
+
+    async function loadBoardPosts() {
+        const box = document.getElementById('boardPostList');
+        const id = sheetId(boardConfig?.sheetUrl);
+        if (!id) {
+            box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6">방문자 게시판을 준비하고 있습니다.</li>';
+            return;
+        }
+        box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
+        try {
+            boardPosts = tableToPosts(await loadSheet(id), !!boardConfig.moderation);
+            renderBoardPosts();
+        } catch {
+            box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</li>';
+        }
+    }
+
+    async function initBoard() {
+        if (!document.getElementById('board')) return;
+        renderNotices();
+        try {
+            boardConfig = await fetchJson('data/board-config.json');
+        } catch {
+            boardConfig = {};
+        }
+        const embed = formEmbedUrl(boardConfig.formUrl);
+        const writeBtn = document.getElementById('boardWriteBtn');
+        writeBtn.classList.toggle('hidden', !embed);
+        writeBtn.addEventListener('click', () => {
+            const box = document.getElementById('boardWriteBox');
+            const frame = document.getElementById('boardFormFrame');
+            if (!frame.src) frame.src = embed;
+            box.classList.toggle('hidden');
+            if (!box.classList.contains('hidden')) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        document.getElementById('boardRefreshBtn').addEventListener('click', () => { renderNotices(); loadBoardPosts(); });
+        document.getElementById('boardPostList').addEventListener('click', (e) => {
+            if (!e.target.closest('[data-board-more]')) return;
+            boardShown += BOARD_PAGE_SIZE;
+            renderBoardPosts();
+        });
+        loadBoardPosts();
+    }
+
+    // ---------- 방문자 수 (GoatCounter: 쿠키 없이 집계, data/analytics.json 의 코드로 켠다) ----------
+
+    let goatcounterCode = '';
+
+    async function initAnalytics() {
+        try {
+            goatcounterCode = ((await fetchJson('data/analytics.json')).goatcounter || '').trim().toLowerCase();
+        } catch {}
+        if (!/^[a-z0-9-]{2,50}$/.test(goatcounterCode)) return;
+        if (!['localhost', '127.0.0.1'].includes(location.hostname)) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.dataset.goatcounter = `https://${goatcounterCode}.goatcounter.com/count`;
+            script.src = 'https://gc.zgo.at/count.js';
+            document.head.appendChild(script);
+        }
+        // 대시보드 설정에서 'Allow adding visitor counts on your website'를 켜야 숫자가 보인다.
+        try {
+            const res = await fetch(`https://${goatcounterCode}.goatcounter.com/counter/TOTAL.json`);
+            if (!res.ok) return;
+            const { count } = await res.json();
+            const el = document.getElementById('visitorCount');
+            if (el && count) {
+                el.querySelector('span').textContent = `${count}회`;
+                el.classList.remove('hidden');
+            }
+        } catch {}
+    }
+
+    function countPageView() {
+        if (window.goatcounter?.count) window.goatcounter.count({ path: location.pathname + location.hash });
+    }
+
+    const PAGES = { profile: '이력', apps: '내 앱', links: '자료실', board: '게시판' };
     const BASE_TITLE = document.title;
 
     function route() {
@@ -338,12 +523,14 @@
         else window.scrollTo(0, 0);
     }
 
-    window.addEventListener('hashchange', route);
+    window.addEventListener('hashchange', () => { route(); countPageView(); });
 
     document.addEventListener('DOMContentLoaded', () => {
         route();
         renderApps();
         initLinks();
+        initBoard();
+        initAnalytics();
         initVersion();
     });
 })();

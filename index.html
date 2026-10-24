@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.6.0">
+    <meta name="site-version" content="2.7.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 홈페이지</title>
     <meta name="description" content="공인회계사 이현덕의 홈페이지입니다. 이력과 직접 만든 앱, 유튜브·블로그 자료실을 모아 두었습니다.">
@@ -139,7 +139,7 @@
         </header>
 
         <!-- Section Navigation -->
-        <nav class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             <a href="#profile" data-nav="profile" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
                 <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-id-card"></i></span>
                 <span class="min-w-0">
@@ -159,6 +159,13 @@
                 <span class="min-w-0">
                     <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">자료실</span>
                     <span class="block text-[11px] sm:text-xs text-slate-500 truncate">유튜브 · 블로그 · 드라이브</span>
+                </span>
+            </a>
+            <a href="#board" data-nav="board" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
+                <span class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid fa-comments"></i></span>
+                <span class="min-w-0">
+                    <span class="block text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-blue-700">게시판</span>
+                    <span class="block text-[11px] sm:text-xs text-slate-500 truncate">공지 · 방문자 글</span>
                 </span>
             </a>
             <a href="#inquiry" data-nav="inquiry" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-200 transition-all">
@@ -629,11 +636,59 @@
             </div>
         </section>
 
+        <!-- Board: admin notices + visitor posts (giscus, GitHub Discussions) -->
+        <section id="board" data-page="board" class="space-y-8 scroll-mt-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </span>
+                        공지사항
+                    </h2>
+                    <button id="boardAdminBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-key text-amber-500"></i> 게시판 관리 (관리자)
+                    </button>
+                </div>
+                <ul id="noticeList" class="divide-y divide-slate-100">
+                    <li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-comments"></i>
+                        </span>
+                        방문자 게시판
+                    </h2>
+                    <div class="flex gap-2">
+                        <button id="boardRefreshBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate"></i> 새로고침
+                        </button>
+                        <button id="boardWriteBtn" type="button" class="hidden text-xs px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen"></i> 글쓰기
+                        </button>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mb-5">로그인 없이 누구나 글을 남길 수 있습니다. 욕설·광고 글은 관리자가 지웁니다.</p>
+                <div id="boardWriteBox" class="hidden mb-5 rounded-2xl border border-violet-100 bg-violet-50/40 overflow-hidden">
+                    <iframe id="boardFormFrame" title="방문자 글쓰기" class="w-full h-[640px] bg-white" loading="lazy"></iframe>
+                    <p class="text-[11px] text-slate-500 px-4 py-2">글을 보낸 뒤 <strong>새로고침</strong>을 누르면 목록에 나타납니다.</p>
+                </div>
+                <ul id="boardPostList" class="divide-y divide-slate-100">
+                    <li class="text-xs text-slate-400 text-center py-6">방문자 게시판을 준비하고 있습니다.</li>
+                </ul>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200/60 space-y-1.5">
             <p class="font-semibold text-slate-500">이현덕 홈페이지 <span data-site-version class="ml-1 px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-mono text-[10px]"></span></p>
             <p>만든이: 이현덕 (<a href="mailto:hdlee73@gmail.com" class="hover:text-blue-600">hdlee73@gmail.com</a>)
                 · <button id="changelogBtn" type="button" class="hover:text-blue-600 underline underline-offset-2">업데이트 내역</button></p>
+            <p id="visitorCount" class="hidden"><i class="fa-solid fa-eye mr-1"></i>방문 <span></span></p>
             <p>© 2026 이현덕 (HYUN DUK LEE). All rights reserved.</p>
         </footer>
 
@@ -684,6 +739,43 @@
                     <button id="adminSaveBtn" type="button" class="flex-[2] py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-floppy-disk mr-1"></i> 저장하고 반영</button>
                 </div>
                 <button data-admin-reset type="button" class="w-full text-[11px] text-slate-400 hover:text-slate-600 underline underline-offset-2">토큰 다시 등록</button>
+            </div>
+
+            <!-- Board admin panel -->
+            <div id="adminBoardView" class="hidden space-y-3">
+                <div class="space-y-2 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <label for="adminNoticeTitle" class="block text-xs font-semibold text-slate-700">공지 쓰기</label>
+                    <input id="adminNoticeTitle" type="text" placeholder="제목" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <textarea id="adminNoticeBody" rows="5" placeholder="내용 (줄바꿈 그대로 표시됩니다)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"></textarea>
+                    <label class="flex items-center gap-2 text-[11px] text-slate-600"><input id="adminNoticePinned" type="checkbox" class="w-4 h-4 accent-blue-600"> 맨 위에 고정</label>
+                    <button id="adminNoticeAddBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-pen mr-1"></i> 공지 올리기</button>
+                </div>
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-700">
+                    <span>올린 공지</span>
+                    <span id="adminNoticeCount" class="text-blue-600"></span>
+                </div>
+                <ul id="adminNoticeList" class="space-y-1.5 max-h-60 overflow-y-auto pr-1"></ul>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
+                    <div class="text-xs font-semibold text-slate-700">방문자 게시판 (구글 설문지 연결)</div>
+                    <ol class="list-decimal pl-5 text-[11px] text-slate-500 space-y-1">
+                        <li><a href="https://docs.google.com/forms/create" target="_blank" rel="noopener" class="text-blue-600 hover:underline">구글 설문지 만들기</a> → 단답형 <strong>이름</strong>, 장문형 <strong>내용</strong> 질문 추가 (설정에서 이메일 수집·로그인 필요는 끄기)</li>
+                        <li>응답 탭 → <strong>스프레드시트에 연결</strong> → 시트 공유를 <strong>링크가 있는 모든 사용자(뷰어)</strong>로</li>
+                        <li>설문지 <strong>보내기 → 링크</strong>(URL 단축 끄기)와 시트 주소를 아래에 붙여 넣기</li>
+                    </ol>
+                    <input id="adminFormUrl" type="url" placeholder="설문지 주소 https://docs.google.com/forms/d/e/.../viewform" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input id="adminSheetUrl" type="url" placeholder="응답 시트 주소 https://docs.google.com/spreadsheets/d/..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label class="flex items-start gap-2 text-[11px] text-slate-600"><input id="adminModeration" type="checkbox" class="w-4 h-4 mt-0.5 accent-blue-600"> <span>승인한 글만 보이기 (시트에 <strong>공개</strong> 열을 만들고 보일 글에 O 입력)</span></label>
+                    <p class="text-[11px] text-slate-500">글 삭제: 시트에서 그 행을 지우거나 <strong>숨김</strong> 열에 X를 넣으면 홈페이지에서 바로 사라집니다.</p>
+                    <div class="text-xs font-semibold text-slate-700 pt-2">방문자 수 (GoatCounter)</div>
+                    <p class="text-[11px] text-slate-500"><a href="https://www.goatcounter.com/signup" target="_blank" rel="noopener" class="text-blue-600 hover:underline">GoatCounter 무료 가입</a>에서 정한 코드(예: hdlee73)를 넣으세요. 쿠키 없이 집계합니다.</p>
+                    <input id="adminGoatcounter" type="text" placeholder="코드 (예: hdlee73)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <a id="adminStatsLink" href="#" target="_blank" rel="noopener" class="hidden text-[11px] text-blue-600 hover:underline"><i class="fa-solid fa-chart-line mr-1"></i>방문자 통계 보기</a>
+                    <button id="adminBoardSaveBtn" type="button" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-medium"><i class="fa-solid fa-floppy-disk mr-1"></i> 설정 저장</button>
+                </div>
+                <button data-admin-lock type="button" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-lock mr-1"></i> 잠그기</button>
+                <div class="text-right">
+                    <button data-admin-reset type="button" class="text-[11px] text-slate-400 hover:text-slate-600 underline underline-offset-2">토큰 다시 등록</button>
+                </div>
             </div>
 
             <!-- Link library panel -->
@@ -817,7 +909,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.6.0"></script>
-    <script src="assets/admin.js?v=2.6.0"></script>
+    <script src="assets/site.js?v=2.7.0"></script>
+    <script src="assets/admin.js?v=2.7.0"></script>
 </body>
 </html>
