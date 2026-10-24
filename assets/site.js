@@ -553,10 +553,11 @@
 
     function route() {
         const hash = decodeURIComponent(location.hash.slice(1));
-        const page = hash === 'inquiry' ? 'profile' : (PAGES[hash] ? hash : 'profile');
+        const page = PAGES[hash] ? hash : 'home'; // 주소 뒤에 아무것도 없으면 프로필 카드와 메뉴만 있는 첫 화면
         document.querySelectorAll('[data-page]').forEach((el) => el.classList.toggle('hidden', el.dataset.page !== page));
+        document.getElementById('homeLink')?.classList.toggle('hidden', page === 'home');
         document.querySelectorAll('[data-nav]').forEach((el) => {
-            const active = el.dataset.nav === (hash === 'inquiry' ? 'inquiry' : page);
+            const active = el.dataset.nav === page;
             el.classList.toggle('ring-2', active);
             el.classList.toggle('ring-blue-500', active);
             el.classList.toggle('bg-blue-50', active);
@@ -564,9 +565,19 @@
             if (active) el.setAttribute('aria-current', 'page');
             else el.removeAttribute('aria-current');
         });
-        document.title = page === 'profile' ? BASE_TITLE : `${PAGES[page]} - ${BASE_TITLE}`;
-        if (hash === 'inquiry') document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        else window.scrollTo(0, 0);
+        document.title = page === 'home' ? BASE_TITLE : `${PAGES[page]} - ${BASE_TITLE}`;
+        window.scrollTo(0, 0);
+    }
+
+    // 관리자가 올린 프로필 사진·이력서는 수정 시각을 주소 뒤에 붙여 캐시를 피한다. 없으면 기본 파일(Study2.png, resume.pdf)을 쓴다.
+    async function initProfile() {
+        try {
+            const info = await fetchJson('data/profile.json');
+            const img = document.getElementById('profilePhoto');
+            if (info.photo && /^assets\/[\w.-]+$/.test(info.photo) && img) img.src = `${info.photo}?v=${encodeURIComponent(info.photoUpdatedAt || '')}`;
+            const link = document.getElementById('resumeLink');
+            if (info.resumeUpdatedAt && link) link.href = `resume.pdf?v=${encodeURIComponent(info.resumeUpdatedAt)}`;
+        } catch {}
     }
 
     window.addEventListener('hashchange', route);
@@ -575,6 +586,7 @@
         route();
         renderApps();
         initLinks();
+        initProfile();
         initBoard();
         initAnalytics();
         initVersion();
