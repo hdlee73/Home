@@ -119,6 +119,8 @@
 
     // ---------- 자료 링크 저장소 ----------
 
+    // 드라이브 항목은 '구글 드라이브' 대신 폴더 이름을 분류로 쓴다.
+    const catOf = (l) => (l.type === 'gdrive' ? l.title || '참고자료' : l.category) || '';
     const CATEGORY_ORDER = ['유튜브', '블로그', '구글 드라이브', '웹'];
     const linkState = { all: [], category: '전체', query: '', shown: LINKS_PAGE_SIZE };
 
@@ -135,7 +137,7 @@
     const DRIVE_FILES_SHOWN = 8;
 
     function fileIcon(name, folder) {
-        if (folder) return 'fa-solid fa-folder text-amber-400';
+        if (folder) return 'fa-solid fa-folder text-slate-400';
         const ext = (String(name).match(/\.([\w]+)$/) || [])[1]?.toLowerCase() || '';
         if (ext === 'pdf') return 'fa-solid fa-file-pdf text-red-400';
         if (['doc', 'docx', 'hwp', 'hwpx', 'txt'].includes(ext)) return 'fa-solid fa-file-word text-blue-400';
@@ -147,34 +149,23 @@
         return 'fa-solid fa-file text-slate-400';
     }
 
-    function driveCard(link, tags, footer) {
+    // 드라이브 폴더는 '구글 드라이브'라는 표시 없이, 폴더 이름(예: 참고자료)을 분류·제목으로 하는 첨부파일 목록으로 보여준다.
+    function driveCard(link) {
         const d = DRIVE[link.driveApp] || DRIVE.file;
-        const id = link.driveId;
-        const files = (Array.isArray(link.files) ? link.files : []).filter((f) => /^[\w-]{10,}$/.test(f?.id || ''));
+        let files = (Array.isArray(link.files) ? link.files : []).filter((f) => /^[\w-]{10,}$/.test(f?.id || ''));
+        if (!files.length && link.title) files = [{ id: link.driveId, name: link.title, folder: link.driveApp === 'folder' }];
         const rows = files.slice(0, DRIVE_FILES_SHOWN).map((f) => {
-            const href = f.folder ? `https://drive.google.com/drive/folders/${f.id}` : `https://drive.google.com/file/d/${f.id}/view`;
-            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-center gap-2 py-1.5 text-xs text-slate-700 hover:text-blue-600">
+            const href = f.folder ? `https://drive.google.com/drive/folders/${f.id}` : link.driveApp === 'folder' ? `https://drive.google.com/file/d/${f.id}/view` : d.open(f.id);
+            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-center gap-2.5 py-2.5 text-sm text-slate-700 hover:text-blue-600">
                         <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0"></i><span class="truncate">${esc(f.name)}</span></a></li>`;
         }).join('');
         return `
-            <article class="rounded-2xl bg-slate-50 border border-slate-100 hover:border-amber-200 overflow-hidden flex flex-col transition-all">
-                <div class="p-4 space-y-2 flex-1 flex flex-col">
-                    <span class="self-start text-[10px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full"><i class="fa-brands fa-google-drive mr-1"></i>${esc(link.category || '구글 드라이브')}</span>
-                    <a href="${d.open(id)}" target="_blank" rel="noopener" class="font-bold text-slate-800 text-sm leading-snug hover:text-blue-600 line-clamp-2"><i class="${d.icon} text-amber-500 mr-1"></i>${esc(link.title)}</a>
-                    ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-3">${esc(link.summary)}</p>` : ''}
-                    ${rows ? `<div class="rounded-xl bg-white border border-slate-100 px-3 py-1">
-                        <div class="text-[10px] font-semibold text-slate-400 pt-1.5">첨부파일 ${files.length}개</div>
-                        <ul class="divide-y divide-slate-50">${rows}</ul>
-                        ${files.length > DRIVE_FILES_SHOWN ? `<div class="text-[11px] text-slate-400 py-1.5">외 ${files.length - DRIVE_FILES_SHOWN}개 · 폴더 열기에서 전체 보기</div>` : ''}
-                    </div>` : ''}
-                    ${tags ? `<div class="flex flex-wrap gap-1">${tags}</div>` : ''}
-                    <div class="mt-auto pt-1 space-y-2">
-                        ${footer}
-                        <div class="flex flex-wrap gap-3 text-xs font-medium">
-                            <a href="${d.open(id)}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700">${link.driveApp === 'folder' ? '폴더 열기' : '열기'} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
-                            ${d.download ? `<a href="${d.download(id)}" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700">다운로드 <i class="fa-solid fa-download text-[10px]"></i></a>` : ''}
-                        </div>
-                    </div>
+            <article class="col-span-full rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-2">
+                ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed">${esc(link.summary)}</p>` : ''}
+                <div class="rounded-xl bg-white border border-slate-100 px-4">
+                    <div class="text-[11px] font-semibold text-slate-400 pt-3">첨부파일 ${files.length}개</div>
+                    <ul class="divide-y divide-slate-50">${rows}</ul>
+                    ${files.length > DRIVE_FILES_SHOWN ? `<div class="text-[11px] text-slate-400 py-2.5">외 ${files.length - DRIVE_FILES_SHOWN}개</div>` : ''}
                 </div>
             </article>`;
     }
@@ -188,7 +179,7 @@
                 <span class="flex-shrink-0">${fmtDate(link.addedAt)}</span>
             </div>`;
 
-        if (link.type === 'gdrive' && /^[\w-]{10,}$/.test(link.driveId || '')) return driveCard(link, tags, footer);
+        if (link.type === 'gdrive' && /^[\w-]{10,}$/.test(link.driveId || '')) return driveCard(link);
 
         if (link.type === 'youtube' && /^[\w-]{6,}$/.test(link.videoId || '')) {
             return `
@@ -237,15 +228,15 @@
     function filteredLinks() {
         const q = linkState.query.trim().toLowerCase();
         return linkState.all.filter((l) =>
-            (linkState.category === '전체' || l.category === linkState.category) &&
+            (linkState.category === '전체' || catOf(l) === linkState.category) &&
             (!q || [l.title, l.summary, l.site, ...(l.tags || [])].join(' ').toLowerCase().includes(q)));
     }
 
     function renderLinkFilters() {
         const box = document.getElementById('linkFilters');
-        const cats = ['전체', ...new Set(linkState.all.map((l) => l.category).filter(Boolean))];
+        const cats = ['전체', ...new Set(linkState.all.map(catOf).filter(Boolean))];
         box.innerHTML = cats.map((c) => {
-            const count = c === '전체' ? linkState.all.length : linkState.all.filter((l) => l.category === c).length;
+            const count = c === '전체' ? linkState.all.length : linkState.all.filter((l) => catOf(l) === c).length;
             const active = c === linkState.category;
             return `<button type="button" data-cat="${esc(c)}"
                         class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${active ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700'}">
@@ -267,12 +258,12 @@
         const order = (c) => { const i = CATEGORY_ORDER.indexOf(c); return i < 0 ? CATEGORY_ORDER.length : i; };
         const shown = items
             .map((l, i) => ({ l, i }))
-            .sort((a, b) => order(a.l.category) - order(b.l.category) || String(a.l.category || '').localeCompare(String(b.l.category || '')) || a.i - b.i)
+            .sort((a, b) => order(catOf(a.l)) - order(catOf(b.l)) || catOf(a.l).localeCompare(catOf(b.l)) || a.i - b.i)
             .map((x) => x.l)
             .slice(0, linkState.shown);
         const groups = [];
         for (const l of shown) {
-            const name = l.category || '기타';
+            const name = catOf(l) || '기타';
             let g = groups.find((x) => x.name === name);
             if (!g) groups.push((g = { name, items: [] }));
             g.items.push(l);
@@ -280,7 +271,7 @@
         list.innerHTML = groups.map((g) => `
             <div class="col-span-full flex items-center gap-2 ${g === groups[0] ? '' : 'mt-3'}">
                 <h3 class="text-sm font-bold text-slate-700">${esc(g.name)}</h3>
-                <span class="text-[11px] text-slate-400">${items.filter((l) => (l.category || '기타') === g.name).length}</span>
+                <span class="text-[11px] text-slate-400">${items.filter((l) => (catOf(l) || '기타') === g.name).length}</span>
                 <span class="flex-1 h-px bg-slate-100"></span>
             </div>${g.items.map(linkCard).join('')}`).join('');
         more.classList.toggle('hidden', items.length <= linkState.shown);
