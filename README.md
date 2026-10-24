@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.9.1 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.9.2 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -88,7 +88,7 @@ GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edi
 
 ## 문의
 
-'문의' 메뉴는 폼 없이 바로 메일 앱(hdlee73@gmail.com)을 엽니다. 서버나 외부 전송 서비스를 쓰지 않습니다.
+문의 메뉴나 입력 폼은 없습니다. 프로필 카드의 이메일 버튼(hdlee73@gmail.com, hdlee73@naver.com)으로 메일 앱이 열립니다.
 
 ## 프로필 사진 · 이력서 바꾸기
 
