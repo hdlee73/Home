@@ -539,7 +539,7 @@
         window.gtag('config', id);
     }
 
-    const PAGES = { profile: '이력', apps: '내 앱', links: '자료실', board: '게시판' };
+    const PAGES = { profile: '주요경력', apps: '내가 만든 앱', links: '자료실', board: '게시판' };
     const BASE_TITLE = document.title;
 
     function route() {
