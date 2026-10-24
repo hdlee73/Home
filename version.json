@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "released": "2026-10-24",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.9.2",
+      "date": "2026-10-24",
+      "items": [
+        "메뉴에서 '문의' 탭 제거 (프로필 카드의 이메일 버튼은 그대로)"
+      ]
+    },
     {
       "version": "2.9.1",
       "date": "2026-10-24",
