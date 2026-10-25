@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.9.7 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.9.8 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
@@ -24,12 +24,12 @@
 
 **홈페이지에는 직접 고른 앱만 보입니다.** 가장 쉬운 방법은 홈페이지 'My Apps'의 **앱 선택 (관리자)** 버튼입니다.
 
-- 처음 한 번: [Fine-grained 토큰](https://github.com/settings/personal-access-tokens/new)을 만들어(저장소 Resume_LHD만, Contents: Read and write) 붙여 넣고 관리자 비밀번호를 정합니다. 토큰은 그 비밀번호로 암호화(PBKDF2 + AES-GCM)되어 그 브라우저에만 저장되며, 소스나 저장소에는 남지 않습니다.
+- 처음 한 번: [Fine-grained 토큰](https://github.com/settings/personal-access-tokens/new)을 만들어(저장소 Home만, Contents: Read and write) 붙여 넣고 관리자 비밀번호를 정합니다. 토큰은 그 비밀번호로 암호화(PBKDF2 + AES-GCM)되어 그 브라우저에만 저장되며, 소스나 저장소에는 남지 않습니다.
 - 다음부터: 비밀번호만 넣고 체크·순서 변경, 앱별 **소개 문구** 입력 → **저장하고 반영**. 1~2분 뒤 반영됩니다.
 - 다른 기기·브라우저에서는 토큰을 다시 한 번 등록해야 하고, 토큰이 만료되면 새로 만들어 **토큰 다시 등록**을 누릅니다.
 
 직접 파일을 고쳐도 됩니다. `data/apps-config.json`의 `show` 목록에 저장소 이름을 적으면 적은 순서대로 표시됩니다.
-GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edit/main/data/apps-config.json) → `show`에 이름 추가·삭제 → **Commit changes**를 누르면 1~2분 뒤 반영됩니다.
+GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Home/edit/main/data/apps-config.json) → `show`에 이름 추가·삭제 → **Commit changes**를 누르면 1~2분 뒤 반영됩니다.
 고를 수 있는 공개 저장소 이름은 `data/apps.json`의 `candidates`에 있습니다.
 
 `앱 목록 갱신` 워크플로가 6시간마다(그리고 설정 파일을 바꿀 때마다) 선택한 앱의 **최신 릴리스**를 읽어 `data/apps.json`에 저장합니다.
@@ -72,7 +72,7 @@ GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Resume_LHD/edi
 
 ## 방문자 수
 
-[구글 애널리틱스](https://analytics.google.com)로 셉니다. 계정·속성을 만들고 **웹 스트림**에 `https://hdlee73.github.io/Resume_LHD/`를 등록하면 `G-`로 시작하는 **측정 ID**가 나옵니다.
+[구글 애널리틱스](https://analytics.google.com)로 셉니다. 계정·속성을 만들고 **웹 스트림**에 `https://hdlee73.github.io/Home/`를 등록하면 `G-`로 시작하는 **측정 ID**가 나옵니다.
 게시판 관리 화면의 **방문자 수** 칸에 측정 ID를 넣고 저장하면 집계가 시작되고, 통계는 구글 애널리틱스 웹·앱의 **보고서**에서 봅니다. 측정 ID는 공개돼도 되는 값입니다.
 
 ## 버전 올리기
