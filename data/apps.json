@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T02:49:29.842Z",
+  "updatedAt": "2026-10-25T04:45:59.334Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -58,7 +58,7 @@
           {
             "name": "Everylaw-1.7.6.apk",
             "size": 4093128,
-            "downloads": 0,
+            "downloads": 1,
             "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.7.6/Everylaw-1.7.6.apk"
           }
         ],
@@ -76,29 +76,29 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-10-24T12:28:01Z",
+      "pushedAt": "2026-10-25T04:43:55Z",
       "release": {
-        "tag": "v1.6.0",
-        "name": "EveryCorp v1.6.0",
-        "publishedAt": "2026-10-24T12:28:02Z",
-        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.6.0",
-        "notes": "# EveryCorp v1.6.0 변경 내용\n\n- 스크리닝에 \"CB·BW 발행잔액\" 추가: 상장사 중 전환사채·신주인수권부사채가 상환되지 않고 만기 전인 회사를 결산연도별로 조회 (결산, 회사명, CB, BW, 합계, 가까운 만기)\n- 금액은 사업보고서 '채무증권 발행실적'의 권면총액 기준이라 전환·조기상환이 반영된 실제 잔액과 다를 수 있습니다\n- 서버 재배포 필요(새 조회 경로 추가). 첫 조회 때 서버가 DART에서 수집하므로 시간이 걸립니다\n",
+        "tag": "v1.6.1",
+        "name": "EveryCorp v1.6.1",
+        "publishedAt": "2026-10-25T03:44:28Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.6.1",
+        "notes": "# EveryCorp v1.6.1 변경 내용\n\n- 스크리닝 수집은 이제 자동으로 시작되지 않고, 결과 화면의 \"수집 시작\"(또는 \"이어서 수집\")을 눌러야 서버가 DART에서 수집합니다. 저장된 결과가 있으면 바로 보입니다\n- DART 연결이 계속 실패하면 서버가 수집을 멈추고, 화면에 안내를 표시합니다\n- 서버 재배포 필요\n",
         "assets": [
           {
-            "name": "everycorp-v1.6.0.apk",
+            "name": "everycorp-v1.6.1.apk",
             "size": 2161431,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.0/everycorp-v1.6.0.apk"
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.1/everycorp-v1.6.1.apk"
           },
           {
-            "name": "everycorp-v1.6.0.apk.sha256",
+            "name": "everycorp-v1.6.1.apk.sha256",
             "size": 87,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.0/everycorp-v1.6.0.apk.sha256"
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.1/everycorp-v1.6.1.apk.sha256"
           }
         ],
-        "primaryAsset": "everycorp-v1.6.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.6.0"
+        "primaryAsset": "everycorp-v1.6.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.6.1"
       }
     },
     {
