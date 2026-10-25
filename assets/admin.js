@@ -7,7 +7,7 @@
 // '링크 요청 처리' 워크플로가 제목·요약을 가져와 links.json 에 넣는다. 모두 1~2분 뒤 홈페이지에 반영된다.
 (() => {
     const OWNER = 'hdlee73';
-    const REPO = 'Resume_LHD';
+    const REPO = 'Home';
     const CONFIG_PATH = 'data/apps-config.json';
     const LINKS_PATH = 'data/links.json';
     const REQUEST_DIR = 'data/link-requests';
