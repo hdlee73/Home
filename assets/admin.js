@@ -294,9 +294,10 @@
                 <div class="p-2.5 rounded-xl bg-white border border-slate-100 space-y-2">
                     <div class="flex items-center justify-between gap-2">
                         <span class="text-xs font-bold text-slate-700">${esc(g)}</span>
+                        <label class="flex items-center gap-1 text-[11px] text-slate-500">정렬
                         <select data-sort-group="${esc(g)}" class="text-[11px] px-2 py-1.5 rounded-lg border border-slate-200 bg-white">
                             ${Object.entries(SORT_MODES).map(([k, v]) => `<option value="${k}"${cfg.sort === k ? ' selected' : ''}>${v}</option>`).join('')}
-                        </select>
+                        </select></label>
                     </div>
                     <ul class="space-y-1">
                         ${cfg.subs.length ? cfg.subs.map((x) => `
@@ -309,7 +310,7 @@
                     </ul>
                     <div class="flex gap-1.5">
                         <input type="text" maxlength="40" data-sub-input="${esc(g)}" placeholder="새 세부분류 이름" class="flex-1 min-w-0 text-xs px-2.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <button type="button" data-sub-add="${esc(g)}" class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium">추가</button>
+                        <button type="button" data-sub-add="${esc(g)}" class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium whitespace-nowrap">+ 만들기</button>
                     </div>
                 </div>`;
         }).join('');
@@ -319,7 +320,7 @@
         const g = $('adminLinkCategory').value;
         const sel = $('adminLinkSub');
         sel.disabled = g === '자동';
-        sel.innerHTML = g === '자동' ? '<option value="">세부분류: 없음</option>' : subOptions(g, '');
+        sel.innerHTML = g === '자동' ? '<option value="">세부분류: 없음</option>' : subOptions(g, '') + '<option value="__new__">+ 새 세부분류 만들기</option>';
     }
 
     function renderLinkRows() {
@@ -792,6 +793,25 @@
             if (sSel) updateLink(sSel.dataset.linkSub, { sub: sSel.value });
         });
         $('adminLinkCategory').addEventListener('change', fillAddSub);
+        $('adminLinkSub').addEventListener('change', async (e) => {
+            if (e.target.value !== '__new__') return;
+            const group = $('adminLinkCategory').value;
+            const name = (prompt(`"${group}"에 만들 세부분류 이름`) || '').trim().slice(0, 40);
+            if (!name) return fillAddSub();
+            if (!groupCfg(group).subs.includes(name)) {
+                try {
+                    await editCategories((d) => d.groups.find((g) => g.name === group).subs.push(name), `홈페이지에서 세부분류 추가: ${group} / ${name}`);
+                    toast('✅ 세부분류를 만들었습니다.');
+                } catch (err) {
+                    toast(catError(err));
+                    return fillAddSub();
+                }
+            }
+            await loadLinkList();
+            $('adminLinkCategory').value = group;
+            fillAddSub();
+            $('adminLinkSub').value = name;
+        });
         $('adminCatManager').addEventListener('click', (e) => {
             const add = e.target.closest('[data-sub-add]');
             if (add) return addSub(add.dataset.subAdd);
