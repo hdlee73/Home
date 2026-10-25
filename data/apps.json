@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-10-25T11:35:40.733Z",
+  "updatedAt": "2026-10-25T12:00:43.848Z",
   "owner": "hdlee73",
   "apps": [
     {
       "repo": "FSS_insights",
       "name": "FSS_insights",
-      "description": "(안드로이드) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱",
+      "description": "* V2.0.0 이전 버전이 설치된 경우 기존 앱을 삭제하고 설치해 주세요\n(안드로이드) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱",
       "icon": null,
       "language": "Kotlin",
       "topics": [],
       "stars": 0,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-10-25T11:24:03Z",
+      "pushedAt": "2026-10-25T12:00:33Z",
       "release": {
         "tag": "v1.6.7",
         "name": "FSS Insights v1.6.7",
