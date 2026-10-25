@@ -3,9 +3,10 @@
   "_설명": "show 에 적은 저장소만 홈페이지 '내 앱'에 보이며, 적은 순서대로 표시됩니다. 후보 목록은 data/apps.json 의 candidates 를 참고하세요.",
   "show": [
     "FSS_insights",
+    "Everylaw",
+    "EveryCorp",
     "EngHub",
     "Everynote_And",
-    "Everylaw",
     "Dailyhabit",
     "Everynote_Win",
     "SnapRead"
@@ -17,22 +18,28 @@
       "homepage": "https://example.com"
     },
     "FSS_insights": {
-      "description": "뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 안드로이드앱"
+      "description": "(안드로이드) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱"
     },
     "EngHub": {
-      "description": "영어 사전부터 스피킹, 리스닝, 리딩 등을 모두 학습할 수 있는 안드로이드앱"
+      "description": "(안드로이드) 영어 사전부터 스피킹, 리스닝, 리딩 등을 모두 학습할 수 있는 안드로이드앱"
     },
     "Everynote_And": {
-      "description": "PDF, HWP, DOC 등을 읽고 필기할 수 있는 안드로이드앱(HWP, DOC 등은 PDF로 변환), epub로 가능"
+      "description": "(안드로이드) PDF, HWP, DOC 등을 읽고 필기할 수 있는 안드로이드앱(HWP, DOC 등은 PDF로 변환), epub로 가능"
     },
     "Dailyhabit": {
-      "description": "일주일간 일정 확인, todo list, 루틴, 맛집, 독서, 한줄일기 등의 기능을 가진 안드로이드 앱"
+      "description": "(안드로이드) 일주일간 일정 확인, todo list, 루틴, 맛집, 독서, 한줄일기 등의 기능을 가진 안드로이드 앱(일반용, 천주교인용 별도)"
     },
     "Everynote_Win": {
-      "description": "PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능"
+      "description": "(윈도우)PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능"
     },
     "SnapRead": {
-      "description": "사진을 찍어서 문자를 추출하거나 스캔 등을 할 수 있는 앱"
+      "description": "(안드로이드)사진을 찍어서 문자를 추출하거나 스캔 등을 할 수 있는 앱"
+    },
+    "Everylaw": {
+      "description": "(안드로이드)법조문, 키워드 등 검색시 하위 법령까지 한꺼번에 볼 수 있는 앱"
+    },
+    "EveryCorp": {
+      "description": "(안드로이드) 기업개황, 감사보고서, 공시(DART, KIND), 주가 추이 등을 한 눈에 볼 수 있는 앱."
     }
   }
 }
