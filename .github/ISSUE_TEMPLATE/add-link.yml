@@ -17,12 +17,10 @@ body:
       label: 분류
       options:
         - 자동
-        - 유튜브
-        - 블로그
-        - 구글 드라이브
-        - 기사
-        - 자료
-        - 웹
+        - 참고자료
+        - 유튜브 링크
+        - 블로그 링크
+        - 기타자료
       default: 0
   - type: input
     id: title

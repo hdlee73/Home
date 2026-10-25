@@ -5,6 +5,18 @@ import { readFile, writeFile, appendFile } from 'node:fs/promises';
 import { listDriveFolder } from './drive-list.mjs';
 
 const LINKS_PATH = 'data/links.json';
+const GROUPS = ['참고자료', '유튜브 링크', '블로그 링크', '기타자료'];
+
+// 분류 이름(옛 이름 포함)을 네 가지 분류 중 하나로 바꾼다. '자동'이거나 모르는 이름이면 링크 종류로 정한다.
+function normalizeGroup(label, type) {
+  const l = String(label || '').trim();
+  if (GROUPS.includes(l)) return l;
+  if (l === '구글 드라이브' || l === '자료') return '참고자료';
+  if (l === '유튜브') return '유튜브 링크';
+  if (l === '블로그') return '블로그 링크';
+  if (l === '기사' || l === '웹') return '기타자료';
+  return { youtube: '유튜브 링크', blog: '블로그 링크', gdrive: '참고자료' }[type] || '기타자료';
+}
 const mode = process.argv[2] || 'add';
 const body = process.env.ISSUE_BODY || '';
 const issueNumber = process.env.ISSUE_NUMBER ? Number(process.env.ISSUE_NUMBER) : null;
@@ -234,9 +246,10 @@ async function describe(url) {
 
 // 홈페이지 관리자 화면이 커밋한 요청 파일(data/link-requests/*.json)도 이슈 양식과 같은 필드로 읽는다.
 const fields = process.env.REQUEST_FILE
-  ? (({ urls = [], category = '', title = '', summary = '', tags = '' }) => ({
+  ? (({ urls = [], category = '', sub = '', title = '', summary = '', tags = '' }) => ({
       링크: [].concat(urls).join('\n'),
       분류: category,
+      세부분류: sub,
       제목: title,
       요약: summary,
       태그: [].concat(tags).join(', '),
@@ -265,6 +278,7 @@ if (!urls.length) {
   const customTitle = field(fields, '제목');
   const customSummary = field(fields, '요약');
   const category = field(fields, '분류');
+  const sub = field(fields, '세부분류').trim().slice(0, 40);
   const tags = (field(fields, '태그') || '')
     .split(/[,#\s]+/)
     .map((t) => t.trim())
@@ -283,7 +297,9 @@ if (!urls.length) {
       ...meta,
       ...(single && customTitle ? { title: customTitle } : {}),
       ...(single && customSummary ? { summary: customSummary } : {}),
-      category: category && category !== '자동' ? category : { youtube: '유튜브', blog: '블로그', gdrive: '구글 드라이브' }[meta.type] || '웹',
+      category: normalizeGroup(category, meta.type),
+      group: normalizeGroup(category, meta.type),
+      ...(sub ? { sub } : {}),
       tags,
       addedAt: new Date().toISOString(),
       ...(issueNumber ? { issue: issueNumber } : {}),
