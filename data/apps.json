@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T12:00:43.848Z",
+  "updatedAt": "2026-10-25T16:26:20.804Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -9,32 +9,32 @@
       "icon": null,
       "language": "Kotlin",
       "topics": [],
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-10-25T12:00:33Z",
+      "pushedAt": "2026-10-25T13:44:28Z",
       "release": {
-        "tag": "v1.6.7",
-        "name": "FSS Insights v1.6.7",
-        "publishedAt": "2026-10-20T13:38:56Z",
-        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v1.6.7",
-        "notes": "# FSS Insights v1.6.7 변경 내용\n\n- **한글 요약**: 보도자료·금융 리포트 제목 아래에 본문 요약을 한글로 보여줍니다(Gemini Nano 지원 기기). 요약 못 한 자료는 이유가 표시되고, 새로고침(↻)으로 다시 시도합니다.\n- **자료 수집 보완**: 자본시장연구원 20건 표시와 저자·제목 혼선 수정, 재정경제부 첨부파일 항목 제거, BCBS·MAS 제목·날짜 보정. 접속이 막힌 FCA는 제외했습니다.\n- **업데이트 안내**: 업데이트 설치 후 처음 열면 변경 내용을 팝업으로 보여줍니다.\n",
+        "tag": "v2.0.2",
+        "name": "FSS Insights v2.0.2",
+        "publishedAt": "2026-10-25T13:44:29Z",
+        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v2.0.2",
+        "notes": "# FSS Insights v2.0.2\n\n만든이: 이현덕 (hdlee73@gmail.com)\n\n## v2.0.2 변경 내용\n\n**📥 새 APK 바로 받기 (누르면 휴대폰 다운로드 폴더에 저장됩니다)**\nhttps://github.com/hdlee73/FSS_insights/releases/download/v2.0.2/fss-insights-v2.0.2.apk\n\n최신 릴리스 페이지: https://github.com/hdlee73/FSS_insights/releases/latest\n\n2.0.0 이전 버전을 쓰는 분은 앱 안의 \"지금 업데이트\"로 설치되지 않으니, 위 주소를 휴대폰 브라우저에 붙여넣어 내려받으세요. 받은 파일은 '내 파일 > 다운로드'에서 찾을 수 있습니다.\n\n**⚠️ 2.0.0 이전 버전에서 올라오려면 기존 앱을 삭제한 뒤 새로 설치해야 합니다.** 앱 보안을 위해 서명키를 교체해서 기존 앱 위에 바로 설치(업데이트)할 수 없습니다. 아래 순서대로 한 번만 하시면 되고, 이후 업데이트는 다시 앱에서 자동으로 설치됩니다.\n\n1. 설정 캡처: 삭제하면 관심종목·알림·키워드 설정이 사라집니다. 지우기 전에 설정 화면을 캡처하거나 적어 두세요.\n2.",
         "assets": [
           {
-            "name": "fss-insights-v1.6.7.apk",
-            "size": 9365444,
-            "downloads": 26,
-            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk"
+            "name": "fss-insights-v2.0.2.apk",
+            "size": 9833335,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.2/fss-insights-v2.0.2.apk"
           },
           {
-            "name": "fss-insights-v1.6.7.apk.sha256",
+            "name": "fss-insights-v2.0.2.apk.sha256",
             "size": 90,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v1.6.7/fss-insights-v1.6.7.apk.sha256"
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.2/fss-insights-v2.0.2.apk.sha256"
           }
         ],
-        "primaryAsset": "fss-insights-v1.6.7.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v1.6.7"
+        "primaryAsset": "fss-insights-v2.0.2.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.0.2"
       }
     },
     {
@@ -44,26 +44,26 @@
       "icon": null,
       "language": "Kotlin",
       "topics": [],
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/hdlee73/Everylaw",
       "homepage": null,
-      "pushedAt": "2026-10-24T23:45:05Z",
+      "pushedAt": "2026-10-25T14:46:10Z",
       "release": {
-        "tag": "v1.7.6",
-        "name": "Everylaw 1.7.6",
-        "publishedAt": "2026-10-24T23:45:05Z",
-        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.7.6",
-        "notes": "## What's Changed\n* v1.7.6 상태바 겹침 해결과 결과 화면 압축 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/20\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.7.5...v1.7.6",
+        "tag": "v1.7.7",
+        "name": "Everylaw 1.7.7",
+        "publishedAt": "2026-10-25T14:46:10Z",
+        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.7.7",
+        "notes": "## What's Changed\n* 삭제된 항·조에는 위임한 하위 규정 표시하지 않기 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/21\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.7.6...v1.7.7",
         "assets": [
           {
-            "name": "Everylaw-1.7.6.apk",
+            "name": "Everylaw-1.7.7.apk",
             "size": 4093128,
-            "downloads": 1,
-            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.7.6/Everylaw-1.7.6.apk"
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.7.7/Everylaw-1.7.7.apk"
           }
         ],
-        "primaryAsset": "Everylaw-1.7.6.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.7.6"
+        "primaryAsset": "Everylaw-1.7.7.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.7.7"
       }
     },
     {
@@ -73,32 +73,32 @@
       "icon": null,
       "language": "Kotlin",
       "topics": [],
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-10-25T04:47:41Z",
+      "pushedAt": "2026-10-25T14:47:02Z",
       "release": {
-        "tag": "v1.6.2",
-        "name": "EveryCorp v1.6.2",
-        "publishedAt": "2026-10-25T04:47:41Z",
-        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.6.2",
-        "notes": "# EveryCorp v1.6.2 변경 내용\n\n- 감사의견 비적정 목록에서 같은 회사의 감사인이 둘로 나올 때, 행을 누르면 그 감사인의 감사보고서가 열리도록 수정 (본문의 감사인 이름으로 확인, 일치하는 보고서가 없으면 사업보고서 본문을 엽니다)\n- 서버 재배포 필요\n",
+        "tag": "v1.9.0",
+        "name": "EveryCorp v1.9.0",
+        "publishedAt": "2026-10-25T13:58:26Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.9.0",
+        "notes": "# EveryCorp v1.9.0 변경 내용\n\n- 기업 상세·ETF·기업 비교·스크리닝 결과 같은 하위 화면 머리말의 뒤로 화살표를 메뉴(햄버거) 버튼으로 바꿔 어디서든 메뉴 패널을 열 수 있게 함. 뒤로가기 버튼·제스처는 그대로 직전 화면으로 이동\n- 메뉴 패널: 항목마다 기능 요약 한 줄, 스크리닝 아래에 하부 메뉴(감사의견 비적정·자본잠식·CB·BW) 추가, \"더보기\" 묶음을 없애고 앱 정보로 정리\n- PDF 버튼(감사보고서 PDF 저장, 요약 PDF)을 누르면 저장할 위치·파일 이름을 먼저 고름\n- 공시 탭: 정기보고서 옆에 \"주요사항보고서\" 버튼 추가(서버 변경 포함, DART 공시만)\n- 주가 차트 공시 마커: 주요사항보고서만 표시하고, 같은 날 여러 건이면 점을 눌렀을 때 모두 나열\n- 서버 재배포 필요(공시 종류 \"주요사항보고서\")\n",
         "assets": [
           {
-            "name": "everycorp-v1.6.2.apk",
-            "size": 2161431,
+            "name": "everycorp-v1.9.0.apk",
+            "size": 2194195,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.2/everycorp-v1.6.2.apk"
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.9.0/everycorp-v1.9.0.apk"
           },
           {
-            "name": "everycorp-v1.6.2.apk.sha256",
+            "name": "everycorp-v1.9.0.apk.sha256",
             "size": 87,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.6.2/everycorp-v1.6.2.apk.sha256"
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.9.0/everycorp-v1.9.0.apk.sha256"
           }
         ],
-        "primaryAsset": "everycorp-v1.6.2.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.6.2"
+        "primaryAsset": "everycorp-v1.9.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.9.0"
       }
     },
     {
@@ -108,7 +108,7 @@
       "icon": null,
       "language": "Kotlin",
       "topics": [],
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
       "pushedAt": "2026-10-21T22:37:35Z",
@@ -128,41 +128,6 @@
         ],
         "primaryAsset": "EngHub-v1.41.0.apk",
         "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.41.0"
-      }
-    },
-    {
-      "repo": "Everynote_And",
-      "name": "Everynote_And",
-      "description": "(안드로이드) PDF, HWP, DOC 등을 읽고 필기할 수 있는 안드로이드앱(HWP, DOC 등은 PDF로 변환), epub로 가능",
-      "icon": null,
-      "language": "Java",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/Everynote_And",
-      "homepage": null,
-      "pushedAt": "2026-10-21T21:51:08Z",
-      "release": {
-        "tag": "v1.70.0",
-        "name": "Everynote v1.70.0",
-        "publishedAt": "2026-10-21T21:51:08Z",
-        "url": "https://github.com/hdlee73/Everynote_And/releases/tag/v1.70.0",
-        "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.0)\n- EPUB 리더를 전자책 앱처럼 바꿨습니다. 책이 화면 전체에 표시되고, 화면 가운데를 누르면 메뉴(목차·읽기 설정·필기·쪽 슬라이더)가 나타납니다. 왼쪽·오른쪽 가장자리를 누르거나 넘기면 쪽이 넘어가고, 볼륨 버튼으로도 넘길 수 있습니다.\n- 글자 크기·줄 간격·여백·글꼴을 바꾸면 쪽 크기는 그대로 두고 쪽 수가 달라지며, 읽던 위치는 유지됩니다. 화면 아래에 ‘현재 쪽 / 전체 쪽’이 표시됩니다.\n- 문서함 메뉴에 ‘EPUB 책’ 분류를 추가했습니다. EPUB 파일은 여기에 보관되고, 필기하려고 PDF로 변환하면 PDF는 기존 문서함에 저장됩니다.\n",
-        "assets": [
-          {
-            "name": "Everynote-v1.70.0.apk",
-            "size": 125406866,
-            "downloads": 3,
-            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk"
-          },
-          {
-            "name": "Everynote-v1.70.0.apk.sha256",
-            "size": 88,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_And/releases/download/v1.70.0/Everynote-v1.70.0.apk.sha256"
-          }
-        ],
-        "primaryAsset": "Everynote-v1.70.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote_And/zipball/v1.70.0"
       }
     },
     {
@@ -289,10 +254,9 @@
     "EngHub",
     "EngHub_Win",
     "EpubMaker",
-    "ETF-signal",
     "EveryCorp",
     "Everylaw",
-    "Everynote_And",
+    "Everynote",
     "Everynote_Win",
     "EveryVideo",
     "EveryVideo_win",
