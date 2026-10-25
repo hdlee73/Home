@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "참고자료",
+      "sort": "newest",
+      "subs": []
+    },
+    {
+      "name": "유튜브 링크",
+      "sort": "newest",
+      "subs": []
+    },
+    {
+      "name": "블로그 링크",
+      "sort": "newest",
+      "subs": []
+    },
+    {
+      "name": "기타자료",
+      "sort": "newest",
+      "subs": []
+    }
+  ]
+}

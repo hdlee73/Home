@@ -119,10 +119,20 @@
 
     // ---------- 자료 링크 저장소 ----------
 
-    // 분류 이름과 순서(고정): 드라이브 폴더 이름(예: 참고자료) → 유튜브 링크 → 블로그 링크 → 기타자료
-    const catOf = (l) => ({ gdrive: l.title || '참고자료', youtube: '유튜브 링크', blog: '블로그 링크' }[l.type] || '기타자료');
-    const rankOf = (l) => ({ gdrive: 0, youtube: 1, blog: 2 }[l.type] ?? 3);
-    const linkState = { all: [], category: '전체', query: '', shown: LINKS_PAGE_SIZE };
+    // 분류는 네 가지로 고정(참고자료 → 유튜브 링크 → 블로그 링크 → 기타자료). 링크에 저장된 group 을 쓰고,
+    // 없는 옛 링크는 종류로 정한다(드라이브·'자료' → 참고자료, 유튜브, 블로그, 그 밖(기사·웹) → 기타자료).
+    // 세부분류(sub)와 분류별 정렬 방식은 관리자가 data/link-categories.json 에 저장한다.
+    const GROUP_NAMES = ['참고자료', '유튜브 링크', '블로그 링크', '기타자료'];
+    const groupOf = (l) => {
+        if (GROUP_NAMES.includes(l.group)) return l.group;
+        if (l.type === 'gdrive' || l.category === '자료') return '참고자료';
+        if (l.type === 'youtube') return '유튜브 링크';
+        if (l.type === 'blog') return '블로그 링크';
+        return '기타자료';
+    };
+    const catOf = groupOf;
+    const linkState = { all: [], categories: { groups: [] }, category: '전체', sub: '전체', query: '', shown: LINKS_PAGE_SIZE };
+    const groupConfig = (name) => linkState.categories.groups?.find((g) => g.name === name) || { name, sort: 'newest', subs: [] };
 
     // 구글 드라이브: 구글 화면(게시자·수정자 표시 등)을 임베드하지 않고, 설명과 첨부파일 이름만 카드로 보여준다.
     // 파일 이름은 워크플로(scripts/drive-list.mjs)가 data/links.json 의 files 에 저장한다. '링크가 있는 모든 사용자' 공유가 필요하다.
@@ -161,6 +171,7 @@
         }).join('');
         return `
             <article class="col-span-full rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-2">
+                ${link.title && link.title !== catOf(link) ? `<h4 class="font-bold text-slate-800 text-sm">${esc(link.title)}</h4>` : ''}
                 ${link.summary ? `<p class="text-slate-600 text-xs leading-relaxed">${esc(link.summary)}</p>` : ''}
                 <div class="rounded-xl bg-white border border-slate-100 px-4">
                     <div class="text-[11px] font-semibold text-slate-400 pt-3">첨부파일 ${files.length}개</div>
@@ -229,20 +240,51 @@
         const q = linkState.query.trim().toLowerCase();
         return linkState.all.filter((l) =>
             (linkState.category === '전체' || catOf(l) === linkState.category) &&
-            (!q || [l.title, l.summary, l.site, ...(l.tags || [])].join(' ').toLowerCase().includes(q)));
+            (linkState.sub === '전체' || (l.sub || '') === linkState.sub) &&
+            (!q || [l.title, l.summary, l.site, l.sub, ...(l.tags || [])].join(' ').toLowerCase().includes(q)));
+    }
+
+    const tabClass = (active) => `px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${active ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700'}`;
+
+    // 분류 안의 세부분류 순서: 관리자가 정한 순서 → 링크에만 있는 이름
+    function subsOf(group, links) {
+        const configured = groupConfig(group).subs || [];
+        const extra = [...new Set(links.map((l) => l.sub || '').filter((x) => x && !configured.includes(x)))];
+        return [...configured, ...extra];
     }
 
     function renderLinkFilters() {
         const box = document.getElementById('linkFilters');
-        const sorted = linkState.all.map((l, i) => ({ l, i })).sort((x, y) => rankOf(x.l) - rankOf(y.l) || x.i - y.i).map((x) => x.l);
-        const cats = ['전체', ...new Set(sorted.map(catOf))];
-        box.innerHTML = cats.map((c) => {
+        const groups = GROUP_NAMES.filter((g) => linkState.all.some((l) => catOf(l) === g));
+        box.innerHTML = ['전체', ...groups].map((c) => {
             const count = c === '전체' ? linkState.all.length : linkState.all.filter((l) => catOf(l) === c).length;
             const active = c === linkState.category;
-            return `<button type="button" data-cat="${esc(c)}"
-                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${active ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700'}">
+            return `<button type="button" data-cat="${esc(c)}" class="${tabClass(active)}">
                         ${esc(c)} <span class="${active ? 'text-blue-100' : 'text-slate-400'}">${count}</span></button>`;
         }).join('');
+
+        const subBox = document.getElementById('linkSubFilters');
+        const inGroup = linkState.category === '전체' ? [] : linkState.all.filter((l) => catOf(l) === linkState.category);
+        const subs = subsOf(linkState.category, inGroup).filter((x) => inGroup.some((l) => (l.sub || '') === x));
+        subBox.classList.toggle('hidden', !subs.length);
+        subBox.innerHTML = subs.length
+            ? ['전체', ...subs].map((x) => {
+                const active = x === linkState.sub;
+                const count = x === '전체' ? inGroup.length : inGroup.filter((l) => (l.sub || '') === x).length;
+                return `<button type="button" data-sub="${esc(x)}" class="${tabClass(active)} !py-1">
+                            ${esc(x)} <span class="${active ? 'text-blue-100' : 'text-slate-400'}">${count}</span></button>`;
+            }).join('')
+            : '';
+    }
+
+    function sortItems(entries, mode) {
+        const by = {
+            newest: (a, b) => String(b.l.addedAt || '').localeCompare(String(a.l.addedAt || '')),
+            oldest: (a, b) => String(a.l.addedAt || '').localeCompare(String(b.l.addedAt || '')),
+            title: (a, b) => String(a.l.title || '').localeCompare(String(b.l.title || ''), 'ko'),
+            manual: () => 0,
+        }[mode] || (() => 0);
+        return entries.slice().sort((a, b) => by(a, b) || a.i - b.i);
     }
 
     function renderLinks() {
@@ -255,26 +297,39 @@
             more.classList.add('hidden');
             return;
         }
-        // 같은 분류끼리 묶어서 분류별 제목 아래에 보여준다 (분류 안에서는 최근에 추가한 순서).
-        const shown = items
-            .map((l, i) => ({ l, i }))
-            .sort((a, b) => rankOf(a.l) - rankOf(b.l) || catOf(a.l).localeCompare(catOf(b.l)) || a.i - b.i)
-            .map((x) => x.l)
-            .slice(0, linkState.shown);
-        const groups = [];
-        for (const l of shown) {
-            const name = catOf(l) || '기타';
-            let g = groups.find((x) => x.name === name);
-            if (!g) groups.push((g = { name, items: [] }));
-            g.items.push(l);
+        // 분류 순서 → (세부분류 없음, 관리자가 정한 세부분류 순서) → 분류별로 정한 정렬 방식
+        const entries = items.map((l, i) => ({ l, i }));
+        const ordered = [];
+        for (const g of GROUP_NAMES) {
+            const inGroup = entries.filter((x) => catOf(x.l) === g);
+            if (!inGroup.length) continue;
+            const mode = groupConfig(g).sort;
+            for (const sub of ['', ...subsOf(g, inGroup.map((x) => x.l))]) {
+                sortItems(inGroup.filter((x) => (x.l.sub || '') === sub), mode).forEach((x) => ordered.push({ l: x.l, g, sub }));
+            }
         }
-        list.innerHTML = groups.map((g) => `
-            <div class="col-span-full flex items-center gap-2 ${g === groups[0] ? '' : 'mt-3'}">
-                <h3 class="text-sm font-bold text-slate-700">${esc(g.name)}</h3>
-                <span class="text-[11px] text-slate-400">${items.filter((l) => (catOf(l) || '기타') === g.name).length}</span>
-                <span class="flex-1 h-px bg-slate-100"></span>
-            </div>${g.items.map(linkCard).join('')}`).join('');
-        more.classList.toggle('hidden', items.length <= linkState.shown);
+        let html = '';
+        let lastGroup = null;
+        let lastSub = null;
+        for (const { l, g, sub } of ordered.slice(0, linkState.shown)) {
+            if (g !== lastGroup) {
+                html += `<div class="col-span-full flex items-center gap-2 ${lastGroup === null ? '' : 'mt-3'}">
+                    <h3 class="text-sm font-bold text-slate-700">${esc(g)}</h3>
+                    <span class="text-[11px] text-slate-400">${items.filter((x) => catOf(x) === g).length}</span>
+                    <span class="flex-1 h-px bg-slate-100"></span></div>`;
+                lastGroup = g;
+                lastSub = '';
+            }
+            if (sub !== lastSub && sub) {
+                html += `<div class="col-span-full flex items-center gap-2 pl-1">
+                    <h4 class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-angle-right mr-1 text-slate-300"></i>${esc(sub)}</h4>
+                    <span class="text-[11px] text-slate-400">${items.filter((x) => catOf(x) === g && (x.sub || '') === sub).length}</span></div>`;
+            }
+            lastSub = sub;
+            html += linkCard(l);
+        }
+        list.innerHTML = html;
+        more.classList.toggle('hidden', ordered.length <= linkState.shown);
     }
 
     async function initLinks() {
@@ -284,6 +339,14 @@
             const btn = e.target.closest('button[data-cat]');
             if (!btn) return;
             linkState.category = btn.dataset.cat;
+            linkState.sub = '전체';
+            linkState.shown = LINKS_PAGE_SIZE;
+            renderLinks();
+        });
+        document.getElementById('linkSubFilters').addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-sub]');
+            if (!btn) return;
+            linkState.sub = btn.dataset.sub;
             linkState.shown = LINKS_PAGE_SIZE;
             renderLinks();
         });
@@ -296,6 +359,9 @@
             linkState.shown += LINKS_PAGE_SIZE;
             renderLinks();
         });
+        try {
+            linkState.categories = await fetchJson('data/link-categories.json');
+        } catch {}
         try {
             linkState.all = await fetchJson('data/links.json');
         } catch (e) {

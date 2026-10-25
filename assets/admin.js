@@ -248,29 +248,122 @@
         }
     }
 
-    // ---------- 자료실 링크 ----------
+    // ---------- 자료실 링크: 분류 · 세부분류 · 정렬 ----------
+
+    const CATEGORIES_PATH = 'data/link-categories.json';
+    const GROUP_NAMES = ['참고자료', '유튜브 링크', '블로그 링크', '기타자료'];
+    const SORT_MODES = { newest: '최근 추가순', oldest: '오래된 순', title: '제목 가나다순', manual: '직접 순서 (↑↓로 지정)' };
+    let cats = { groups: GROUP_NAMES.map((name) => ({ name, sort: 'newest', subs: [] })) };
+    let linkRows = [];
 
     const fmtDate = (iso) => (iso ? iso.slice(0, 10).replace(/-/g, '.') : '');
+
+    // 사이트(site.js)와 같은 규칙: 저장된 group, 없으면 링크 종류로
+    function groupOf(l) {
+        if (GROUP_NAMES.includes(l.group)) return l.group;
+        if (l.type === 'gdrive' || l.category === '자료') return '참고자료';
+        if (l.type === 'youtube') return '유튜브 링크';
+        if (l.type === 'blog') return '블로그 링크';
+        return '기타자료';
+    }
+
+    const groupCfg = (name) => cats.groups.find((g) => g.name === name) || { name, sort: 'newest', subs: [] };
+    const subOptions = (group, current) => {
+        const subs = [...groupCfg(group).subs];
+        if (current && !subs.includes(current)) subs.push(current);
+        return `<option value="">세부분류: 없음</option>${subs.map((x) => `<option value="${esc(x)}"${x === current ? ' selected' : ''}>${esc(x)}</option>`).join('')}`;
+    };
+
+    const catError = (e) => (e.status === 409 ? '목록이 방금 바뀌었습니다. 다시 시도해 주세요.' : '저장하지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
+
+    async function readCategories() {
+        try {
+            const { sha, data } = await readJson(CATEGORIES_PATH);
+            const groups = GROUP_NAMES.map((name) => ({ name, sort: 'newest', subs: [], ...(data.groups || []).find((g) => g.name === name) }));
+            return { sha, data: { ...data, groups } };
+        } catch (e) {
+            if (e.status !== 404) throw e;
+            return { sha: null, data: { groups: GROUP_NAMES.map((name) => ({ name, sort: 'newest', subs: [] })) } };
+        }
+    }
+
+    function renderCatManager() {
+        $('adminCatManager').innerHTML = GROUP_NAMES.map((g) => {
+            const cfg = groupCfg(g);
+            return `
+                <div class="p-2.5 rounded-xl bg-white border border-slate-100 space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-700">${esc(g)}</span>
+                        <select data-sort-group="${esc(g)}" class="text-[11px] px-2 py-1.5 rounded-lg border border-slate-200 bg-white">
+                            ${Object.entries(SORT_MODES).map(([k, v]) => `<option value="${k}"${cfg.sort === k ? ' selected' : ''}>${v}</option>`).join('')}
+                        </select>
+                    </div>
+                    <ul class="space-y-1">
+                        ${cfg.subs.length ? cfg.subs.map((x) => `
+                            <li class="flex items-center gap-1.5 text-xs text-slate-700">
+                                <i class="fa-solid fa-angle-right text-slate-300 w-3"></i>
+                                <span class="flex-1 min-w-0 break-words">${esc(x)}</span>
+                                <button type="button" data-sub-ren="${esc(g)}" data-name="${esc(x)}" class="px-2 py-1 rounded-lg border border-slate-200 text-[11px] text-slate-500 hover:text-blue-600">이름 변경</button>
+                                <button type="button" data-sub-del="${esc(g)}" data-name="${esc(x)}" class="px-2 py-1 rounded-lg border border-slate-200 text-[11px] text-slate-500 hover:text-red-600">삭제</button>
+                            </li>`).join('') : '<li class="text-[11px] text-slate-400">세부분류가 없습니다.</li>'}
+                    </ul>
+                    <div class="flex gap-1.5">
+                        <input type="text" maxlength="40" data-sub-input="${esc(g)}" placeholder="새 세부분류 이름" class="flex-1 min-w-0 text-xs px-2.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="button" data-sub-add="${esc(g)}" class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium">추가</button>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    function fillAddSub() {
+        const g = $('adminLinkCategory').value;
+        const sel = $('adminLinkSub');
+        sel.disabled = g === '자동';
+        sel.innerHTML = g === '자동' ? '<option value="">세부분류: 없음</option>' : subOptions(g, '');
+    }
+
+    function renderLinkRows() {
+        const box = $('adminLinkList');
+        $('adminLinkCount').textContent = `${linkRows.length}개`;
+        const groupSelect = (id, g) => `<select data-link-group="${esc(id)}" class="w-full text-[11px] px-2 py-1.5 rounded-lg border border-slate-200 bg-white">${GROUP_NAMES.map((n) => `<option${n === g ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
+        box.innerHTML = linkRows.length
+            ? linkRows.map((l) => {
+                const g = groupOf(l);
+                const manual = groupCfg(g).sort === 'manual';
+                return `
+                    <li class="p-2.5 rounded-xl border border-slate-100 bg-white space-y-1.5">
+                        <div class="flex items-center gap-2">
+                            <i class="${l.type === 'youtube' ? 'fa-brands fa-youtube text-red-500' : l.type === 'blog' ? 'fa-solid fa-pen-nib text-emerald-500' : l.type === 'gdrive' ? 'fa-brands fa-google-drive text-amber-500' : 'fa-solid fa-link text-blue-500'} text-xs w-4 text-center flex-shrink-0"></i>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-xs font-semibold text-slate-800 break-words">${esc(l.title)}</div>
+                                <div class="text-[11px] text-slate-400 break-all">${fmtDate(l.addedAt)} · ${esc(l.url)}</div>
+                            </div>
+                            ${manual ? `
+                                <button type="button" data-move-up="${esc(l.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-blue-600 flex-shrink-0" aria-label="위로"><i class="fa-solid fa-arrow-up text-[10px]"></i></button>
+                                <button type="button" data-move-down="${esc(l.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-blue-600 flex-shrink-0" aria-label="아래로"><i class="fa-solid fa-arrow-down text-[10px]"></i></button>` : ''}
+                            <button type="button" data-del-link="${esc(l.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-red-600 hover:border-red-200 flex-shrink-0" aria-label="삭제"><i class="fa-solid fa-trash text-[10px]"></i></button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            ${groupSelect(l.id, g)}
+                            <select data-link-sub="${esc(l.id)}" class="w-full text-[11px] px-2 py-1.5 rounded-lg border border-slate-200 bg-white">${subOptions(g, l.sub || '')}</select>
+                        </div>
+                    </li>`;
+            }).join('')
+            : '<li class="text-xs text-slate-400 text-center py-4">저장된 링크가 없습니다.</li>';
+    }
 
     async function loadLinkList() {
         const box = $('adminLinkList');
         box.innerHTML = '<li class="text-xs text-slate-400 text-center py-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
         try {
-            const { data } = await readJson(LINKS_PATH);
-            $('adminLinkCount').textContent = `${data.length}개`;
-            box.innerHTML = data.length
-                ? data.map((l) => `
-                    <li class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-100 bg-white">
-                        <i class="${l.type === 'youtube' ? 'fa-brands fa-youtube text-red-500' : l.type === 'blog' ? 'fa-solid fa-pen-nib text-emerald-500' : l.type === 'gdrive' ? 'fa-brands fa-google-drive text-amber-500' : 'fa-solid fa-link text-blue-500'} text-xs w-4 text-center flex-shrink-0"></i>
-                        <div class="flex-1 min-w-0">
-                            <div class="text-xs font-semibold text-slate-800 truncate">${esc(l.title)}</div>
-                            <div class="text-[11px] text-slate-400 truncate">${esc(l.category || '')} · ${fmtDate(l.addedAt)} · ${esc(l.url)}</div>
-                        </div>
-                        <button type="button" data-del-link="${esc(l.id)}" class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-red-600 hover:border-red-200 flex-shrink-0" aria-label="삭제"><i class="fa-solid fa-trash text-[10px]"></i></button>
-                    </li>`).join('')
-                : '<li class="text-xs text-slate-400 text-center py-4">저장된 링크가 없습니다.</li>';
+            const [{ data: links }, { data: c }] = await Promise.all([readJson(LINKS_PATH), readCategories()]);
+            linkRows = links;
+            cats = c;
+            renderCatManager();
+            fillAddSub();
+            renderLinkRows();
         } catch (e) {
-            box.innerHTML = `<li class="text-xs text-red-500 text-center py-4">${e.status === 401 || e.status === 403 || e.status === 404
+            box.innerHTML = `<li class="text-xs text-red-500 text-center py-4">${authError(e)
                 ? '토큰이 만료되었거나 권한이 없습니다. "토큰 다시 등록"을 눌러 주세요.'
                 : '목록을 불러오지 못했습니다.'}</li>`;
         }
@@ -293,6 +386,7 @@
             await writeJson(`${REQUEST_DIR}/${id}.json`, {
                 urls,
                 category: $('adminLinkCategory').value,
+                sub: $('adminLinkCategory').value === '자동' ? '' : $('adminLinkSub').value,
                 title: urls.length === 1 ? $('adminLinkTitle').value.trim() : '',
                 summary: urls.length === 1 ? $('adminLinkSummary').value.trim() : '',
                 tags: $('adminLinkTags').value.split(/[,#\s]+/).map((t) => t.trim()).filter(Boolean),
@@ -308,19 +402,120 @@
         }
     }
 
+    // links.json 을 다시 읽어 고친 뒤 저장한다 (그 사이 워크플로가 바꿨으면 409 로 알려 준다).
+    async function editLinks(mutate, message) {
+        const { sha, data } = await readJson(LINKS_PATH);
+        const next = mutate(data);
+        if (!next) return false;
+        await writeJson(LINKS_PATH, next, sha, message.slice(0, 100));
+        return true;
+    }
+
     async function deleteLink(id) {
         if (!confirm('이 링크를 자료실에서 삭제할까요?')) return;
         try {
-            const { sha, data } = await readJson(LINKS_PATH);
-            const removed = data.find((l) => l.id === id);
-            if (!removed) return loadLinkList();
-            await writeJson(LINKS_PATH, data.filter((l) => l.id !== id), sha, `홈페이지에서 링크 삭제: ${removed.title}`.slice(0, 100));
+            const title = linkRows.find((l) => l.id === id)?.title || '';
+            await editLinks((d) => (d.some((l) => l.id === id) ? d.filter((l) => l.id !== id) : null), `홈페이지에서 링크 삭제: ${title}`);
             toast('🗑️ 삭제했습니다. 1~2분 뒤 자료실에서 사라집니다.');
-            loadLinkList();
         } catch (e) {
             toast(e.status === 409 ? '목록이 방금 바뀌었습니다. 다시 시도해 주세요.' : '삭제하지 못했습니다.');
-            loadLinkList();
         }
+        loadLinkList();
+    }
+
+    async function updateLink(id, patch) {
+        try {
+            await editLinks((d) => d.map((l) => (l.id === id ? { ...l, ...patch } : l)), '홈페이지에서 링크 분류 변경');
+            toast('✅ 분류를 바꿨습니다. 1~2분 뒤 자료실에 반영됩니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
+    }
+
+    // 직접 순서: 같은 분류 안에서 바로 위·아래 링크와 자리를 바꾼다 (links.json 의 순서가 곧 직접 순서)
+    async function moveLink(id, dir) {
+        try {
+            const moved = await editLinks((d) => {
+                const i = d.findIndex((l) => l.id === id);
+                if (i < 0) return null;
+                const g = groupOf(d[i]);
+                let j = i + dir;
+                while (j >= 0 && j < d.length && groupOf(d[j]) !== g) j += dir;
+                if (j < 0 || j >= d.length) return null;
+                const next = d.slice();
+                [next[i], next[j]] = [next[j], next[i]];
+                return next;
+            }, '홈페이지에서 링크 순서 변경');
+            if (moved) toast('✅ 순서를 바꿨습니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
+    }
+
+    async function editCategories(mutate, message) {
+        const { sha, data } = await readCategories();
+        mutate(data);
+        await writeJson(CATEGORIES_PATH, data, sha, message);
+    }
+
+    async function addSub(group) {
+        const input = document.querySelector(`[data-sub-input="${CSS.escape(group)}"]`);
+        const name = input.value.trim().slice(0, 40);
+        if (!name) return toast('세부분류 이름을 입력해 주세요.');
+        if (groupCfg(group).subs.includes(name)) return toast('이미 있는 세부분류입니다.');
+        try {
+            await editCategories((d) => d.groups.find((g) => g.name === group).subs.push(name), `홈페이지에서 세부분류 추가: ${group} / ${name}`);
+            toast('✅ 세부분류를 추가했습니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
+    }
+
+    async function renameSub(group, oldName) {
+        const name = (prompt('새 이름', oldName) || '').trim().slice(0, 40);
+        if (!name || name === oldName) return;
+        if (groupCfg(group).subs.includes(name)) return toast('이미 있는 세부분류입니다.');
+        try {
+            await editCategories((d) => {
+                const g = d.groups.find((x) => x.name === group);
+                g.subs = g.subs.map((x) => (x === oldName ? name : x));
+            }, `홈페이지에서 세부분류 이름 변경: ${group} / ${oldName} → ${name}`);
+            await editLinks((d) => d.map((l) => (groupOf(l) === group && l.sub === oldName ? { ...l, sub: name } : l)), '홈페이지에서 세부분류 이름 변경 반영');
+            toast('✅ 이름을 바꿨습니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
+    }
+
+    async function deleteSub(group, name) {
+        if (!confirm(`세부분류 "${name}"을 지울까요? 그 안의 링크는 세부분류 없음으로 옮겨집니다.`)) return;
+        try {
+            await editCategories((d) => {
+                const g = d.groups.find((x) => x.name === group);
+                g.subs = g.subs.filter((x) => x !== name);
+            }, `홈페이지에서 세부분류 삭제: ${group} / ${name}`);
+            await editLinks((d) => (d.some((l) => groupOf(l) === group && l.sub === name)
+                ? d.map((l) => { if (groupOf(l) === group && l.sub === name) { const { sub, ...rest } = l; return rest; } return l; })
+                : null), '홈페이지에서 세부분류 삭제 반영');
+            toast('🗑️ 삭제했습니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
+    }
+
+    async function setSort(group, sort) {
+        try {
+            await editCategories((d) => { d.groups.find((g) => g.name === group).sort = sort; }, `홈페이지에서 정렬 방식 변경: ${group} / ${sort}`);
+            toast('✅ 정렬 방식을 바꿨습니다. 1~2분 뒤 자료실에 반영됩니다.');
+        } catch (e) {
+            toast(catError(e));
+        }
+        loadLinkList();
     }
 
     // ---------- 게시판: 공지 · 방문자 게시판 · 방문자 수 ----------
@@ -584,7 +779,30 @@
         });
         $('adminLinkList').addEventListener('click', (e) => {
             const del = e.target.closest('[data-del-link]');
-            if (del) deleteLink(del.dataset.delLink);
+            if (del) return deleteLink(del.dataset.delLink);
+            const up = e.target.closest('[data-move-up]');
+            if (up) return moveLink(up.dataset.moveUp, -1);
+            const down = e.target.closest('[data-move-down]');
+            if (down) moveLink(down.dataset.moveDown, 1);
+        });
+        $('adminLinkList').addEventListener('change', (e) => {
+            const gSel = e.target.closest('[data-link-group]');
+            if (gSel) return updateLink(gSel.dataset.linkGroup, { group: gSel.value, category: gSel.value, sub: '' });
+            const sSel = e.target.closest('[data-link-sub]');
+            if (sSel) updateLink(sSel.dataset.linkSub, { sub: sSel.value });
+        });
+        $('adminLinkCategory').addEventListener('change', fillAddSub);
+        $('adminCatManager').addEventListener('click', (e) => {
+            const add = e.target.closest('[data-sub-add]');
+            if (add) return addSub(add.dataset.subAdd);
+            const ren = e.target.closest('[data-sub-ren]');
+            if (ren) return renameSub(ren.dataset.subRen, ren.dataset.name);
+            const del = e.target.closest('[data-sub-del]');
+            if (del) deleteSub(del.dataset.subDel, del.dataset.name);
+        });
+        $('adminCatManager').addEventListener('change', (e) => {
+            const sel = e.target.closest('[data-sort-group]');
+            if (sel) setSort(sel.dataset.sortGroup, sel.value);
         });
         $('adminAppsModal').addEventListener('click', (e) => {
             if (e.target.id === 'adminAppsModal' || e.target.closest('[data-admin-close]')) close();
