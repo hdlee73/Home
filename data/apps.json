@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T04:51:27.273Z",
+  "updatedAt": "2026-10-26T13:09:37.424Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,13 +23,13 @@
           {
             "name": "fss-insights-v2.0.2.apk",
             "size": 9833335,
-            "downloads": 14,
+            "downloads": 35,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.2/fss-insights-v2.0.2.apk"
           },
           {
             "name": "fss-insights-v2.0.2.apk.sha256",
             "size": 90,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.2/fss-insights-v2.0.2.apk.sha256"
           }
         ],
@@ -38,32 +38,32 @@
       }
     },
     {
-      "repo": "Everylaw",
-      "name": "Everylaw",
+      "repo": "EveryLaw",
+      "name": "EveryLaw",
       "description": "(안드로이드)법조문, 키워드 등 검색시 하위 법령까지 한꺼번에 볼 수 있는 앱",
       "icon": null,
       "language": "Kotlin",
       "topics": [],
       "stars": 1,
-      "url": "https://github.com/hdlee73/Everylaw",
+      "url": "https://github.com/hdlee73/EveryLaw",
       "homepage": null,
       "pushedAt": "2026-10-25T14:46:10Z",
       "release": {
         "tag": "v1.7.7",
         "name": "Everylaw 1.7.7",
         "publishedAt": "2026-10-25T14:46:10Z",
-        "url": "https://github.com/hdlee73/Everylaw/releases/tag/v1.7.7",
+        "url": "https://github.com/hdlee73/EveryLaw/releases/tag/v1.7.7",
         "notes": "## What's Changed\n* 삭제된 항·조에는 위임한 하위 규정 표시하지 않기 by @hdlee73 in https://github.com/hdlee73/Everylaw/pull/21\n\n\n**Full Changelog**: https://github.com/hdlee73/Everylaw/compare/v1.7.6...v1.7.7",
         "assets": [
           {
             "name": "Everylaw-1.7.7.apk",
             "size": 4093128,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/Everylaw/releases/download/v1.7.7/Everylaw-1.7.7.apk"
+            "downloads": 8,
+            "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.7.7/Everylaw-1.7.7.apk"
           }
         ],
         "primaryAsset": "Everylaw-1.7.7.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everylaw/zipball/v1.7.7"
+        "zipball": "https://api.github.com/repos/hdlee73/EveryLaw/zipball/v1.7.7"
       }
     },
     {
@@ -87,13 +87,13 @@
           {
             "name": "everycorp-v1.9.0.apk",
             "size": 2194195,
-            "downloads": 5,
+            "downloads": 11,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.9.0/everycorp-v1.9.0.apk"
           },
           {
             "name": "everycorp-v1.9.0.apk.sha256",
             "size": 87,
-            "downloads": 0,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.9.0/everycorp-v1.9.0.apk.sha256"
           }
         ],
@@ -122,7 +122,7 @@
           {
             "name": "EngHub-v1.41.0.apk",
             "size": 146474703,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
           }
         ],
@@ -151,7 +151,7 @@
           {
             "name": "DailyHabit-1.8.1.apk",
             "size": 18221622,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.8.1/DailyHabit-1.8.1.apk"
           }
         ],
@@ -186,7 +186,7 @@
           {
             "name": "Everynote-Setup-v3.36.0-x64.exe",
             "size": 89549456,
-            "downloads": 3,
+            "downloads": 4,
             "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-x64.exe"
           },
           {
@@ -239,7 +239,7 @@
           {
             "name": "SnapRead-1.7.0.apk",
             "size": 54164360,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.apk"
           }
         ],
@@ -255,7 +255,7 @@
     "EngHub_Win",
     "EpubMaker",
     "EveryCorp",
-    "Everylaw",
+    "EveryLaw",
     "Everynote",
     "Everynote_Win",
     "EveryVideo",
