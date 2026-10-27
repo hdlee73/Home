@@ -1,7 +1,7 @@
 # 이현덕 홈페이지
 
 - 만든이: 이현덕 (hdlee73@gmail.com)
-- 현재 버전: v2.10.1 (업데이트 내역은 `version.json`)
+- 현재 버전: v2.10.2 (업데이트 내역은 `version.json`)
 
 정적 페이지(`index.html`)이며 GitHub Pages로 배포합니다. 별도 서버나 API 키가 필요 없습니다.
 
