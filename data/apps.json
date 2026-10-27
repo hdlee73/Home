@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T05:10:14.125Z",
+  "updatedAt": "2026-10-27T15:31:58.035Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,29 +12,29 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-10-27T02:45:40Z",
+      "pushedAt": "2026-10-27T06:54:47Z",
       "release": {
-        "tag": "v2.0.3",
-        "name": "FSS Insights v2.0.3",
-        "publishedAt": "2026-10-27T01:41:17Z",
-        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v2.0.3",
-        "notes": "# FSS Insights v2.0.3\n\n만든이: 이현덕 (hdlee73@gmail.com)\n\n## v2.0.3 변경 내용\n\n**📥 새 APK 바로 받기 (누르면 휴대폰 다운로드 폴더에 저장됩니다)**\nhttps://github.com/hdlee73/FSS_insights/releases/download/v2.0.3/fss-insights-v2.0.3.apk\n\n최신 릴리스 페이지: https://github.com/hdlee73/FSS_insights/releases/latest\n\n2.0.0 이전 버전을 쓰는 분은 앱 안의 \"지금 업데이트\"로 설치되지 않으니, 위 주소를 휴대폰 브라우저에 붙여넣어 내려받으세요. 받은 파일은 '내 파일 > 다운로드'에서 찾을 수 있습니다.\n\n**⚠️ 2.0.0 이전 버전에서 올라오려면 기존 앱을 삭제한 뒤 새로 설치해야 합니다.** 앱 보안을 위해 서명키를 교체해서 기존 앱 위에 바로 설치(업데이트)할 수 없습니다. 아래 순서대로 한 번만 하시면 되고, 이후 업데이트는 다시 앱에서 자동으로 설치됩니다.\n\n1. 설정 캡처: 삭제하면 관심종목·알림·키워드 설정이 사라집니다. 지우기 전에 설정 화면을 캡처하거나 적어 두세요.\n2.",
+        "tag": "v2.0.4",
+        "name": "FSS Insights v2.0.4",
+        "publishedAt": "2026-10-27T06:54:47Z",
+        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v2.0.4",
+        "notes": "# FSS Insights v2.0.4\n\n만든이: 이현덕 (hdlee73@gmail.com)\n\n## v2.0.4 변경 내용\n\n**📥 새 APK 바로 받기 (누르면 휴대폰 다운로드 폴더에 저장됩니다)**\nhttps://github.com/hdlee73/FSS_insights/releases/download/v2.0.4/fss-insights-v2.0.4.apk\n\n최신 릴리스 페이지: https://github.com/hdlee73/FSS_insights/releases/latest\n\n2.0.0 이전 버전을 쓰는 분은 앱 안의 \"지금 업데이트\"로 설치되지 않으니, 위 주소를 휴대폰 브라우저에 붙여넣어 내려받으세요. 받은 파일은 '내 파일 > 다운로드'에서 찾을 수 있습니다.\n\n**⚠️ 2.0.0 이전 버전에서 올라오려면 기존 앱을 삭제한 뒤 새로 설치해야 합니다.** 앱 보안을 위해 서명키를 교체해서 기존 앱 위에 바로 설치(업데이트)할 수 없습니다. 아래 순서대로 한 번만 하시면 되고, 이후 업데이트는 다시 앱에서 자동으로 설치됩니다.\n\n1. 설정 캡처: 삭제하면 관심종목·알림·키워드 설정이 사라집니다. 지우기 전에 설정 화면을 캡처하거나 적어 두세요.\n2.",
         "assets": [
           {
-            "name": "fss-insights-v2.0.3.apk",
-            "size": 9856791,
+            "name": "fss-insights-v2.0.4.apk",
+            "size": 9857355,
             "downloads": 10,
-            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.3/fss-insights-v2.0.3.apk"
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.4/fss-insights-v2.0.4.apk"
           },
           {
-            "name": "fss-insights-v2.0.3.apk.sha256",
+            "name": "fss-insights-v2.0.4.apk.sha256",
             "size": 90,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.3/fss-insights-v2.0.3.apk.sha256"
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.4/fss-insights-v2.0.4.apk.sha256"
           }
         ],
-        "primaryAsset": "fss-insights-v2.0.3.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.0.3"
+        "primaryAsset": "fss-insights-v2.0.4.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.0.4"
       }
     },
     {
@@ -52,29 +52,41 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/FSS_Insights_Win",
       "homepage": null,
-      "pushedAt": "2026-10-27T01:17:17Z",
+      "pushedAt": "2026-10-27T06:35:27Z",
       "release": {
-        "tag": "v1.5.0",
-        "name": "FSS Insights for Windows v1.5.0",
-        "publishedAt": "2026-10-19T05:21:48Z",
-        "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/tag/v1.5.0",
-        "notes": "# FSS Insights for Windows v1.5.0 변경 내용\r\n\r\n- Android 앱 **FSS Insights v1.5.0(versionCode 42)** 과 같은 기능을 Windows 데스크톱 프로그램으로 옮겼습니다.\r\n- 화면·기능·동작이 Android 앱과 동일합니다: 오늘의 브리핑, 뉴스 검색, 금융시장 동향, 금융회사, 금융관련 리포트, 보도자료, 제재공시·유권해석·비조치의견서·행정지도, 참고 자료실, 주요사이트, 알림, 앱 정보.\r\n- 같은 앱 아이콘(흰 바탕에 파란 입체 돋보기와 오르는 막대)을 사용합니다.\r\n- 검색 방식, 30대 언론 필터, 기간 필터, `AND`/`OR`/괄호/따옴표 문구 검색, `-단어` 제외 검색, 중복 제거, 결과 집계를 그대로 지원합니다.\r\n- 기사 원문은 별도 창에서 열리고, 원문 열기·기사 링크 복사·PDF 저장을 제공합니다. PDF는 Microsoft Edge(없으면 Chrome)의 인쇄 기능으로 저장합니다.\r\n- 알림은 Windows 작업 표시줄 트레이 풍선으로 표시되며, 백그라운드 확인 주기는 Android와 같습니다.\r\n- 새 버전 확인은 이 저장소(`hdlee73/FSS_Insights_Wi",
+        "tag": "v2.0.4",
+        "name": "FSS Insights for Windows v2.0.4",
+        "publishedAt": "2026-10-27T06:35:27Z",
+        "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/tag/v2.0.4",
+        "notes": "# FSS Insights for Windows v2.0.4 변경 내용\n\n- 안드로이드 앱 v2.0.4와 기능을 맞췄습니다(2.0.0 이후 변경 모두 포함).\n- **스마트 법령검색** 추가: 조문이 위임한 하위 규정을 한 화면에 보여 주고, 위임 문구가 있는 규정과 인용만 한 규정을 구분합니다. 법령 비교표 화면 보기와 PDF·한글(HWPX) 저장(PDF와 같은 범위·서식)을 지원합니다.\n- **투자자별 순매수**(개인·외국인·기관계)를 금융시장 동향의 KOSPI·KOSDAQ 칸과 오늘의 브리핑에 표시합니다.\n- 보도자료·리포트·유권해석·비조치의견서·금감원/금융위 행정지도에 **핵심 내용 요약**을 표시합니다(내장 추출 요약).\n- 보도자료·리포트 수집 보완, 신용카드사 재무 표기, 업데이트 내용 안내 팝업 등 안드로이드 v1.6~v2.0의 변경을 반영했습니다.\n- **ARM64(Windows on ARM)용 설치 파일**(`fss-insights-windows-arm64-v2.0.4.msi`)을 함께 제공합니다.\n",
         "assets": [
           {
-            "name": "fss-insights-windows-v1.5.0.msi",
-            "size": 102822312,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v1.5.0/fss-insights-windows-v1.5.0.msi"
+            "name": "fss-insights-windows-arm64-v2.0.4.msi",
+            "size": 105996816,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-arm64-v2.0.4.msi"
           },
           {
-            "name": "fss-insights-windows-v1.5.0.msi.sha256",
+            "name": "fss-insights-windows-arm64-v2.0.4.msi.sha256",
+            "size": 105,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-arm64-v2.0.4.msi.sha256"
+          },
+          {
+            "name": "fss-insights-windows-v2.0.4.msi",
+            "size": 108663472,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-v2.0.4.msi"
+          },
+          {
+            "name": "fss-insights-windows-v2.0.4.msi.sha256",
             "size": 99,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v1.5.0/fss-insights-windows-v1.5.0.msi.sha256"
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-v2.0.4.msi.sha256"
           }
         ],
-        "primaryAsset": "fss-insights-windows-v1.5.0.msi",
-        "zipball": "https://api.github.com/repos/hdlee73/FSS_Insights_Win/zipball/v1.5.0"
+        "primaryAsset": "fss-insights-windows-v2.0.4.msi",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_Insights_Win/zipball/v2.0.4"
       }
     },
     {
@@ -87,23 +99,23 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryLaw",
       "homepage": null,
-      "pushedAt": "2026-10-27T02:45:42Z",
+      "pushedAt": "2026-10-27T06:33:46Z",
       "release": {
-        "tag": "v1.8.0",
-        "name": "Everylaw 1.8.0",
-        "publishedAt": "2026-10-27T01:18:52Z",
-        "url": "https://github.com/hdlee73/EveryLaw/releases/tag/v1.8.0",
-        "notes": "## What's Changed\n* v1.8.0: 위임/인용 구분, 비교표 화면 보기, HWPX 저장 by @hdlee73 in https://github.com/hdlee73/EveryLaw/pull/22\n\n\n**Full Changelog**: https://github.com/hdlee73/EveryLaw/compare/v1.7.7...v1.8.0",
+        "tag": "v1.8.1",
+        "name": "Everylaw 1.8.1",
+        "publishedAt": "2026-10-27T06:33:46Z",
+        "url": "https://github.com/hdlee73/EveryLaw/releases/tag/v1.8.1",
+        "notes": "## What's Changed\n* v1.8.1: 한글(HWPX) 저장을 PDF와 동일하게, 비교표 쪽 나눔·제목줄 가운데 정렬 by @hdlee73 in https://github.com/hdlee73/EveryLaw/pull/23\n\n\n**Full Changelog**: https://github.com/hdlee73/EveryLaw/compare/v1.8.0...v1.8.1",
         "assets": [
           {
-            "name": "Everylaw-1.8.0.apk",
-            "size": 4116712,
-            "downloads": 1,
-            "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.8.0/Everylaw-1.8.0.apk"
+            "name": "Everylaw-1.8.1.apk",
+            "size": 4117276,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.8.1/Everylaw-1.8.1.apk"
           }
         ],
-        "primaryAsset": "Everylaw-1.8.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryLaw/zipball/v1.8.0"
+        "primaryAsset": "Everylaw-1.8.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryLaw/zipball/v1.8.1"
       }
     },
     {
@@ -116,29 +128,29 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-10-27T02:08:16Z",
+      "pushedAt": "2026-10-27T06:33:13Z",
       "release": {
-        "tag": "v1.10.0",
-        "name": "EveryCorp v1.10.0",
-        "publishedAt": "2026-10-27T01:18:14Z",
-        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.10.0",
-        "notes": "# EveryCorp v1.10.0 변경 내용\n\n- 메뉴 패널: 메뉴 항목 사이 간격을 넓히고 기능 요약 글자를 줄였으며, 스크리닝 하부 메뉴 간격은 좁힘\n- 스크리닝(감사의견 비적정·자본잠식·CB·BW): 제목 행을 고정해 스크롤해도 보이게 하고, 연도(자본잠식은 보고서 종류도)를 각 화면 위쪽에서 고르게 함. 목록에 DART 고유번호 열 추가\n- CB·BW: 회차 상세를 표로 정리(구분·회차·발행일·만기일·미상환 잔액·합계), 회사 행을 누르면 상세를 볼 수 있다는 안내와 '근거(보고서/추정)' 설명 추가, '가까운 만기' 열 삭제\n- 기업정보 PDF: 버튼을 누르면 넣을 항목(기업개황·재무현황·채권·주가현황·감사의견)을 고르는 창이 먼저 뜨고 마지막 선택을 기억. 감사의견·감사인은 결산(기말) 기준만 넣음\n- 기업정보 저장 창에서 형식을 PDF 또는 한글(HWPX)로 고를 수 있음(항목 선택·감사의견 기말 기준 동일 적용). HWPX는 한컴오피스 등에서 열 수 있으며 표는 칸을 ' | '로 나눈 글로 들어감\n- 공시 탭: 공시 종류(전체 공시·정기보고서·주요사항보고서)와 출처(전체·DART·KIND)를 모양이 다른 두 줄로 구분\n- 주가 차트: 주요사항",
+        "tag": "v1.11.1",
+        "name": "EveryCorp v1.11.1",
+        "publishedAt": "2026-10-27T06:33:13Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.11.1",
+        "notes": "# EveryCorp v1.11.1 변경 내용\n\n- 비적정 감사의견·자본잠식·CB·BW 목록: 회사명 앞에 \"상장구분\" 열을 따로 둠. 값은 기업개황의 구분(유가증권/코스닥/코넥스/외감 등)과 같은 기준이며 \"상장\"이라는 추정 값은 쓰지 않음(시장을 모르면 빈칸). 비적정 감사의견 행도 눌러서 기업개황을 열도록 변경\n- 감사보고서: DART 뷰어를 못 읽어도 공시 목록 정보로 카드(원문 링크)를 보여 주고, 못 읽은 원인을 화면에 표시\n- 서버 변경 있음: 재배포 필요\n\n# EveryCorp v1.11.0 변경 내용\n\n- 감사보고서 탭: \"연간 감사 / 분·반기 검토\" 버튼으로 나눠 보고, 각 카드에 감사인·의견(검토는 검토인·결론)을 표시. 못 읽은 값은 \"확인 불가\"로 표시. 요약 PDF/HWPX에는 이전처럼 연간 감사보고서의 감사인·의견만 포함\n- 새로고침: 감사보고서 탭 상단에 ↻ 버튼과(일부를 못 읽었을 때) \"다시 불러오기\" 버튼 추가. 서버 저장분을 건너뛰고 DART에서 다시 읽음\n- 제목 옆 배지는 기업개황의 구분(DART)을 우선 사용. 종목코드는 있으나 비상장(외감)인 회사(예: 코리아센터)가 \"상장\"으로 나오던 오류 수정\n- 비적정 감사의",
         "assets": [
           {
-            "name": "everycorp-v1.10.0.apk",
-            "size": 2218032,
+            "name": "everycorp-v1.11.1.apk",
+            "size": 2218260,
             "downloads": 2,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.10.0/everycorp-v1.10.0.apk"
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk"
           },
           {
-            "name": "everycorp-v1.10.0.apk.sha256",
+            "name": "everycorp-v1.11.1.apk.sha256",
             "size": 88,
-            "downloads": 1,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.10.0/everycorp-v1.10.0.apk.sha256"
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk.sha256"
           }
         ],
-        "primaryAsset": "everycorp-v1.10.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.10.0"
+        "primaryAsset": "everycorp-v1.11.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.11.1"
       }
     },
     {
@@ -209,47 +221,47 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Everynote_Win",
       "homepage": null,
-      "pushedAt": "2026-10-27T04:09:31Z",
+      "pushedAt": "2026-10-27T05:48:53Z",
       "release": {
-        "tag": "v3.36.0",
-        "name": "Everynote v3.36.0",
-        "publishedAt": "2026-10-21T21:55:48Z",
-        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.0",
-        "notes": "## Everynote for Windows v3.36.0\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- EPUB 리더가 전체 화면 책 읽기로 바뀌었습니다. 평소에는 본문만 보이고, 화면 가운데를 누르면 위쪽(뒤로·목차·설정·필기)과 아래쪽(쪽 번호·진행 슬라이더) 메뉴가 나타납니다. 좌우를 누르거나 ←/→·PageUp/PageDown·마우스 휠로 쪽을 넘깁니다.\r\n- 쪽 크기는 고정되고 글자 크기·줄 간격·여백을 바꾸면 전체 쪽 수가 달라집니다. 읽던 위치는 유지됩니다.\r\n- EPUB 책은 문서함의 ‘EPUB 책’ 항목에 따로 보관되고 읽은 정도가 표시됩니다. ",
+        "tag": "v3.36.1",
+        "name": "Everynote v3.36.1",
+        "publishedAt": "2026-10-27T05:48:53Z",
+        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.1",
+        "notes": "## Everynote for Windows v3.36.1\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- 한글(HWPX) 문서의 표가 깨지던 문제를 고쳤습니다. 표 칸이 한 줄 높이로 눌려 글자가 겹치거나 쪽 아래로 넘쳐 잘리던 것이 이제 내용에 맞게 늘어나고 여러 쪽으로 나뉩니다. 표 안 그림도 글자와 겹치지 않습니다.\r\n",
         "assets": [
           {
-            "name": "Everynote-Setup-v3.36.0-arm64.exe",
-            "size": 83705190,
+            "name": "Everynote-Setup-v3.36.1-arm64.exe",
+            "size": 83707493,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-arm64.exe"
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-Setup-v3.36.1-arm64.exe"
           },
           {
-            "name": "Everynote-Setup-v3.36.0-x64.exe",
-            "size": 89549456,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-Setup-v3.36.0-x64.exe"
+            "name": "Everynote-Setup-v3.36.1-x64.exe",
+            "size": 89549133,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-Setup-v3.36.1-x64.exe"
           },
           {
-            "name": "Everynote-v3.36.0-win-arm64.exe",
-            "size": 89561700,
+            "name": "Everynote-v3.36.1-win-arm64.exe",
+            "size": 89562149,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-arm64.exe"
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-v3.36.1-win-arm64.exe"
           },
           {
-            "name": "Everynote-v3.36.0-win-x64.exe",
-            "size": 94890345,
+            "name": "Everynote-v3.36.1-win-x64.exe",
+            "size": 94890801,
             "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/Everynote-v3.36.0-win-x64.exe"
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-v3.36.1-win-x64.exe"
           },
           {
             "name": "SHA256SUMS.txt",
             "size": 392,
             "downloads": 1,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.0/SHA256SUMS.txt"
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/SHA256SUMS.txt"
           }
         ],
-        "primaryAsset": "Everynote-Setup-v3.36.0-x64.exe",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.0"
+        "primaryAsset": "Everynote-Setup-v3.36.1-x64.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.1"
       }
     },
     {
