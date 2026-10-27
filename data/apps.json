@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T20:13:42.929Z",
+  "updatedAt": "2026-10-27T23:57:52.885Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-10-27T06:54:47Z",
+      "pushedAt": "2026-10-27T22:50:47Z",
       "release": {
         "tag": "v2.0.4",
         "name": "FSS Insights v2.0.4",
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.0.4.apk",
             "size": 9857355,
-            "downloads": 11,
+            "downloads": 13,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.4/fss-insights-v2.0.4.apk"
           },
           {
@@ -99,7 +99,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryLaw",
       "homepage": null,
-      "pushedAt": "2026-10-27T06:33:46Z",
+      "pushedAt": "2026-10-27T22:50:45Z",
       "release": {
         "tag": "v1.8.1",
         "name": "Everylaw 1.8.1",
