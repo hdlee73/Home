@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T02:35:15.180Z",
+  "updatedAt": "2026-10-27T05:10:14.125Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-10-27T02:12:49Z",
+      "pushedAt": "2026-10-27T02:45:40Z",
       "release": {
         "tag": "v2.0.3",
         "name": "FSS Insights v2.0.3",
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.0.3.apk",
             "size": 9856791,
-            "downloads": 6,
+            "downloads": 10,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.3/fss-insights-v2.0.3.apk"
           },
           {
@@ -87,7 +87,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryLaw",
       "homepage": null,
-      "pushedAt": "2026-10-27T02:12:51Z",
+      "pushedAt": "2026-10-27T02:45:42Z",
       "release": {
         "tag": "v1.8.0",
         "name": "Everylaw 1.8.0",
@@ -98,7 +98,7 @@
           {
             "name": "Everylaw-1.8.0.apk",
             "size": 4116712,
-            "downloads": 0,
+            "downloads": 1,
             "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.8.0/Everylaw-1.8.0.apk"
           }
         ],
@@ -127,7 +127,7 @@
           {
             "name": "everycorp-v1.10.0.apk",
             "size": 2218032,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.10.0/everycorp-v1.10.0.apk"
           },
           {
@@ -209,7 +209,7 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Everynote_Win",
       "homepage": null,
-      "pushedAt": "2026-10-21T21:55:48Z",
+      "pushedAt": "2026-10-27T04:09:31Z",
       "release": {
         "tag": "v3.36.0",
         "name": "Everynote v3.36.0",
