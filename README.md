@@ -33,7 +33,7 @@
 GitHub에서 [apps-config.json 편집](https://github.com/hdlee73/Home/edit/main/data/apps-config.json) → `show`에 이름 추가·삭제 → **Commit changes**를 누르면 1~2분 뒤 반영됩니다.
 고를 수 있는 공개 저장소 이름은 `data/apps.json`의 `candidates`에 있습니다.
 
-`앱 목록 갱신` 워크플로가 6시간마다(그리고 설정 파일을 바꿀 때마다) 선택한 앱의 **최신 릴리스**를 읽어 `data/apps.json`에 저장합니다.
+`앱 목록 갱신` 워크플로가 30분마다(방문자가 내 앱 화면을 열면 최신 릴리스를 바로 확인해 덮어쓰기도 합니다)(그리고 설정 파일을 바꿀 때마다) 선택한 앱의 **최신 릴리스**를 읽어 `data/apps.json`에 저장합니다.
 
 - 다운로드 버튼은 릴리스 파일 중 `.apk`, `.exe`, `.msi`, `.dmg`, `.zip` 순으로 대표 파일을 고르며, 같은 종류면 일반 PC용(x64)을 ARM용보다 먼저 고릅니다.
 - 소개 문구는 관리자 화면에서 쓴 내용(`overrides`의 `description`)을 쓰고, 비어 있으면 저장소의 About(Description)을 씁니다.
