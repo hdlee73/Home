@@ -1,10 +1,10 @@
 # 공개 저장소와 최신 릴리스 정보를 모아 data/apps.json 을 갱신한다.
-# 6시간마다, 그리고 Actions 탭에서 수동으로 실행할 수 있다.
+# 30분마다(실제로는 GitHub 사정으로 더 늦을 수 있음), 그리고 Actions 탭에서 수동으로 실행할 수 있다.
 name: 앱 목록 갱신
 
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '7,37 * * * *'
   workflow_dispatch:
   push:
     branches: [main]

@@ -97,6 +97,49 @@
             </article>`;
     }
 
+    // 저장된 목록(data/apps.json)은 몇 시간 늦을 수 있어, 화면을 연 뒤 각 앱의 최신 릴리스를 GitHub 에서 바로 확인해 덮어쓴다.
+    // 비로그인 호출은 시간당 60회 제한이라 10분간 브라우저에 저장해 두고, 실패하면 저장된 목록을 그대로 쓴다.
+    const PREFERRED_EXT = ['.apk', '.aab', '.exe', '.msi', '.dmg', '.pkg', '.appimage', '.deb', '.zip'];
+    const isArm = (name) => /arm64|aarch64|[-_.]arm[-_.]/i.test(name);
+    function pickPrimaryAsset(assets) {
+        for (const ext of PREFERRED_EXT) {
+            const hits = assets.filter((a) => a.name.toLowerCase().endsWith(ext));
+            const hit = hits.find((a) => !isArm(a.name)) || hits[0];
+            if (hit) return hit.name;
+        }
+        return assets[0]?.name ?? null;
+    }
+    async function liveRelease(repo) {
+        const key = `hdlee_rel_${repo}`;
+        try {
+            const c = JSON.parse(sessionStorage.getItem(key) || 'null');
+            if (c && Date.now() - c.t < 10 * 60 * 1000) return c.rel;
+        } catch {}
+        const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${encodeURIComponent(repo)}/releases/latest`, {
+            headers: { Accept: 'application/vnd.github+json' },
+        });
+        if (res.status === 404) return null;
+        if (!res.ok) throw new Error(`release ${repo} ${res.status}`);
+        const r = await res.json();
+        const assets = (r.assets || []).map((a) => ({ name: a.name, size: a.size, downloads: a.download_count, url: a.browser_download_url }));
+        const rel = {
+            tag: r.tag_name, name: r.name || r.tag_name, publishedAt: r.published_at, url: r.html_url,
+            notes: (r.body || '').slice(0, 600), assets, primaryAsset: pickPrimaryAsset(assets), zipball: r.zipball_url,
+        };
+        try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), rel })); } catch {}
+        return rel;
+    }
+    async function refreshLive(apps, list) {
+        let changed = false;
+        await Promise.all(apps.map(async (app) => {
+            try {
+                const rel = await liveRelease(app.repo);
+                if (rel && rel.tag !== app.release?.tag) { app.release = rel; changed = true; }
+            } catch (e) { console.warn(e); }
+        }));
+        if (changed) list.innerHTML = apps.map(appCard).join('');
+    }
+
     async function renderApps() {
         const list = document.getElementById('appList');
         const meta = document.getElementById('appMeta');
@@ -110,6 +153,7 @@
             }
             list.innerHTML = apps.map(appCard).join('');
             meta.textContent = data.updatedAt ? `${apps.length}개 · ${fmtDate(data.updatedAt)} 기준` : `${apps.length}개`;
+            refreshLive(apps, list);
         } catch (e) {
             console.warn(e);
             list.innerHTML = `<p class="col-span-full text-xs text-slate-400 text-center py-6">

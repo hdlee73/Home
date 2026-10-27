@@ -78,7 +78,7 @@
             err.status = res.status;
             throw err;
         }
-        return res.json();
+        return res.status === 204 ? null : res.json();
     }
 
     const decodeContent = (b) => new TextDecoder().decode(unb64(b.replace(/\n/g, '')));
@@ -214,6 +214,19 @@
         } finally {
             btn.disabled = false;
             btn.classList.remove('opacity-60');
+        }
+    }
+
+    async function refreshApps() {
+        const btn = $('adminRefreshAppsBtn');
+        btn.disabled = true;
+        try {
+            await gh(`/repos/${OWNER}/${REPO}/actions/workflows/update-apps.yml/dispatches`, { method: 'POST', body: JSON.stringify({ ref: 'main' }) });
+            toast('✅ 갱신을 시작했습니다. 1~2분 뒤 반영됩니다.');
+        } catch (e) {
+            toast(e.status === 403 || e.status === 404 ? '토큰에 Actions 쓰기 권한이 없습니다. GitHub 저장소의 Actions 탭에서 "앱 목록 갱신"을 Run workflow 하세요.' : '갱신을 시작하지 못했습니다.');
+        } finally {
+            btn.disabled = false;
         }
     }
 
@@ -827,6 +840,7 @@
         $('adminAppsModal').addEventListener('click', (e) => {
             if (e.target.id === 'adminAppsModal' || e.target.closest('[data-admin-close]')) close();
         });
+        $('adminRefreshAppsBtn').addEventListener('click', refreshApps);
         $('adminSetupBtn').addEventListener('click', setup);
         $('adminLoginBtn').addEventListener('click', login);
         $('adminPwInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
