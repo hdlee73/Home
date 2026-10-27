@@ -3,6 +3,7 @@
   "_설명": "show 에 적은 저장소만 홈페이지 '내 앱'에 보이며, 적은 순서대로 표시됩니다. 후보 목록은 data/apps.json 의 candidates 를 참고하세요.",
   "show": [
     "FSS_insights",
+    "FSS_Insights_Win",
     "Everylaw",
     "EveryCorp",
     "EngHub",
@@ -40,6 +41,9 @@
     },
     "EveryCorp": {
       "description": "(안드로이드) 기업개황, 감사보고서, 공시(DART, KIND), 주가 추이 등을 한 눈에 볼 수 있는 앱."
+    },
+    "FSS_Insights_Win": {
+      "description": "(윈도우) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱"
     }
   }
 }
