@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T17:22:50.067Z",
+  "updatedAt": "2026-10-29T01:45:07.673Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.0.4.apk",
             "size": 9857355,
-            "downloads": 18,
+            "downloads": 19,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.0.4/fss-insights-v2.0.4.apk"
           },
           {
@@ -192,23 +192,23 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Dailyhabit",
       "homepage": null,
-      "pushedAt": "2026-10-17T00:24:23Z",
+      "pushedAt": "2026-10-29T00:11:34Z",
       "release": {
-        "tag": "v1.8.1",
-        "name": "DailyHabit v1.8.1",
-        "publishedAt": "2026-10-17T00:24:19Z",
-        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.8.1",
-        "notes": "## DailyHabit v1.8.1 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- **고친 점: 뒤로 가기** — 이제 앱이 바로 닫히지 않고 직전 화면으로 돌아갑니다. 기도문·다른 탭에서는 목록·첫 탭으로, 처음까지 돌아오면 메뉴가 열리고, 메뉴에서 한 번 더 누르면 앱이 닫힙니다.\n\n**설치:** `DailyHabit-1.8.1.apk",
+        "tag": "v1.9.0",
+        "name": "DailyHabit v1.9.0",
+        "publishedAt": "2026-10-29T00:11:30Z",
+        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.9.0",
+        "notes": "## DailyHabit v1.9.0 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- 뒤로 가기로 직전 화면으로 돌아가기 (메뉴에서 한 번 더 누르면 앱이 닫힘)\n- **새로: 앱 정보에 사용 방법 · 만든이**\n\n**설치:** `DailyHabit-1.9.0.apk`를 휴대폰에서 내려받아 설치하세요.\n천주교 기능(오늘의 복음 · 기도)이 필",
         "assets": [
           {
-            "name": "DailyHabit-1.8.1.apk",
-            "size": 18221622,
-            "downloads": 3,
-            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.8.1/DailyHabit-1.8.1.apk"
+            "name": "DailyHabit-1.9.0.apk",
+            "size": 18287162,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.9.0/DailyHabit-1.9.0.apk"
           }
         ],
-        "primaryAsset": "DailyHabit-1.8.1.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.8.1"
+        "primaryAsset": "DailyHabit-1.9.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.9.0"
       }
     },
     {
