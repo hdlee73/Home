@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T06:23:17.513Z",
+  "updatedAt": "2026-10-31T15:16:14.895Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -163,23 +163,23 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
-      "pushedAt": "2026-10-21T22:37:35Z",
+      "pushedAt": "2026-10-31T10:30:10Z",
       "release": {
-        "tag": "v1.41.0",
-        "name": "EngHub v1.41.0",
-        "publishedAt": "2026-10-21T22:37:35Z",
-        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.41.0",
-        "notes": "## EngHub v1.41.0\n- 프리토킹·롤플레잉: 기기 안 음성 인식을 추가했습니다. 롤플레잉 목록 맨 위 ‘음성 인식’ 카드에서 모델(Whisper base.en, 약 160MB, 와이파이 권장)을 한 번 내려받으면, 구글 음성 서비스 없이 폰 안에서 인식해요. 그래서 ‘인터넷이 필요해요’ 오류가 나지 않고 오프라인에서도 되며, 억양이 있는 영어도 더 잘 알아듣는 편입니다. 말을 마치고 마이크를 누르면 1~3초 안에 글자로 바뀌어요(말하는 동안 실시간 글자는 나오지 않습니다). 카드의 스위치로 언제든 구글 인식으로 되돌릴 수 있고, 기기 안 인식이 실패하면 자동으로 구글 인식으로 바뀝니다.\n- 따라읽기 채점은 건드리지 않았습니다. (Whisper는 틀린 발음도 알아서 맞게 적는 경향이 있어 채점이 후해질 수 있어서)\n- 프리토킹·롤플레잉: Gemini Nano가 답을 다 쓰기 전에, 첫 문장이 완성되는 대로 바로 읽어 주기 시작합니다. 마지막 문장까지 읽은 뒤 마이크가 켜져요.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 인식 지연 시간·메모리 사용·인식 품질·문장 단위 읽기는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
+        "tag": "v1.42.0",
+        "name": "EngHub v1.42.0",
+        "publishedAt": "2026-10-31T10:30:11Z",
+        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.42.0",
+        "notes": "## EngHub v1.42.0\n- Speaking 따라읽기: 롤플레잉과 같은 기기 안 음성 인식(Whisper base.en)을 따라읽기에도 씁니다. 롤플레잉 ‘음성 인식’ 카드에서 모델을 받아 두었고 스위치가 켜져 있으면 자동으로 적용돼요(모델이 없거나 스위치를 끄면 이전처럼 구글 인식). 말하는 동안 약 1.5초마다 글자가 갱신되고, 말을 멈추고 1.3초 뒤 결과가 확정돼 남은 단어를 이어서 듣습니다. 기기 안 인식이 실패하면 자동으로 구글 인식으로 바뀝니다.\n- 채점이 후해지는 것을 막기 위해 ‘엄격’ 단계에서는 지금까지처럼 구글 인식(문장 힌트 없음)을 씁니다. 보통·쉬움에서만 Whisper를 씁니다.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 인식 정확도·실시간 글자 갱신 속도·말을 멈춘 뒤 끊기는 타이밍·블루투스 이어폰 마이크·녹음 버튼은 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
         "assets": [
           {
-            "name": "EngHub-v1.41.0.apk",
-            "size": 146474703,
-            "downloads": 3,
-            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.41.0/EngHub-v1.41.0.apk"
+            "name": "EngHub-v1.42.0.apk",
+            "size": 146479463,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.42.0/EngHub-v1.42.0.apk"
           }
         ],
-        "primaryAsset": "EngHub-v1.41.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.41.0"
+        "primaryAsset": "EngHub-v1.42.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.42.0"
       }
     },
     {
