@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T06:37:36.337Z",
+  "updatedAt": "2026-11-03T15:00:44.798Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -307,6 +307,7 @@
     "EveryVideo",
     "EveryVideo_win",
     "FSS_Helper",
+    "FSS_Helper_app",
     "FSS_insights",
     "FSS_Insights_Win",
     "Home",
