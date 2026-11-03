@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T17:26:03.753Z",
+  "updatedAt": "2026-11-03T06:37:36.337Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.1.2.apk",
             "size": 9906507,
-            "downloads": 7,
+            "downloads": 8,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.1.2/fss-insights-v2.1.2.apk"
           }
         ],
@@ -306,6 +306,7 @@
     "Everynote_Win",
     "EveryVideo",
     "EveryVideo_win",
+    "FSS_Helper",
     "FSS_insights",
     "FSS_Insights_Win",
     "Home",
