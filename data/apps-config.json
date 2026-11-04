@@ -7,9 +7,9 @@
     "Everylaw",
     "EveryCorp",
     "EngHub",
-    "Everynote_And",
-    "Dailyhabit",
+    "Everynote",
     "Everynote_Win",
+    "Dailyhabit",
     "SnapRead"
   ],
   "overrides": {
@@ -44,6 +44,9 @@
     },
     "FSS_Insights_Win": {
       "description": "(윈도우) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱"
+    },
+    "Everynote": {
+      "description": "(안드로이드)PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능"
     }
   }
 }
