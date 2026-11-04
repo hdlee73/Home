@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T01:16:47.506Z",
+  "updatedAt": "2026-11-04T05:38:54.459Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.1.2.apk",
             "size": 9906507,
-            "downloads": 8,
+            "downloads": 11,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.1.2/fss-insights-v2.1.2.apk"
           }
         ],
@@ -168,7 +168,7 @@
           {
             "name": "EngHub-v1.43.0.apk",
             "size": 146475847,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.43.0/EngHub-v1.43.0.apk"
           }
         ],
@@ -177,32 +177,38 @@
       }
     },
     {
-      "repo": "Dailyhabit",
-      "name": "Dailyhabit",
-      "description": "(안드로이드) 일주일간 일정 확인, todo list, 루틴, 맛집, 독서, 한줄일기 등의 기능을 가진 안드로이드 앱(일반용, 천주교인용 별도)",
+      "repo": "Everynote",
+      "name": "Everynote",
+      "description": "(안드로이드)PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능",
       "icon": null,
-      "language": "Kotlin",
+      "language": "Java",
       "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/Dailyhabit",
+      "stars": 1,
+      "url": "https://github.com/hdlee73/Everynote",
       "homepage": null,
-      "pushedAt": "2026-10-29T00:11:34Z",
+      "pushedAt": "2026-10-27T05:47:00Z",
       "release": {
-        "tag": "v1.9.0",
-        "name": "DailyHabit v1.9.0",
-        "publishedAt": "2026-10-29T00:11:30Z",
-        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.9.0",
-        "notes": "## DailyHabit v1.9.0 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- 뒤로 가기로 직전 화면으로 돌아가기 (메뉴에서 한 번 더 누르면 앱이 닫힘)\n- **새로: 앱 정보에 사용 방법 · 만든이**\n\n**설치:** `DailyHabit-1.9.0.apk`를 휴대폰에서 내려받아 설치하세요.\n천주교 기능(오늘의 복음 · 기도)이 필",
+        "tag": "v1.70.1",
+        "name": "Everynote v1.70.1",
+        "publishedAt": "2026-10-27T05:47:01Z",
+        "url": "https://github.com/hdlee73/Everynote/releases/tag/v1.70.1",
+        "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.1)\n- 한글(HWPX) 문서의 표가 깨지던 문제를 고쳤습니다. 표 칸이 한 줄 높이로 눌려 글자가 겹치거나 쪽 아래로 넘쳐 잘리던 것이 이제 내용에 맞게 늘어나고 여러 쪽으로 나뉩니다. 표 안 그림도 글자와 겹치지 않습니다.\n",
         "assets": [
           {
-            "name": "DailyHabit-1.9.0.apk",
-            "size": 18287162,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.9.0/DailyHabit-1.9.0.apk"
+            "name": "Everynote-v1.70.1.apk",
+            "size": 125406866,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk"
+          },
+          {
+            "name": "Everynote-v1.70.1.apk.sha256",
+            "size": 88,
+            "downloads": 0,
+            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk.sha256"
           }
         ],
-        "primaryAsset": "DailyHabit-1.9.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.9.0"
+        "primaryAsset": "Everynote-v1.70.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote/zipball/v1.70.1"
       }
     },
     {
@@ -259,6 +265,35 @@
       }
     },
     {
+      "repo": "Dailyhabit",
+      "name": "Dailyhabit",
+      "description": "(안드로이드) 일주일간 일정 확인, todo list, 루틴, 맛집, 독서, 한줄일기 등의 기능을 가진 안드로이드 앱(일반용, 천주교인용 별도)",
+      "icon": null,
+      "language": "Kotlin",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/Dailyhabit",
+      "homepage": null,
+      "pushedAt": "2026-10-29T00:11:34Z",
+      "release": {
+        "tag": "v1.9.0",
+        "name": "DailyHabit v1.9.0",
+        "publishedAt": "2026-10-29T00:11:30Z",
+        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.9.0",
+        "notes": "## DailyHabit v1.9.0 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- 뒤로 가기로 직전 화면으로 돌아가기 (메뉴에서 한 번 더 누르면 앱이 닫힘)\n- **새로: 앱 정보에 사용 방법 · 만든이**\n\n**설치:** `DailyHabit-1.9.0.apk`를 휴대폰에서 내려받아 설치하세요.\n천주교 기능(오늘의 복음 · 기도)이 필",
+        "assets": [
+          {
+            "name": "DailyHabit-1.9.0.apk",
+            "size": 18287162,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.9.0/DailyHabit-1.9.0.apk"
+          }
+        ],
+        "primaryAsset": "DailyHabit-1.9.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.9.0"
+      }
+    },
+    {
       "repo": "SnapRead",
       "name": "SnapRead",
       "description": "(안드로이드)사진을 찍어서 문자를 추출하거나 스캔 등을 할 수 있는 앱",
@@ -312,6 +347,7 @@
     "FSS_Insights_Win",
     "Home",
     "InvestOn",
+    "newapp",
     "Realtime_trans",
     "SnapRead",
     "Study_Helper_Win",
