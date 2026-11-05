@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T02:44:11.748Z",
+  "updatedAt": "2026-11-05T10:44:26.003Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.2.0.apk",
             "size": 9955655,
-            "downloads": 11,
+            "downloads": 14,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.2.0/fss-insights-v2.2.0.apk"
           }
         ],
@@ -157,23 +157,23 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
-      "pushedAt": "2026-11-04T00:40:24Z",
+      "pushedAt": "2026-11-05T04:25:55Z",
       "release": {
-        "tag": "v1.43.0",
-        "name": "EngHub v1.43.0",
-        "publishedAt": "2026-11-04T00:40:25Z",
-        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.43.0",
-        "notes": "## EngHub v1.43.0\n- 음성 인식 정확도 선택: 롤플레잉 ‘음성 인식’ 카드에서 Whisper 모델을 고를 수 있습니다. ‘빠름’(base.en, 약 160MB)과 ‘정확’(small.en, 약 370MB, 폴드8 권장). small.en은 DocVoice 탭과 같은 파일을 쓰므로 이미 받아 두었다면 다시 받지 않아요. 선택한 모델이 아직 없으면 있는 모델로 계속 인식합니다.\n- 프리토킹·롤플레잉·따라읽기(보통·쉬움) 모두 선택한 모델로 인식하고, 계산에 쓰는 CPU 스레드를 최대 6개로 늘렸습니다.\n- 카드 아래에 ‘최근 인식: 말 N초 → 계산 M초’를 표시해, 폴드8에서 모델이 충분히 빠른지 바로 볼 수 있습니다. 느리면 ‘빠름’으로 되돌리세요.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, small.en의 실제 속도·정확도와 따라읽기 실시간 갱신 지연은 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다.\n\n",
+        "tag": "v1.44.0",
+        "name": "EngHub v1.44.0",
+        "publishedAt": "2026-11-05T04:25:55Z",
+        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.44.0",
+        "notes": "## EngHub v1.44.0\n- 블루투스 헤드셋 마이크 고정: Speaking 설정에 ‘블루투스 헤드셋 마이크 항상 사용’(기본 켜짐)을 추가했습니다. 헤드셋(이어셋)이 연결돼 있으면 ‘휴대전화 마이크 사용’이 켜져 있어도 항상 헤드셋 마이크로 듣습니다. 스피커·워치는 제외하고, 설정에서 고른 기기가 있으면 그것을 먼저 씁니다. 따라읽기뿐 아니라 프리토킹·롤플레잉에도 적용되며, 마이크를 쓸 때만 헤드셋 통화 경로를 열고 읽어 줄 때는 닫아서 읽는 소리 품질은 유지됩니다. 기기 안 인식(Whisper)도 이제 헤드셋 입력을 직접 지정해서 녹음합니다(예전에는 항상 폰 마이크 표시였음).\n- 기기 안 인식 정확도: 인식 전에 말 앞뒤의 침묵을 잘라내고(없는 말을 지어내는 것을 줄이고 계산도 빨라짐) 작은 소리는 키워서 넘깁니다. 헤드셋처럼 소리가 작게 들어오는 마이크에서 특히 도움이 됩니다.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 블루투스 헤드셋 경로·정확도 개선 효과는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다. 헤드셋에서 마이크가 안 열리거나 끊기면 알려 주세요.\n\n",
         "assets": [
           {
-            "name": "EngHub-v1.43.0.apk",
-            "size": 146475847,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.43.0/EngHub-v1.43.0.apk"
+            "name": "EngHub-v1.44.0.apk",
+            "size": 146484587,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.44.0/EngHub-v1.44.0.apk"
           }
         ],
-        "primaryAsset": "EngHub-v1.43.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.43.0"
+        "primaryAsset": "EngHub-v1.44.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.44.0"
       }
     },
     {
