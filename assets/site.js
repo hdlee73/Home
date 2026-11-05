@@ -716,18 +716,35 @@
     // 설문지에 몰래 제출한다(응답 내용은 읽을 수 없어 성공 여부는 알 수 없다). 화면에는 바로 반영해 둔다.
     async function sendActivity(row) {
         const a = boardConfig.activity;
-        const body = new URLSearchParams();
-        Object.entries({ type: row.type, post: row.post, parent: row.parent || '', name: row.name || '', body: row.body || '' }).forEach(([k, v]) => {
-            if (v && a.entries[k]) body.append(a.entries[k], v);
-        });
+        const fields = { type: row.type, post: row.post, parent: row.parent || '', name: row.name || '', body: row.body || '' };
         if (!actPending.length) { actPendingBase = actRows.length; actPendingAt = Date.now(); }
         actPending.push({ ...row, id: `p${Date.now()}${Math.random().toString(36).slice(2, 5)}`, name: row.name || '방문자', time: null, pending: true });
-        try {
-            await fetch(a.formUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
-        } catch {
-            actPending.pop();
-            if (window.showToast) window.showToast('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.');
-        }
+        // 브라우저의 일반 폼 전송을 숨은 프레임으로 보낸다(설문지 화면에서 '제출'을 누르는 것과 같은 방식).
+        // 연속 전송(취소+새 반응)이 서로를 끊지 않도록 전송마다 프레임을 따로 만든다.
+        const frameName = `boardActFrame${Date.now()}${Math.random().toString(36).slice(2, 5)}`;
+        const frame = document.createElement('iframe');
+        frame.name = frameName;
+        frame.title = '';
+        frame.hidden = true;
+        document.body.appendChild(frame);
+        setTimeout(() => frame.remove(), 20000);
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = a.formUrl;
+        form.target = frameName;
+        form.acceptCharset = 'utf-8';
+        form.hidden = true;
+        Object.entries(fields).forEach(([k, v]) => {
+            if (!v || !a.entries[k]) return;
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = a.entries[k];
+            input.value = v;
+            form.appendChild(input);
+        });
+        document.body.appendChild(form);
+        form.submit();
+        setTimeout(() => form.remove(), 3000);
         [4000, 10000, 20000].forEach((ms) => setTimeout(loadActivity, ms));
     }
 
