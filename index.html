@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.10.2">
+    <meta name="site-version" content="2.11.0">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 홈페이지</title>
     <meta name="description" content="공인회계사 이현덕의 홈페이지입니다. 이력과 직접 만든 앱, 유튜브·블로그 자료실을 모아 두었습니다.">
@@ -735,6 +735,19 @@
                     <input id="adminSheetUrl" type="url" placeholder="응답 시트 주소 https://docs.google.com/spreadsheets/d/..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <label class="flex items-start gap-2 text-[11px] text-slate-600"><input id="adminModeration" type="checkbox" class="w-4 h-4 mt-0.5 accent-blue-600"> <span>승인한 글만 보이기 (시트에 <strong>공개</strong> 열을 만들고 보일 글에 O 입력)</span></label>
                     <p class="text-[11px] text-slate-500">글 삭제: 시트에서 그 행을 지우거나 <strong>숨김</strong> 열에 X를 넣으면 홈페이지에서 바로 사라집니다.</p>
+                    <div class="text-xs font-semibold text-slate-700 pt-2">좋아요·싫어요·댓글 (반응용 구글 설문지)</div>
+                    <ol class="list-decimal pl-5 text-[11px] text-slate-500 space-y-1">
+                        <li><a href="https://docs.google.com/forms/create" target="_blank" rel="noopener" class="text-blue-600 hover:underline">구글 설문지를 하나 더 만들고</a> <strong>단답형 질문 5개</strong>를 이 순서·이름으로 추가: <strong>종류, 글ID, 상위ID, 이름, 내용</strong> (모두 필수 끄기, 이메일 수집·로그인 필요 끄기)</li>
+                        <li>응답 탭 → 스프레드시트에 연결 → 시트 공유를 <strong>링크가 있는 모든 사용자(뷰어)</strong>로</li>
+                        <li>설문지 ⋮ 메뉴 → <strong>미리 채워진 링크 받기</strong> → 종류에 <code>type</code>, 글ID에 <code>post</code>, 상위ID에 <code>parent</code>, 이름에 <code>name</code>, 내용에 <code>body</code> 라고 쓰고 링크 받기 → 아래에 붙여 넣기</li>
+                    </ol>
+                    <input id="adminActFormLink" type="url" placeholder="미리 채워진 링크 https://docs.google.com/forms/d/e/.../viewform?usp=pp_url&entry..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input id="adminActSheetUrl" type="url" placeholder="반응 응답 시트 주소 https://docs.google.com/spreadsheets/d/..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <p id="adminActStatus" class="text-[11px] text-slate-500"></p>
+                    <div class="text-xs font-semibold text-slate-700 pt-2">글·댓글 숨기기</div>
+                    <p class="text-[11px] text-slate-500">방문자 게시판 화면에서 이 창을 열었을 때 목록을 불러올 수 있습니다. 숨긴 글·댓글은 시트에는 남고 홈페이지에서만 보이지 않습니다.</p>
+                    <button id="adminHideLoadBtn" type="button" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-medium"><i class="fa-solid fa-eye-slash mr-1"></i> 글·댓글 목록 불러오기</button>
+                    <ul id="adminHideList" class="space-y-1.5 max-h-72 overflow-y-auto pr-1"></ul>
                     <div class="text-xs font-semibold text-slate-700 pt-2">방문자 수 (구글 애널리틱스)</div>
                     <p class="text-[11px] text-slate-500"><a href="https://analytics.google.com" target="_blank" rel="noopener" class="text-blue-600 hover:underline">구글 애널리틱스</a>에서 웹 스트림을 만들고 받은 <strong>측정 ID</strong>(G-로 시작)를 넣으세요.</p>
                     <input id="adminGaId" type="text" placeholder="측정 ID (예: G-AB12CD34EF)" class="w-full text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -825,7 +838,7 @@
             }, 3000);
         }
     </script>
-    <script src="assets/site.js?v=2.10.2"></script>
-    <script src="assets/admin.js?v=2.10.2"></script>
+    <script src="assets/site.js?v=2.11.0"></script>
+    <script src="assets/admin.js?v=2.11.0"></script>
 </body>
 </html>
