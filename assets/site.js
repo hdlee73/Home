@@ -672,6 +672,8 @@
             </div>` : ''}`;
     }
 
+    const safeBar = (p) => { try { return actionBarHtml(p); } catch (e) { console.error('board bar', e); return ''; } };
+
     function postHtml(p) {
         return `
             <li class="py-4" data-post-id="${esc(p.id)}">
@@ -681,7 +683,7 @@
                     <span class="text-[11px] text-slate-400 ml-auto flex-shrink-0">${p.time ? FMT_TIME(p.time) : esc(p.timeText)}</span>
                 </div>
                 <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words pl-9">${esc(p.body)}</p>
-                ${actionBarHtml(p)}
+                ${safeBar(p)}
             </li>`;
     }
 
@@ -782,13 +784,23 @@
             return;
         }
         box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
+        let table;
         try {
-            boardPosts = tableToPosts(await loadSheet(id), !!boardConfig.moderation);
-            renderBoardPosts();
-            loadActivity();   // 반응 시트가 늦거나 실패해도 글 목록은 먼저 보여 준다
-        } catch {
-            box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</li>';
+            table = await loadSheet(id);
+        } catch (e) {
+            console.error('board sheet', e);
+            box.innerHTML = `<li class="text-xs text-slate-400 text-center py-6">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.<br><span class="text-[10px]">(시트 읽기 실패: ${esc(e.message)})</span></li>`;
+            return;
         }
+        try {
+            boardPosts = tableToPosts(table, !!boardConfig.moderation);
+            renderBoardPosts();
+        } catch (e) {
+            console.error('board render', e);
+            box.innerHTML = `<li class="text-xs text-slate-400 text-center py-6">글 목록을 표시하지 못했습니다.<br><span class="text-[10px]">(표시 오류: ${esc(e.message)})</span></li>`;
+            return;
+        }
+        loadActivity();   // 반응 시트가 늦거나 실패해도 글 목록은 먼저 보여 준다
     }
 
     async function initBoard() {
