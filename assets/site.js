@@ -533,6 +533,18 @@
         return m ? new Date(m[1], m[2], m[3], m[4] || 0, m[5] || 0, m[6] || 0) : null;
     }
 
+    // 시트 행의 타임스탬프로 글·댓글 ID를 만든다(같은 초에 둘이면 뒤에 번호를 붙인다).
+    const dateKey = (c) => {
+        const m = String(c?.v ?? '').match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+)(?:,(\d+))?)?\)$/);
+        return m ? m.slice(1, 7).map((x) => x || '0').join('-') : '';
+    };
+    const withIds = (rows) => {
+        const seen = {};
+        rows.forEach((r) => { seen[r.id] = (seen[r.id] || 0) + 1; if (seen[r.id] > 1) r.id += `~${seen[r.id]}`; });
+        return rows;
+    };
+    const FMT_TIME = (t) => `${fmtDate(t)} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
+
     function tableToPosts(table, moderation) {
         const labels = table.cols.map((c) => String(c.label || '').trim().toLowerCase());
         const find = (words, fallback) => {
@@ -544,28 +556,218 @@
         const iBody = find(['내용', '글', 'message', 'content'], 2);
         const iShow = find(['공개', 'approve'], -1);
         const iHide = find(['숨김', 'hide'], -1);
-        return table.rows
+        return withIds(table.rows
             .map((r) => r.c || [])
             .filter((c) => cellText(c[iBody]))
             .filter((c) => !(iHide >= 0 && cellText(c[iHide])))
             .filter((c) => !moderation || (iShow >= 0 && /^(o|y|yes|공개|ㅇ|v|✔|true)$/i.test(cellText(c[iShow]))))
-            .map((c) => ({ time: cellTime(c[iTime]), timeText: cellText(c[iTime]), name: cellText(c[iName]) || '방문자', body: cellText(c[iBody]).slice(0, 3000) }))
+            .map((c) => ({ id: dateKey(c[iTime]), time: cellTime(c[iTime]), timeText: cellText(c[iTime]), name: cellText(c[iName]) || '방문자', body: cellText(c[iBody]).slice(0, 3000) })))
             .sort((a, b) => (b.time || 0) - (a.time || 0));
     }
 
+    // ---------- 좋아요·싫어요·댓글 (반응용 구글 설문지 + 응답 시트) ----------
+    // 한 행 = 종류(좋아요/싫어요/취소좋아요/취소싫어요/댓글), 글ID, 상위ID(대댓글일 때 댓글 ID), 이름, 내용.
+    let actRows = [];
+    let actPending = [];
+    let actPendingBase = 0;
+    let actPendingAt = 0;
+    let lastSendAt = 0;
+    const openThreads = new Set();
+    const replyDraft = {};   // 루트 댓글 ID -> 답글 칸에 미리 넣을 말
+    const lsGet = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+    const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+    const hiddenIds = () => new Set(boardConfig?.hidden || []);
+    const actEnabled = () => !!(boardConfig?.activity?.formUrl && boardConfig.activity.entries && sheetId(boardConfig.activity.sheetUrl));
+
+    function tableToActivity(table) {
+        const labels = table.cols.map((c) => String(c.label || '').trim().toLowerCase());
+        const find = (words, fallback) => {
+            const i = labels.findIndex((l) => words.some((w) => l.includes(w)));
+            return i >= 0 ? i : fallback;
+        };
+        const iTime = find(['타임스탬프', 'timestamp'], 0);
+        const iType = find(['종류', 'type'], 1);
+        const iPost = find(['글id', '글 id', 'post'], 2);
+        const iParent = find(['상위', 'parent'], 3);
+        const iName = find(['이름', 'name'], 4);
+        const iBody = find(['내용', 'content', 'body'], 5);
+        const iHide = find(['숨김', 'hide'], -1);
+        return withIds(table.rows.map((r) => r.c || [])
+            .filter((c) => cellText(c[iType]) && !(iHide >= 0 && cellText(c[iHide])))
+            .map((c) => ({
+                id: dateKey(c[iTime]), time: cellTime(c[iTime]), timeText: cellText(c[iTime]),
+                type: cellText(c[iType]), post: cellText(c[iPost]), parent: cellText(c[iParent]),
+                name: cellText(c[iName]) || '방문자', body: cellText(c[iBody]).slice(0, 500),
+            })));
+    }
+
+    // 글 하나의 반응 수와 댓글 트리를 계산한다.
+    function activityOf(postId) {
+        const hidden = hiddenIds();
+        const rows = actRows.concat(actPending).filter((r) => r.post === postId);
+        let like = 0;
+        let dislike = 0;
+        const comments = [];
+        rows.forEach((r) => {
+            if (r.type === '좋아요') like++;
+            else if (r.type === '취소좋아요') like--;
+            else if (r.type === '싫어요') dislike++;
+            else if (r.type === '취소싫어요') dislike--;
+            else if (r.type === '댓글' && r.body && !hidden.has(r.id)) comments.push(r);
+        });
+        const top = comments.filter((c) => !c.parent).sort((a, b) => (a.time || 0) - (b.time || 0));
+        const replies = {};
+        comments.filter((c) => c.parent).forEach((c) => { (replies[c.parent] = replies[c.parent] || []).push(c); });
+        const total = top.length + top.reduce((n, c) => n + (replies[c.id] || []).length, 0);
+        return { like: Math.max(like, 0), dislike: Math.max(dislike, 0), top, replies, total };
+    }
+
+    const timeLabel = (r) => (r.time ? FMT_TIME(r.time) : r.pending ? '방금' : esc(r.timeText));
+
+    function composeHtml(postId, parentId, prefill) {
+        const name = lsGet('hdlee_board_name', '');
+        return `
+            <form data-compose data-post="${esc(postId)}" data-parent="${esc(parentId || '')}" class="mt-2 space-y-1.5">
+                <input name="name" type="text" maxlength="30" value="${esc(name)}" placeholder="이름 (비워 두면 방문자)" class="w-full text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-400">
+                <textarea name="body" rows="2" maxlength="500" required placeholder="${parentId ? '답글을 입력하세요' : '댓글을 입력하세요'}" class="w-full text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-400 resize-y">${esc(prefill || '')}</textarea>
+                <div class="flex justify-end gap-1.5">
+                    ${parentId ? `<button type="button" data-reply-cancel="${esc(parentId)}" class="text-[11px] px-3 py-1.5 rounded-lg bg-slate-100 text-slate-500">취소</button>` : ''}
+                    <button type="submit" class="text-[11px] px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium">등록</button>
+                </div>
+            </form>`;
+    }
+
+    function commentHtml(c, postId, replies, isReply, rootId) {
+        const canReply = !c.pending;
+        const rid = isReply ? rootId : c.id;
+        return `
+            <li class="py-2">
+                <div class="flex items-center gap-2 text-[11px]">
+                    <span class="font-semibold text-slate-700 break-words min-w-0">${esc(c.name.slice(0, 30))}</span>
+                    <span class="text-slate-400 flex-shrink-0">${timeLabel(c)}</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line break-words">${esc(c.body)}</p>
+                ${canReply ? `<button type="button" data-reply="${esc(rid)}" data-reply-to="${esc(isReply ? c.name : '')}" class="text-[11px] text-violet-600 hover:underline mt-0.5">답글</button>` : ''}
+                ${!isReply && c.id in replyDraft ? composeHtml(postId, c.id, replyDraft[c.id]) : ''}
+                ${!isReply && (replies[c.id] || []).length ? `<ul class="mt-1 ml-3 pl-3 border-l border-slate-200">${replies[c.id].sort((a, b) => (a.time || 0) - (b.time || 0)).map((r) => commentHtml(r, postId, replies, true, c.id)).join('')}</ul>` : ''}
+            </li>`;
+    }
+
+    function actionBarHtml(p) {
+        if (!actEnabled()) return '';
+        const a = activityOf(p.id);
+        const mine = lsGet('hdlee_board_react', {})[p.id];
+        const open = openThreads.has(p.id);
+        const btn = (kind, icon, n, on) => `<button type="button" data-react="${kind}" class="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full border ${on ? 'bg-violet-600 border-violet-600 text-white' : 'bg-white border-slate-200 text-slate-500 hover:border-violet-300'}"><i class="fa-regular ${icon}"></i> ${n}</button>`;
+        return `
+            <div class="pl-9 mt-2 flex items-center gap-2">
+                ${btn('좋아요', 'fa-thumbs-up', a.like, mine === '좋아요')}
+                ${btn('싫어요', 'fa-thumbs-down', a.dislike, mine === '싫어요')}
+                <button type="button" data-thread-toggle class="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full border ${open ? 'border-violet-300 text-violet-700 bg-violet-50' : 'bg-white border-slate-200 text-slate-500 hover:border-violet-300'}"><i class="fa-regular fa-comment"></i> 댓글 ${a.total}</button>
+            </div>
+            ${open ? `<div class="pl-9 mt-2">
+                ${a.top.length ? `<ul class="divide-y divide-slate-100">${a.top.map((c) => commentHtml(c, p.id, a.replies, false)).join('')}</ul>` : '<p class="text-[11px] text-slate-400">첫 댓글을 남겨 보세요.</p>'}
+                ${composeHtml(p.id, '', '')}
+            </div>` : ''}`;
+    }
+
+    function postHtml(p) {
+        return `
+            <li class="py-4" data-post-id="${esc(p.id)}">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-[11px] font-bold flex-shrink-0">${esc(p.name.slice(0, 1))}</span>
+                    <span class="min-w-0 text-sm font-semibold text-slate-800 break-words">${esc(p.name.slice(0, 30))}</span>
+                    <span class="text-[11px] text-slate-400 ml-auto flex-shrink-0">${p.time ? FMT_TIME(p.time) : esc(p.timeText)}</span>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words pl-9">${esc(p.body)}</p>
+                ${actionBarHtml(p)}
+            </li>`;
+    }
+
+    function refreshPost(id) {
+        const post = boardPosts.find((p) => p.id === id);
+        const li = [...document.querySelectorAll('#boardPostList [data-post-id]')].find((e) => e.dataset.postId === id);
+        if (post && li) li.outerHTML = postHtml(post);
+    }
+
+    async function loadActivity() {
+        if (!actEnabled()) return;
+        try {
+            actRows = tableToActivity(await loadSheet(sheetId(boardConfig.activity.sheetUrl)));
+            if (actPending.length && (actRows.length >= actPendingBase + actPending.length || Date.now() - actPendingAt > 40000)) actPending = [];
+            const busy = document.activeElement?.closest?.('[data-compose]');
+            document.querySelectorAll('#boardPostList [data-post-id]').forEach((li) => {
+                if (busy && li.contains(busy)) return;
+                refreshPost(li.dataset.postId);
+            });
+        } catch {}
+    }
+
+    // 설문지에 몰래 제출한다(응답 내용은 읽을 수 없어 성공 여부는 알 수 없다). 화면에는 바로 반영해 둔다.
+    async function sendActivity(row) {
+        const a = boardConfig.activity;
+        const body = new URLSearchParams();
+        Object.entries({ type: row.type, post: row.post, parent: row.parent || '', name: row.name || '', body: row.body || '' }).forEach(([k, v]) => {
+            if (v && a.entries[k]) body.append(a.entries[k], v);
+        });
+        if (!actPending.length) { actPendingBase = actRows.length; actPendingAt = Date.now(); }
+        actPending.push({ ...row, id: `p${Date.now()}${Math.random().toString(36).slice(2, 5)}`, name: row.name || '방문자', time: null, pending: true });
+        try {
+            await fetch(a.formUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+        } catch {
+            actPending.pop();
+            if (window.showToast) window.showToast('전송하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+        }
+        [4000, 10000, 20000].forEach((ms) => setTimeout(loadActivity, ms));
+    }
+
+    function throttled() {
+        if (Date.now() - lastSendAt < 3000) {
+            if (window.showToast) window.showToast('잠시 후 다시 눌러 주세요.');
+            return true;
+        }
+        lastSendAt = Date.now();
+        return false;
+    }
+
+    async function onReact(postId, kind) {
+        if (throttled()) return;
+        const store = lsGet('hdlee_board_react', {});
+        const cur = store[postId];
+        if (cur === kind) {
+            delete store[postId];
+            lsSet('hdlee_board_react', store);
+            await sendActivity({ type: `취소${kind}`, post: postId });
+        } else {
+            if (cur) await sendActivity({ type: `취소${cur}`, post: postId });
+            store[postId] = kind;
+            lsSet('hdlee_board_react', store);
+            await sendActivity({ type: kind, post: postId });
+        }
+        refreshPost(postId);
+    }
+
+    async function onCompose(form) {
+        const body = form.elements.body.value.trim();
+        const name = form.elements.name.value.trim().slice(0, 30);
+        if (!body || throttled()) return;
+        lsSet('hdlee_board_name', name);
+        const parent = form.dataset.parent;
+        delete replyDraft[parent];
+        const postId = form.dataset.post;
+        openThreads.add(postId);
+        await sendActivity({ type: '댓글', post: postId, parent, name, body });
+        refreshPost(postId);
+    }
+
+    const visiblePosts = () => { const h = hiddenIds(); return boardPosts.filter((p) => !h.has(p.id)); };
+
     function renderBoardPosts() {
         const box = document.getElementById('boardPostList');
-        const list = boardPosts.slice(0, boardShown);
-        box.innerHTML = boardPosts.length
-            ? list.map((p) => `
-                <li class="py-4">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <span class="w-7 h-7 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-[11px] font-bold flex-shrink-0">${esc(p.name.slice(0, 1))}</span>
-                        <span class="min-w-0 text-sm font-semibold text-slate-800 break-words">${esc(p.name.slice(0, 30))}</span>
-                        <span class="text-[11px] text-slate-400 ml-auto flex-shrink-0">${p.time ? `${fmtDate(p.time)} ${String(p.time.getHours()).padStart(2, '0')}:${String(p.time.getMinutes()).padStart(2, '0')}` : esc(p.timeText)}</span>
-                    </div>
-                    <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line break-words pl-9">${esc(p.body)}</p>
-                </li>`).join('') + (boardPosts.length > boardShown
+        const all = visiblePosts();
+        const list = all.slice(0, boardShown);
+        box.innerHTML = all.length
+            ? list.map(postHtml).join('') + (all.length > boardShown
                 ? '<li class="pt-4 text-center"><button type="button" data-board-more class="text-xs px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium">더 보기</button></li>'
                 : '')
             : `<li class="text-xs text-slate-400 text-center py-6">${boardConfig?.moderation ? '아직 공개된 글이 없습니다. 첫 글을 남겨 주세요!' : '아직 글이 없습니다. 첫 글을 남겨 주세요!'}</li>`;
@@ -580,7 +782,8 @@
         }
         box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
         try {
-            boardPosts = tableToPosts(await loadSheet(id), !!boardConfig.moderation);
+            const [table] = await Promise.all([loadSheet(id), loadActivity()]);
+            boardPosts = tableToPosts(table, !!boardConfig.moderation);
             renderBoardPosts();
         } catch {
             box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</li>';
@@ -623,11 +826,46 @@
             setTimeout(loadBoardPosts, 7000);
         });
         document.getElementById('boardRefreshBtn').addEventListener('click', () => { renderNotices(); loadBoardPosts(); });
-        document.getElementById('boardPostList').addEventListener('click', (e) => {
-            if (!e.target.closest('[data-board-more]')) return;
-            boardShown += BOARD_PAGE_SIZE;
-            renderBoardPosts();
+        const postList = document.getElementById('boardPostList');
+        postList.addEventListener('click', (e) => {
+            if (e.target.closest('[data-board-more]')) {
+                boardShown += BOARD_PAGE_SIZE;
+                return renderBoardPosts();
+            }
+            const li = e.target.closest('[data-post-id]');
+            if (!li) return;
+            const id = li.dataset.postId;
+            const react = e.target.closest('[data-react]');
+            if (react) return onReact(id, react.dataset.react);
+            if (e.target.closest('[data-thread-toggle]')) {
+                if (openThreads.has(id)) openThreads.delete(id); else openThreads.add(id);
+                return refreshPost(id);
+            }
+            const reply = e.target.closest('[data-reply]');
+            if (reply) {
+                replyDraft[reply.dataset.reply] = reply.dataset.replyTo ? `@${reply.dataset.replyTo} ` : '';
+                return refreshPost(id);
+            }
+            const cancel = e.target.closest('[data-reply-cancel]');
+            if (cancel) {
+                delete replyDraft[cancel.dataset.replyCancel];
+                refreshPost(id);
+            }
         });
+        postList.addEventListener('submit', (e) => {
+            const form = e.target.closest('[data-compose]');
+            if (!form) return;
+            e.preventDefault();
+            onCompose(form);
+        });
+        // 관리자 화면(admin.js)이 글·댓글 숨김 목록을 만들 때 쓴다.
+        window.hdleeBoard = {
+            snapshot: () => ({
+                hidden: [...hiddenIds()],
+                posts: boardPosts.map((p) => ({ id: p.id, who: p.name, text: p.body, time: p.time ? FMT_TIME(p.time) : p.timeText })),
+                comments: actRows.filter((r) => r.type === '댓글' && r.body).map((r) => ({ id: r.id, post: r.post, who: r.name, text: r.body, time: r.time ? FMT_TIME(r.time) : r.timeText })),
+            }),
+        };
         loadBoardPosts();
     }
 

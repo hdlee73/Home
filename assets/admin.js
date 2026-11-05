@@ -566,6 +566,8 @@
             $('adminFormUrl').value = board.formUrl || '';
             $('adminSheetUrl').value = board.sheetUrl || '';
             $('adminModeration').checked = !!board.moderation;
+            $('adminActSheetUrl').value = board.activity?.sheetUrl || '';
+            $('adminActStatus').textContent = board.activity?.formUrl ? '✅ 반응 설문지가 연결되어 있습니다. 바꾸려면 새 미리 채워진 링크를 붙여 넣고 저장하세요.' : '아직 연결되지 않았습니다. 연결 전에는 좋아요·댓글이 보이지 않습니다.';
             $('adminGaId').value = stats.ga || '';
             updateStatsLink();
         } catch {}
@@ -629,6 +631,20 @@
         }
     }
 
+    // 미리 채워진 링크의 entry.숫자=표시값 에서 질문별 칸 이름을 알아낸다.
+    function parseActivityLink(link) {
+        const u = new URL(link);
+        const m = u.pathname.match(/^\/forms\/d\/e\/([\w-]+)/);
+        if (u.hostname !== 'docs.google.com' || !m) throw new Error('링크 형식');
+        const entries = {};
+        u.searchParams.forEach((v, k) => {
+            const key = v.trim().toLowerCase();
+            if (/^entry\.\d+$/.test(k) && ['type', 'post', 'parent', 'name', 'body'].includes(key)) entries[key] = k;
+        });
+        if (Object.keys(entries).length < 5) throw new Error('칸 부족');
+        return { formUrl: `https://docs.google.com/forms/d/e/${m[1]}/formResponse`, entries };
+    }
+
     async function saveBoardSettings() {
         const formUrl = $('adminFormUrl').value.trim();
         const sheetUrl = $('adminSheetUrl').value.trim();
@@ -636,12 +652,21 @@
         if (formUrl && !/^https:\/\/docs\.google\.com\/forms\/d\//.test(formUrl)) return toast('설문지 주소는 https://docs.google.com/forms/d/... 형식이어야 합니다. (보내기 → 링크에서 URL 단축을 끄세요)');
         if (sheetUrl && !/^https:\/\/docs\.google\.com\/spreadsheets\/d\/[\w-]{20,}/.test(sheetUrl)) return toast('시트 주소는 https://docs.google.com/spreadsheets/d/... 형식이어야 합니다.');
         if (gaId && !/^G-[A-Z0-9]{4,20}$/.test(gaId)) return toast('측정 ID는 G-로 시작합니다. (예: G-AB12CD34EF)');
+        const actLink = $('adminActFormLink').value.trim();
+        const actSheet = $('adminActSheetUrl').value.trim();
+        let actForm = null;
+        if (actLink) {
+            try { actForm = parseActivityLink(actLink); } catch { return toast('미리 채워진 링크에서 칸 5개(type, post, parent, name, body)를 찾지 못했습니다. 각 질문에 해당 글자를 넣고 다시 받아 주세요.'); }
+        }
+        if (actSheet && !/^https:\/\/docs\.google\.com\/spreadsheets\/d\/[\w-]{20,}/.test(actSheet)) return toast('반응 시트 주소는 https://docs.google.com/spreadsheets/d/... 형식이어야 합니다.');
         const btn = $('adminBoardSaveBtn');
         btn.disabled = true;
         btn.classList.add('opacity-60');
         try {
             const [board, stats] = await Promise.all([readJson(BOARD_PATH), readJson(ANALYTICS_PATH)]);
             const nextBoard = { ...board.data, formUrl, sheetUrl, moderation: $('adminModeration').checked };
+            if (actForm || actSheet) nextBoard.activity = { ...(board.data.activity || {}), ...(actForm || {}), sheetUrl: actSheet };
+            else delete nextBoard.activity;
             if (JSON.stringify(nextBoard) !== JSON.stringify(board.data)) {
                 await writeJson(BOARD_PATH, nextBoard, board.sha, '홈페이지에서 방문자 게시판 설정 변경');
             }
@@ -655,6 +680,44 @@
         } finally {
             btn.disabled = false;
             btn.classList.remove('opacity-60');
+        }
+    }
+
+    // ---------- 방문자 글·댓글 숨기기 ----------
+
+    function renderHideList(snap) {
+        const hidden = new Set(snap.hidden);
+        const rows = [
+            ...snap.posts.map((r) => ({ ...r, kind: '글' })),
+            ...snap.comments.map((r) => ({ ...r, kind: '댓글' })),
+        ].sort((a, b) => String(b.time).localeCompare(String(a.time)));
+        $('adminHideList').innerHTML = rows.length ? rows.map((r) => `
+            <li class="p-2 rounded-xl border border-slate-100 bg-white flex items-start gap-2">
+                <div class="flex-1 min-w-0">
+                    <div class="text-[11px] text-slate-400">${esc(r.kind)} · ${esc(r.who.slice(0, 20))} · ${esc(r.time)}</div>
+                    <div class="text-xs text-slate-700 break-words">${esc(r.text.slice(0, 120))}</div>
+                </div>
+                <button type="button" data-hide-id="${esc(r.id)}" class="flex-shrink-0 px-2 py-1 rounded-lg border text-[11px] ${hidden.has(r.id) ? 'border-violet-300 text-violet-600' : 'border-slate-200 text-slate-500 hover:text-red-600'}">${hidden.has(r.id) ? '숨김 해제' : '숨기기'}</button>
+            </li>`).join('') : '<li class="text-xs text-slate-400 text-center py-3">글·댓글이 없습니다.</li>';
+    }
+
+    function loadHideList() {
+        if (!window.hdleeBoard) return toast('방문자 게시판 화면에서 관리자 창을 열어 주세요.');
+        renderHideList(window.hdleeBoard.snapshot());
+    }
+
+    async function toggleHide(id) {
+        try {
+            const { sha, data } = await readJson(BOARD_PATH);
+            const set = new Set(data.hidden || []);
+            if (set.has(id)) set.delete(id); else set.add(id);
+            await writeJson(BOARD_PATH, { ...data, hidden: [...set] }, sha, '홈페이지에서 글·댓글 숨김 변경');
+            const snap = window.hdleeBoard.snapshot();
+            snap.hidden = [...set];
+            renderHideList(snap);
+            toast('✅ 저장했습니다. 1~2분 뒤 홈페이지에 반영됩니다.');
+        } catch (e) {
+            toast(e.status === 409 ? '설정이 방금 바뀌었습니다. 다시 시도해 주세요.' : '저장하지 못했습니다. 토큰 권한(Contents 쓰기)을 확인해 주세요.');
         }
     }
 
@@ -786,6 +849,11 @@
         $('adminResumeBtn').addEventListener('click', uploadResume);
         $('adminNoticeAddBtn').addEventListener('click', addNotice);
         $('adminBoardSaveBtn').addEventListener('click', saveBoardSettings);
+        $('adminHideLoadBtn').addEventListener('click', loadHideList);
+        $('adminHideList').addEventListener('click', (e) => {
+            const b = e.target.closest('[data-hide-id]');
+            if (b) toggleHide(b.dataset.hideId);
+        });
         $('adminGaId').addEventListener('input', updateStatsLink);
         $('adminNoticeList').addEventListener('click', (e) => {
             const del = e.target.closest('[data-del-notice]');
