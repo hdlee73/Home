@@ -695,15 +695,22 @@
 
     async function loadActivity() {
         if (!actEnabled()) return;
+        const status = document.getElementById('boardActStatus');
+        const say = (t) => { if (status) status.textContent = t; };
         try {
-            actRows = tableToActivity(await loadSheet(sheetId(boardConfig.activity.sheetUrl)));
+            const table = await loadSheet(sheetId(boardConfig.activity.sheetUrl));
+            actRows = tableToActivity(table);
+            say(`반응 기록 ${actRows.length}건 읽음 (열: ${table.cols.map((c) => c.label || '(빈칸)').join(', ')})`);
             if (actPending.length && (actRows.length >= actPendingBase + actPending.length || Date.now() - actPendingAt > 40000)) actPending = [];
             const busy = document.activeElement?.closest?.('[data-compose]');
             document.querySelectorAll('#boardPostList [data-post-id]').forEach((li) => {
                 if (busy && li.contains(busy)) return;
                 refreshPost(li.dataset.postId);
             });
-        } catch {}
+        } catch (e) {
+            console.error('board activity', e);
+            say(`반응 시트 읽기 실패: ${e.message} — 시트 공유가 '링크가 있는 모든 사용자(뷰어)'인지 확인하세요.`);
+        }
     }
 
     // 설문지에 몰래 제출한다(응답 내용은 읽을 수 없어 성공 여부는 알 수 없다). 화면에는 바로 반영해 둔다.
