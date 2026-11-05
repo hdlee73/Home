@@ -509,9 +509,10 @@
     }
 
     // 공개된 시트는 Google Visualization 응답(JSONP)으로 읽는다. CORS·API 키가 필요 없다.
+    let sheetSeq = 0;
     function loadSheet(id) {
         return new Promise((resolve, reject) => {
-            const cb = `__boardSheet${Date.now()}`;
+            const cb = `__boardSheet${Date.now()}_${++sheetSeq}`;
             const script = document.createElement('script');
             const done = () => { delete window[cb]; script.remove(); clearTimeout(timer); };
             const timer = setTimeout(() => { done(); reject(new Error('timeout')); }, 15000);
@@ -782,9 +783,9 @@
         }
         box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> 불러오는 중...</li>';
         try {
-            const [table] = await Promise.all([loadSheet(id), loadActivity()]);
-            boardPosts = tableToPosts(table, !!boardConfig.moderation);
+            boardPosts = tableToPosts(await loadSheet(id), !!boardConfig.moderation);
             renderBoardPosts();
+            loadActivity();   // 반응 시트가 늦거나 실패해도 글 목록은 먼저 보여 준다
         } catch {
             box.innerHTML = '<li class="text-xs text-slate-400 text-center py-6">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</li>';
         }
