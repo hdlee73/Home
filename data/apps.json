@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T18:41:01.375Z",
+  "updatedAt": "2026-11-06T00:08:16.721Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.2.0.apk",
             "size": 9955655,
-            "downloads": 15,
+            "downloads": 17,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.2.0/fss-insights-v2.2.0.apk"
           }
         ],
