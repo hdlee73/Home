@@ -1,7 +1,20 @@
 {
-  "updatedAt": "2026-11-06T15:21:26.601Z",
+  "updatedAt": "2026-11-06T22:05:49.463Z",
   "owner": "hdlee73",
   "apps": [
+    {
+      "repo": "fss-insights-web",
+      "name": "fss-insights-web",
+      "description": "(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트",
+      "icon": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "url": "https://github.com/hdlee73/fss-insights-web",
+      "homepage": null,
+      "pushedAt": "2026-11-06T11:30:15Z",
+      "release": null
+    },
     {
       "repo": "FSS_insights",
       "name": "FSS_insights",
@@ -29,58 +42,6 @@
         ],
         "primaryAsset": "fss-insights-v2.2.0.apk",
         "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.2.0"
-      }
-    },
-    {
-      "repo": "FSS_Insights_Win",
-      "name": "FSS_Insights_Win",
-      "description": "(윈도우) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 앱",
-      "icon": null,
-      "language": "Kotlin",
-      "topics": [
-        "compose-multiplatform",
-        "desktop",
-        "kotlin",
-        "windows"
-      ],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/FSS_Insights_Win",
-      "homepage": null,
-      "pushedAt": "2026-11-02T00:04:31Z",
-      "release": {
-        "tag": "v2.0.4",
-        "name": "FSS Insights for Windows v2.0.4",
-        "publishedAt": "2026-10-27T06:35:27Z",
-        "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/tag/v2.0.4",
-        "notes": "# FSS Insights for Windows v2.0.4 변경 내용\n\n- 안드로이드 앱 v2.0.4와 기능을 맞췄습니다(2.0.0 이후 변경 모두 포함).\n- **스마트 법령검색** 추가: 조문이 위임한 하위 규정을 한 화면에 보여 주고, 위임 문구가 있는 규정과 인용만 한 규정을 구분합니다. 법령 비교표 화면 보기와 PDF·한글(HWPX) 저장(PDF와 같은 범위·서식)을 지원합니다.\n- **투자자별 순매수**(개인·외국인·기관계)를 금융시장 동향의 KOSPI·KOSDAQ 칸과 오늘의 브리핑에 표시합니다.\n- 보도자료·리포트·유권해석·비조치의견서·금감원/금융위 행정지도에 **핵심 내용 요약**을 표시합니다(내장 추출 요약).\n- 보도자료·리포트 수집 보완, 신용카드사 재무 표기, 업데이트 내용 안내 팝업 등 안드로이드 v1.6~v2.0의 변경을 반영했습니다.\n- **ARM64(Windows on ARM)용 설치 파일**(`fss-insights-windows-arm64-v2.0.4.msi`)을 함께 제공합니다.\n",
-        "assets": [
-          {
-            "name": "fss-insights-windows-arm64-v2.0.4.msi",
-            "size": 105996816,
-            "downloads": 1,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-arm64-v2.0.4.msi"
-          },
-          {
-            "name": "fss-insights-windows-arm64-v2.0.4.msi.sha256",
-            "size": 105,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-arm64-v2.0.4.msi.sha256"
-          },
-          {
-            "name": "fss-insights-windows-v2.0.4.msi",
-            "size": 108663472,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-v2.0.4.msi"
-          },
-          {
-            "name": "fss-insights-windows-v2.0.4.msi.sha256",
-            "size": 99,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-v2.0.4.msi.sha256"
-          }
-        ],
-        "primaryAsset": "fss-insights-windows-v2.0.4.msi",
-        "zipball": "https://api.github.com/repos/hdlee73/FSS_Insights_Win/zipball/v2.0.4"
       }
     },
     {
@@ -291,41 +252,6 @@
         ],
         "primaryAsset": "DailyHabit-1.9.0.apk",
         "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.9.0"
-      }
-    },
-    {
-      "repo": "SnapRead",
-      "name": "SnapRead",
-      "description": "(안드로이드)사진을 찍어서 문자를 추출하거나 스캔 등을 할 수 있는 앱",
-      "icon": null,
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 0,
-      "url": "https://github.com/hdlee73/SnapRead",
-      "homepage": null,
-      "pushedAt": "2026-10-13T02:31:46Z",
-      "release": {
-        "tag": "v1.7.0",
-        "name": "Snap Read v1.7.0",
-        "publishedAt": "2026-10-13T02:31:47Z",
-        "url": "https://github.com/hdlee73/SnapRead/releases/tag/v1.7.0",
-        "notes": "Snap Read 안드로이드 앱 1.7.0\n\n- **SnapRead-1.7.0.apk** : 휴대폰에 바로 설치 (출처를 알 수 없는 앱 설치 허용 필요)\n- **SnapRead-1.7.0.aab** : Google Play Console 업로드용\n\n\n",
-        "assets": [
-          {
-            "name": "SnapRead-1.7.0.aab",
-            "size": 29688974,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.aab"
-          },
-          {
-            "name": "SnapRead-1.7.0.apk",
-            "size": 54164360,
-            "downloads": 3,
-            "url": "https://github.com/hdlee73/SnapRead/releases/download/v1.7.0/SnapRead-1.7.0.apk"
-          }
-        ],
-        "primaryAsset": "SnapRead-1.7.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/SnapRead/zipball/v1.7.0"
       }
     }
   ],
