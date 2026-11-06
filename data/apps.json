@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T00:08:16.721Z",
+  "updatedAt": "2026-11-06T07:20:32.733Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-05T01:37:06Z",
+      "pushedAt": "2026-11-06T05:35:48Z",
       "release": {
         "tag": "v2.2.0",
         "name": "FSS Insights v2.2.0",
@@ -23,7 +23,7 @@
           {
             "name": "fss-insights-v2.2.0.apk",
             "size": 9955655,
-            "downloads": 17,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.2.0/fss-insights-v2.2.0.apk"
           }
         ],
@@ -69,7 +69,7 @@
           {
             "name": "fss-insights-windows-v2.0.4.msi",
             "size": 108663472,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/FSS_Insights_Win/releases/download/v2.0.4/fss-insights-windows-v2.0.4.msi"
           },
           {
@@ -168,7 +168,7 @@
           {
             "name": "EngHub-v1.44.0.apk",
             "size": 146484587,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.44.0/EngHub-v1.44.0.apk"
           }
         ],
@@ -345,6 +345,7 @@
     "FSS_Helper_app",
     "FSS_insights",
     "FSS_Insights_Win",
+    "fss-insights-web",
     "Home",
     "InvestOn",
     "newapp",
