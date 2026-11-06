@@ -2,15 +2,14 @@
   "owner": "hdlee73",
   "_설명": "show 에 적은 저장소만 홈페이지 '내 앱'에 보이며, 적은 순서대로 표시됩니다. 후보 목록은 data/apps.json 의 candidates 를 참고하세요.",
   "show": [
+    "fss-insights-web",
     "FSS_insights",
-    "FSS_Insights_Win",
     "Everylaw",
     "EveryCorp",
     "EngHub",
     "Everynote",
     "Everynote_Win",
-    "Dailyhabit",
-    "SnapRead"
+    "Dailyhabit"
   ],
   "overrides": {
     "예시-저장소이름": {
@@ -47,6 +46,9 @@
     },
     "Everynote": {
       "description": "(안드로이드)PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능"
+    },
+    "fss-insights-web": {
+      "description": "(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트"
     }
   }
 }
