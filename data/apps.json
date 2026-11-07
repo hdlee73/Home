@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T02:25:25.896Z",
+  "updatedAt": "2026-11-07T07:02:02.963Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.2.0.apk",
             "size": 9955655,
-            "downloads": 1,
+            "downloads": 5,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.2.0/fss-insights-v2.2.0.apk"
           }
         ],
@@ -217,7 +217,7 @@
           {
             "name": "SHA256SUMS.txt",
             "size": 392,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/SHA256SUMS.txt"
           }
         ],
