@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T02:18:45.720Z",
+  "updatedAt": "2026-11-07T02:25:25.896Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -11,7 +11,7 @@
       "topics": [],
       "stars": 0,
       "url": "https://github.com/hdlee73/fss-insights-web",
-      "homepage": null,
+      "homepage": "https://hdlee73.github.io/fss-insights-web/",
       "pushedAt": "2026-11-06T11:30:15Z",
       "release": null
     },
