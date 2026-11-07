@@ -48,7 +48,7 @@
       "description": "(안드로이드)PDF, HWP, DOC 등을 읽고 필기할 수 있는 윈도우용 프로그램(HWP, DOC 등은 PDF로 변환), epub도 가능"
     },
     "fss-insights-web": {
-      "description": "(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트"
+      "description": "https://hdlee73.github.io/fss-insights-web\n(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트"
     }
   }
 }
