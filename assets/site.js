@@ -84,13 +84,16 @@
                     ${downloadUrl
                         ? `<a href="${safeUrl(downloadUrl)}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium shadow-sm transition-all">
                                <i class="fa-solid fa-download"></i> 최신 버전 다운로드</a>`
-                        : `<span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 text-slate-500 text-xs font-medium">
-                               <i class="fa-solid fa-hourglass-half"></i> 릴리스 준비 중</span>`}
+                        : app.homepage
+                            ? `<a href="${safeUrl(app.homepage)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium shadow-sm transition-all">
+                                   <i class="fa-solid fa-arrow-up-right-from-square"></i> 웹사이트 열기</a>`
+                            : `<span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 text-slate-500 text-xs font-medium">
+                                   <i class="fa-solid fa-hourglass-half"></i> 릴리스 준비 중</span>`}
                     ${rel ? `<a href="${safeUrl(rel.url)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-slate-600 text-xs font-medium transition-all">
                                <i class="fa-solid fa-scroll"></i> 릴리스 노트</a>` : ''}
                     <a href="${safeUrl(app.url)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-slate-600 text-xs font-medium transition-all">
                         <i class="fa-brands fa-github"></i> GitHub</a>
-                    ${app.homepage ? `<a href="${safeUrl(app.homepage)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-slate-600 text-xs font-medium transition-all">
+                    ${app.homepage && downloadUrl ? `<a href="${safeUrl(app.homepage)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-600 text-slate-600 text-xs font-medium transition-all">
                         <i class="fa-solid fa-globe"></i> 홈페이지</a>` : ''}
                 </div>
                 ${otherAssets}

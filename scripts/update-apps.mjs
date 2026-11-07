@@ -72,7 +72,8 @@ for (const repo of repos) {
     topics: repo.topics || [],
     stars: repo.stargazers_count,
     url: repo.html_url,
-    homepage: ov.homepage || repo.homepage || null,
+    // 릴리스가 없는 웹 앱은 홈페이지 주소(직접 지정 > 저장소 홈페이지 > GitHub Pages)로 바로 연결한다.
+    homepage: ov.homepage || repo.homepage || (!rel && repo.has_pages ? `https://${owner}.github.io/${repo.name}/` : null),
     pushedAt: repo.pushed_at,
     release: rel
       ? {

@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.11.4",
-  "released": "2026-11-05",
+  "version": "2.11.5",
+  "released": "2026-11-07",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.11.5",
+      "date": "2026-11-07",
+      "items": [
+        "릴리스가 없는 웹버전 앱은 '릴리스 준비 중' 대신 '웹사이트 열기' 링크 버튼으로 표시 (GitHub Pages 주소 자동 인식)"
+      ]
+    },
     {
       "version": "2.11.4",
       "date": "2026-11-05",
