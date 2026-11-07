@@ -60,24 +60,64 @@
     "addedAt": "2026-10-24T11:29:04.728Z",
     "files": [
       {
-        "id": "1UX7DY_ehuotJFp8xFcH-Gt2QQ3WUqa3n",
-        "name": "01_금융투자",
-        "folder": true
+        "id": "1_Ak3C480TKHu46FPyhfRxWwdNMnuMsfv",
+        "name": "(01_금융투자)_(202501)_펀드기초 강의자료.pdf",
+        "folder": false
       },
       {
-        "id": "1yIeLrU6lwBWzMtp9hF6WwdyMq-UdDY1e",
-        "name": "02_Tokenization",
-        "folder": true
+        "id": "1M7oon4gwP_vgzQXivOa5Lyo6rYTL-25K",
+        "name": "(01_금융투자)_(202506)_(PF)유동화 기초 강의자료.pdf",
+        "folder": false
       },
       {
-        "id": "18RfINadG7Qpa-hKgtRiQf9jbp-5HVezi",
-        "name": "03_AI, IT",
-        "folder": true
+        "id": "15PoLOE84xchqW7lK2baSqjwCrIWniOh0",
+        "name": "(01_금융투자)_자본시장법 조문목록.pdf",
+        "folder": false
       },
       {
-        "id": "13zB1EvtvVSoio9mxAPI3t8UkglP6DYDw",
-        "name": "10_기타자료",
-        "folder": true
+        "id": "1Sj2QQc9yOAXNcm0aj7G6-eRf8nLTMNFv",
+        "name": "(01_금융투자)_자본시장법령(2025.12).pdf",
+        "folder": false
+      },
+      {
+        "id": "1J4gWc4sAKRDqsVaVx44HpgN8JHTsVKqW",
+        "name": "(01_금융투자)_집합투자_불건전영업행위.pdf",
+        "folder": false
+      },
+      {
+        "id": "15LbmJxgf85cjyOa4Mpm_lKMRdWz0EgsV",
+        "name": "(02_Tokenization)_(202511_IOSCO)PD809(토큰화).pdf",
+        "folder": false
+      },
+      {
+        "id": "1x-mIF1zA9S7mw5kPpncKp0YASaolJjvt",
+        "name": "(02_Tokenization)_(202511_MAS)guardian-fixed-income-framework-v1_1.pdf",
+        "folder": false
+      },
+      {
+        "id": "1T_U_ftIPkIU_ckolzrRgEfp2WJDYfTzs",
+        "name": "(02_Tokenization)_(202511_MAS)project-guardian-operationalising-tokenised-funds-1.pdf",
+        "folder": false
+      },
+      {
+        "id": "1KYLHmbpVfb3pFgfakMf4H6wvzjpc2Hkh",
+        "name": "(02_Tokenization)_(202610_자본연)자본시장 토큰화의 확산_해외 주요 사례와 국내 도입 과제.pdf",
+        "folder": false
+      },
+      {
+        "id": "1YE_7DZ0AjAaB2_G7cG1KWPP4itb83gI7",
+        "name": "(02_Tokenization)_BlackRock_BUIDL.pdf",
+        "folder": false
+      },
+      {
+        "id": "1UtFM0d3xhHMFrlhL2PwKL_sIY7wrPrFe",
+        "name": "(03_AI)_(202512_자본연)) AI와 자산운용： 패러다임의 전환 가능성 고찰.pdf",
+        "folder": false
+      },
+      {
+        "id": "1KgIA-0eR5nWzJM5c0L81Dihn4rdO15wo",
+        "name": "(10_기타)_fss-insights-v2.2.0.apk",
+        "folder": false
       }
     ],
     "sub": "업무참고"
