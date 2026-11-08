@@ -211,11 +211,28 @@
         const d = DRIVE[link.driveApp] || DRIVE.file;
         let files = (Array.isArray(link.files) ? link.files : []).filter((f) => /^[\w-]{10,}$/.test(f?.id || ''));
         if (!files.length && link.title) files = [{ id: link.driveId, name: link.title, folder: link.driveApp === 'folder' }];
-        const rows = files.slice(0, DRIVE_FILES_SHOWN).map((f) => {
+        // 파일 한 줄: 이름을 누르면 미리보기(새 탭), 오른쪽 아이콘으로 바로 다운로드.
+        const row = (f) => {
             const href = f.folder ? `https://drive.google.com/drive/folders/${f.id}` : link.driveApp === 'folder' ? `https://drive.google.com/file/d/${f.id}/view` : d.open(f.id);
-            return `<li><a href="${href}" target="_blank" rel="noopener" class="flex items-start gap-2.5 py-2.5 text-sm text-slate-700 hover:text-blue-600">
-                        <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0 mt-0.5"></i><span class="min-w-0 break-words">${esc(f.name)}</span></a></li>`;
-        }).join('');
+            // 폴더 안의 구글 문서(확장자 없음)는 uc 다운로드가 안 되므로 확장자가 있는 파일에만 버튼을 단다.
+            const dl = f.folder ? '' : link.driveApp === 'folder' ? (/\.\w{1,5}$/.test(f.name || '') ? DRIVE.file.download(f.id) : '') : (d.download ? d.download(f.id) : '');
+            return `<li class="flex items-start gap-2">
+                        <a href="${href}" target="_blank" rel="noopener" class="flex-1 min-w-0 flex items-start gap-2.5 py-2.5 text-sm text-slate-700 hover:text-blue-600">
+                            <i class="${fileIcon(f.name, f.folder)} w-4 text-center flex-shrink-0 mt-0.5"></i><span class="min-w-0 break-words">${esc(f.name)}</span></a>
+                        ${dl ? `<a href="${dl}" target="_blank" rel="noopener" title="다운로드" aria-label="${esc(f.name)} 다운로드" class="flex-shrink-0 w-8 h-8 mt-1 grid place-items-center rounded-lg text-slate-400 hover:text-blue-600 hover:bg-slate-50"><i class="fa-solid fa-download text-xs"></i></a>` : ''}
+                    </li>`;
+        };
+        const rows = files.slice(0, DRIVE_FILES_SHOWN).map(row).join('');
+        const rest = files.slice(DRIVE_FILES_SHOWN);
+        // 나머지 파일은 <details>로 접어 두고 '외 N개 더 보기'를 누르면 펼친다(목록을 다시 그려도 별도 이벤트 연결이 필요 없다).
+        const more = rest.length ? `
+                    <details class="drive-more border-t border-slate-50">
+                        <summary class="list-none cursor-pointer select-none py-2.5 text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-chevron-down text-[10px] drive-more-icon"></i>
+                            <span class="drive-more-closed">외 ${rest.length}개 더 보기</span><span class="drive-more-open">접기</span>
+                        </summary>
+                        <ul class="divide-y divide-slate-50 border-t border-slate-50">${rest.map(row).join('')}</ul>
+                    </details>` : '';
         return `
             <article class="col-span-full rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-2">
                 ${link.title && link.title !== catOf(link) ? `<h4 class="font-bold text-slate-800 text-sm">${esc(link.title)}</h4>` : ''}
@@ -223,7 +240,7 @@
                 <div class="rounded-xl bg-white border border-slate-100 px-4">
                     <div class="text-[11px] font-semibold text-slate-400 pt-3">첨부파일 ${files.length}개</div>
                     <ul class="divide-y divide-slate-50">${rows}</ul>
-                    ${files.length > DRIVE_FILES_SHOWN ? `<div class="text-[11px] text-slate-400 py-2.5">외 ${files.length - DRIVE_FILES_SHOWN}개</div>` : ''}
+                    ${more || '<div class="pb-1"></div>'}
                 </div>
             </article>`;
     }

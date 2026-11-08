@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="site-version" content="2.11.5">
+    <meta name="site-version" content="2.11.6">
     <meta name="author" content="이현덕 (hdlee73@gmail.com)">
     <title>이현덕 홈페이지</title>
     <meta name="description" content="공인회계사 이현덕의 홈페이지입니다. 이력과 직접 만든 앱, 유튜브·블로그 자료실을 모아 두었습니다.">
@@ -74,6 +74,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .drive-more > summary::-webkit-details-marker { display: none; }
+        .drive-more .drive-more-open { display: none; }
+        .drive-more[open] .drive-more-open { display: inline; }
+        .drive-more[open] .drive-more-closed { display: none; }
+        .drive-more-icon { transition: transform .15s; }
+        .drive-more[open] .drive-more-icon { transform: rotate(180deg); }
     </style>
 </head>
 <body class="antialiased min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8 selection:bg-blue-100 selection:text-blue-900">
