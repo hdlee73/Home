@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T07:53:31.225Z",
+  "updatedAt": "2026-11-09T18:41:34.319Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.5.0.apk",
             "size": 10455504,
-            "downloads": 20,
+            "downloads": 21,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.5.0/fss-insights-v2.5.0.apk"
           }
         ],
@@ -129,7 +129,7 @@
           {
             "name": "EngHub-v1.44.0.apk",
             "size": 146484587,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.44.0/EngHub-v1.44.0.apk"
           }
         ],
@@ -158,7 +158,7 @@
           {
             "name": "Everynote-v1.70.1.apk",
             "size": 125406866,
-            "downloads": 1,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk"
           },
           {
@@ -246,7 +246,7 @@
           {
             "name": "DailyHabit-1.9.0.apk",
             "size": 18287162,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.9.0/DailyHabit-1.9.0.apk"
           }
         ],
