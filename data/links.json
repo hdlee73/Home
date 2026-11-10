@@ -61,12 +61,12 @@
     "files": [
       {
         "id": "1_Ak3C480TKHu46FPyhfRxWwdNMnuMsfv",
-        "name": "(01_금융투자)_(202501)_펀드기초 강의자료.pdf",
+        "name": "(01_금융투자)_(2501)_펀드기초 강의자료.pdf",
         "folder": false
       },
       {
         "id": "1M7oon4gwP_vgzQXivOa5Lyo6rYTL-25K",
-        "name": "(01_금융투자)_(202506)_(PF)유동화 기초 강의자료.pdf",
+        "name": "(01_금융투자)_(2506)_(PF)유동화 기초 강의자료.pdf",
         "folder": false
       },
       {
@@ -85,28 +85,28 @@
         "folder": false
       },
       {
+        "id": "1KYLHmbpVfb3pFgfakMf4H6wvzjpc2Hkh",
+        "name": "(02_토큰화)_(202610_자본연)자본시장 토큰화의 확산_해외 주요 사례와 국내 도입 과제.pdf",
+        "folder": false
+      },
+      {
         "id": "15LbmJxgf85cjyOa4Mpm_lKMRdWz0EgsV",
-        "name": "(02_Tokenization)_(202511_IOSCO)PD809(토큰화).pdf",
+        "name": "(02_토큰화)_(2511_IOSCO)PD809(토큰화).pdf",
         "folder": false
       },
       {
         "id": "1x-mIF1zA9S7mw5kPpncKp0YASaolJjvt",
-        "name": "(02_Tokenization)_(202511_MAS)guardian-fixed-income-framework-v1_1.pdf",
+        "name": "(02_토큰화)_(2511_MAS)guardian-fixed-income-framework-v1_1.pdf",
         "folder": false
       },
       {
         "id": "1T_U_ftIPkIU_ckolzrRgEfp2WJDYfTzs",
-        "name": "(02_Tokenization)_(202511_MAS)project-guardian-operationalising-tokenised-funds-1.pdf",
-        "folder": false
-      },
-      {
-        "id": "1KYLHmbpVfb3pFgfakMf4H6wvzjpc2Hkh",
-        "name": "(02_Tokenization)_(202610_자본연)자본시장 토큰화의 확산_해외 주요 사례와 국내 도입 과제.pdf",
+        "name": "(02_토큰화)_(2511_MAS)project-guardian-operationalising-tokenised-funds-1.pdf",
         "folder": false
       },
       {
         "id": "1YE_7DZ0AjAaB2_G7cG1KWPP4itb83gI7",
-        "name": "(02_Tokenization)_BlackRock_BUIDL.pdf",
+        "name": "(02_토큰화)_BlackRock_BUIDL.pdf",
         "folder": false
       },
       {
@@ -115,8 +115,8 @@
         "folder": false
       },
       {
-        "id": "1KgIA-0eR5nWzJM5c0L81Dihn4rdO15wo",
-        "name": "(10_기타)_fss-insights-v2.2.0.apk",
+        "id": "1iLt_7zSJZcCu7wvZuiRJZ6RKm0xmM38H",
+        "name": "(03_AI)_(2610_FSB)Sound Practices for Responsible Adoption of Artificial lIntelligence (AI).pdf",
         "folder": false
       }
     ],
