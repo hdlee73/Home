@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T23:12:09.506Z",
+  "updatedAt": "2026-11-11T02:58:31.768Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-10T22:18:28Z",
+      "pushedAt": "2026-11-10T23:56:28Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-10T22:18:11Z",
+      "pushedAt": "2026-11-11T02:02:10Z",
       "release": {
         "tag": "v2.7.0",
         "name": "FSS Insights v2.7.0",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.7.0.apk",
             "size": 10655748,
-            "downloads": 10,
+            "downloads": 13,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.7.0/fss-insights-v2.7.0.apk"
           }
         ],
@@ -94,7 +94,7 @@
           {
             "name": "everycorp-v1.11.1.apk",
             "size": 2218260,
-            "downloads": 6,
+            "downloads": 7,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk"
           },
           {
@@ -129,7 +129,7 @@
           {
             "name": "EngHub-v1.44.0.apk",
             "size": 146484587,
-            "downloads": 3,
+            "downloads": 4,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.44.0/EngHub-v1.44.0.apk"
           }
         ],
@@ -256,9 +256,6 @@
     }
   ],
   "candidates": [
-    "Accounting",
-    "accounting_web",
-    "Consumer",
     "Dailyhabit",
     "DailyHabit_win",
     "EngHub",
@@ -270,18 +267,14 @@
     "Everynote_Win",
     "EveryVideo",
     "EveryVideo_win",
-    "FSS_Helper",
-    "FSS_Helper_app",
     "FSS_insights",
-    "FSS_Insights_Win",
     "fss-insights-web",
     "Home",
     "InvestOn",
-    "newapp",
     "Realtime_trans",
     "SnapRead",
     "Study_Helper_Win",
-    "VirtualAssets",
+    "Test_web",
     "Watch_sentence"
   ]
 }
