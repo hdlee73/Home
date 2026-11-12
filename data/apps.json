@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:47:46.701Z",
+  "updatedAt": "2026-11-12T17:31:18.787Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -94,13 +94,13 @@
           {
             "name": "everycorp-v1.13.1.apk",
             "size": 2320588,
-            "downloads": 2,
+            "downloads": 3,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.13.1/everycorp-v1.13.1.apk"
           },
           {
             "name": "everycorp-v1.13.1.apk.sha256",
             "size": 88,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.13.1/everycorp-v1.13.1.apk.sha256"
           }
         ],
