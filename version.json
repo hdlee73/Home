@@ -1,10 +1,17 @@
 {
   "name": "이현덕 홈페이지",
-  "version": "2.11.7",
-  "released": "2026-11-09",
+  "version": "2.11.8",
+  "released": "2026-11-12",
   "author": "이현덕",
   "email": "hdlee73@gmail.com",
   "changelog": [
+    {
+      "version": "2.11.8",
+      "date": "2026-11-12",
+      "items": [
+        "프로필 머리말 소개 문구를 새 문안(안 1)으로 교체"
+      ]
+    },
     {
       "version": "2.11.7",
       "date": "2026-11-09",
