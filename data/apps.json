@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T18:37:38.453Z",
+  "updatedAt": "2026-11-12T01:28:42.659Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -9,10 +9,10 @@
       "icon": null,
       "language": "JavaScript",
       "topics": [],
-      "stars": 0,
+      "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-11T08:55:49Z",
+      "pushedAt": "2026-11-12T00:38:28Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-11T08:56:02Z",
+      "pushedAt": "2026-11-12T00:21:04Z",
       "release": {
         "tag": "v2.7.0",
         "name": "FSS Insights v2.7.0",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.7.0.apk",
             "size": 10655748,
-            "downloads": 21,
+            "downloads": 22,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.7.0/fss-insights-v2.7.0.apk"
           }
         ],
@@ -83,7 +83,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-10-28T00:22:25Z",
+      "pushedAt": "2026-11-12T01:09:50Z",
       "release": {
         "tag": "v1.11.1",
         "name": "EveryCorp v1.11.1",
@@ -94,13 +94,13 @@
           {
             "name": "everycorp-v1.11.1.apk",
             "size": 2218260,
-            "downloads": 7,
+            "downloads": 8,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk"
           },
           {
             "name": "everycorp-v1.11.1.apk.sha256",
             "size": 88,
-            "downloads": 3,
+            "downloads": 4,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk.sha256"
           }
         ],
