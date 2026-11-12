@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T01:28:42.659Z",
+  "updatedAt": "2026-11-12T08:47:46.701Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-12T00:38:28Z",
+      "pushedAt": "2026-11-12T07:53:56Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-12T00:21:04Z",
+      "pushedAt": "2026-11-12T08:15:07Z",
       "release": {
         "tag": "v2.7.0",
         "name": "FSS Insights v2.7.0",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.7.0.apk",
             "size": 10655748,
-            "downloads": 22,
+            "downloads": 23,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.7.0/fss-insights-v2.7.0.apk"
           }
         ],
@@ -65,7 +65,7 @@
           {
             "name": "Everylaw-1.8.1.apk",
             "size": 4117276,
-            "downloads": 12,
+            "downloads": 13,
             "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.8.1/Everylaw-1.8.1.apk"
           }
         ],
@@ -83,29 +83,29 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-11-12T01:09:50Z",
+      "pushedAt": "2026-11-12T07:36:04Z",
       "release": {
-        "tag": "v1.11.1",
-        "name": "EveryCorp v1.11.1",
-        "publishedAt": "2026-10-27T06:33:13Z",
-        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.11.1",
-        "notes": "# EveryCorp v1.11.1 변경 내용\n\n- 비적정 감사의견·자본잠식·CB·BW 목록: 회사명 앞에 \"상장구분\" 열을 따로 둠. 값은 기업개황의 구분(유가증권/코스닥/코넥스/외감 등)과 같은 기준이며 \"상장\"이라는 추정 값은 쓰지 않음(시장을 모르면 빈칸). 비적정 감사의견 행도 눌러서 기업개황을 열도록 변경\n- 감사보고서: DART 뷰어를 못 읽어도 공시 목록 정보로 카드(원문 링크)를 보여 주고, 못 읽은 원인을 화면에 표시\n- 서버 변경 있음: 재배포 필요\n\n# EveryCorp v1.11.0 변경 내용\n\n- 감사보고서 탭: \"연간 감사 / 분·반기 검토\" 버튼으로 나눠 보고, 각 카드에 감사인·의견(검토는 검토인·결론)을 표시. 못 읽은 값은 \"확인 불가\"로 표시. 요약 PDF/HWPX에는 이전처럼 연간 감사보고서의 감사인·의견만 포함\n- 새로고침: 감사보고서 탭 상단에 ↻ 버튼과(일부를 못 읽었을 때) \"다시 불러오기\" 버튼 추가. 서버 저장분을 건너뛰고 DART에서 다시 읽음\n- 제목 옆 배지는 기업개황의 구분(DART)을 우선 사용. 종목코드는 있으나 비상장(외감)인 회사(예: 코리아센터)가 \"상장\"으로 나오던 오류 수정\n- 비적정 감사의",
+        "tag": "v1.13.1",
+        "name": "EveryCorp v1.13.1",
+        "publishedAt": "2026-11-12T07:36:05Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.13.1",
+        "notes": "# EveryCorp v1.13.1 변경 내용\n\n- 설치 경고 줄이기: 앱이 직접 APK를 받아 설치하던 권한(다른 앱 설치 요청)을 뺐습니다. 업데이트 팝업의 \"내려받기\"는 브라우저로 새 APK를 열고, 다 받은 뒤 알림의 APK를 눌러 설치합니다\n- 서명: 같은 릴리스 키로 v2·v3 서명(기존 앱 위에 그대로 업데이트됩니다)\n- 서버 변경 없음\n- v1.13.0의 ETF 메뉴 포함\n\n# EveryCorp v1.13.0 변경 내용\n\n- ETF 메뉴(새로 추가): 왼쪽 메뉴 → ETF. 검색해 고르면 기초자료 · 구성종목(PDF) · ETF 관련성 탭으로 봄(뒤로가기는 직전 탭 → 이전 화면)\n- 기초자료: 현재가·NAV·괴리율·추적오차(키움)에 순자산총액·상장좌수·시가총액·운용사·총보수·상장일·복제방법(KRX)을 더하고, 키움↔KRX 대조(NAV·종목명, 순자산 = NAV×상장좌수) 결과 표시\n- 구성종목(PDF): 상위 9종목+기타 도넛 차트, 자산 종류별 비중, 전체 표(주식·ETF·채권·현금·파생·미매칭 필터, 100개씩 더 보기). 주식은 눌러 기업 화면(DART 공시·재무·주가), ETF는 그 ETF 화면으로\n- 매칭 보정: 구성종목 코드(단축코",
         "assets": [
           {
-            "name": "everycorp-v1.11.1.apk",
-            "size": 2218260,
-            "downloads": 8,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk"
+            "name": "everycorp-v1.13.1.apk",
+            "size": 2320588,
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.13.1/everycorp-v1.13.1.apk"
           },
           {
-            "name": "everycorp-v1.11.1.apk.sha256",
+            "name": "everycorp-v1.13.1.apk.sha256",
             "size": 88,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.11.1/everycorp-v1.11.1.apk.sha256"
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.13.1/everycorp-v1.13.1.apk.sha256"
           }
         ],
-        "primaryAsset": "everycorp-v1.11.1.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.11.1"
+        "primaryAsset": "everycorp-v1.13.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.13.1"
       }
     },
     {
