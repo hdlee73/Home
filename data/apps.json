@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T17:31:18.787Z",
+  "updatedAt": "2026-11-12T22:51:03.320Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-12T08:15:07Z",
+      "pushedAt": "2026-11-12T21:56:05Z",
       "release": {
         "tag": "v2.7.0",
         "name": "FSS Insights v2.7.0",
