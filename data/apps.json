@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T22:51:03.320Z",
+  "updatedAt": "2026-11-13T03:22:21.046Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-12T07:53:56Z",
+      "pushedAt": "2026-11-13T02:42:57Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-12T21:56:05Z",
+      "pushedAt": "2026-11-13T02:44:45Z",
       "release": {
         "tag": "v2.7.0",
         "name": "FSS Insights v2.7.0",
