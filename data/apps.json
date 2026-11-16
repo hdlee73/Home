@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T21:42:15.729Z",
+  "updatedAt": "2026-11-16T01:55:16.465Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-15T09:26:17Z",
+      "pushedAt": "2026-11-15T23:26:26Z",
       "release": null
     },
     {
@@ -25,23 +25,23 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-15T21:16:06Z",
+      "pushedAt": "2026-11-16T01:23:07Z",
       "release": {
-        "tag": "v2.8.0",
-        "name": "FSS Insights v2.8.0",
-        "publishedAt": "2026-11-15T21:15:20Z",
-        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v2.8.0",
-        "notes": "# FSS Insights v2.8.0\n\n만든이: 이현덕 (hdlee73@gmail.com)\n\n## v2.8.0 변경 내용\n\n**📥 새 APK 바로 받기 (누르면 휴대폰 다운로드 폴더에 저장됩니다)**\nhttps://github.com/hdlee73/FSS_insights/releases/download/v2.8.0/fss-insights-v2.8.0.apk\n\n최신 릴리스 페이지: https://github.com/hdlee73/FSS_insights/releases/latest\n\n2.0.0 이전 버전을 쓰는 분은 위 주소를 휴대폰 브라우저에 붙여넣어 내려받으세요. 받은 파일은 '내 파일 > 다운로드'에서 찾을 수 있습니다.\n\n**⚠️ 2.0.0 이전 버전에서 올라오려면 기존 앱을 삭제한 뒤 새로 설치해야 합니다.** 앱 보안을 위해 서명키를 교체해서 기존 앱 위에 바로 설치(업데이트)할 수 없습니다. 아래 순서대로 한 번만 하시면 되고, 이후 업데이트는 앱의 업데이트 창에서 \"내려받기\"를 누르면 됩니다.\n\n1. 설정 캡처: 삭제하면 관심종목·알림·키워드 설정이 사라집니다. 지우기 전에 설정 화면을 캡처하거나 적어 두세요.\n2. 새 APK 내려받기: 이 페",
+        "tag": "v2.8.1",
+        "name": "FSS Insights v2.8.1",
+        "publishedAt": "2026-11-15T22:17:09Z",
+        "url": "https://github.com/hdlee73/FSS_insights/releases/tag/v2.8.1",
+        "notes": "# FSS Insights v2.8.1\n\n만든이: 이현덕 (hdlee73@gmail.com)\n\n## v2.8.1 변경 내용\n\n**📥 새 APK 바로 받기 (누르면 휴대폰 다운로드 폴더에 저장됩니다)**\nhttps://github.com/hdlee73/FSS_insights/releases/download/v2.8.1/fss-insights-v2.8.1.apk\n\n최신 릴리스 페이지: https://github.com/hdlee73/FSS_insights/releases/latest\n\n2.0.0 이전 버전을 쓰는 분은 위 주소를 휴대폰 브라우저에 붙여넣어 내려받으세요. 받은 파일은 '내 파일 > 다운로드'에서 찾을 수 있습니다.\n\n**⚠️ 2.0.0 이전 버전에서 올라오려면 기존 앱을 삭제한 뒤 새로 설치해야 합니다.** 앱 보안을 위해 서명키를 교체해서 기존 앱 위에 바로 설치(업데이트)할 수 없습니다. 아래 순서대로 한 번만 하시면 되고, 이후 업데이트는 앱의 업데이트 창에서 \"내려받기\"를 누르면 됩니다.\n\n1. 설정 캡처: 삭제하면 관심종목·알림·키워드 설정이 사라집니다. 지우기 전에 설정 화면을 캡처하거나 적어 두세요.\n2. 새 APK 내려받기: 이 페",
         "assets": [
           {
-            "name": "fss-insights-v2.8.0.apk",
-            "size": 10814346,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.8.0/fss-insights-v2.8.0.apk"
+            "name": "fss-insights-v2.8.1.apk",
+            "size": 10830902,
+            "downloads": 9,
+            "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.8.1/fss-insights-v2.8.1.apk"
           }
         ],
-        "primaryAsset": "fss-insights-v2.8.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.8.0"
+        "primaryAsset": "fss-insights-v2.8.1.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/FSS_insights/zipball/v2.8.1"
       }
     },
     {
@@ -118,23 +118,23 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
-      "pushedAt": "2026-11-05T04:25:55Z",
+      "pushedAt": "2026-11-16T00:45:34Z",
       "release": {
-        "tag": "v1.44.0",
-        "name": "EngHub v1.44.0",
-        "publishedAt": "2026-11-05T04:25:55Z",
-        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.44.0",
-        "notes": "## EngHub v1.44.0\n- 블루투스 헤드셋 마이크 고정: Speaking 설정에 ‘블루투스 헤드셋 마이크 항상 사용’(기본 켜짐)을 추가했습니다. 헤드셋(이어셋)이 연결돼 있으면 ‘휴대전화 마이크 사용’이 켜져 있어도 항상 헤드셋 마이크로 듣습니다. 스피커·워치는 제외하고, 설정에서 고른 기기가 있으면 그것을 먼저 씁니다. 따라읽기뿐 아니라 프리토킹·롤플레잉에도 적용되며, 마이크를 쓸 때만 헤드셋 통화 경로를 열고 읽어 줄 때는 닫아서 읽는 소리 품질은 유지됩니다. 기기 안 인식(Whisper)도 이제 헤드셋 입력을 직접 지정해서 녹음합니다(예전에는 항상 폰 마이크 표시였음).\n- 기기 안 인식 정확도: 인식 전에 말 앞뒤의 침묵을 잘라내고(없는 말을 지어내는 것을 줄이고 계산도 빨라짐) 작은 소리는 키워서 넘깁니다. 헤드셋처럼 소리가 작게 들어오는 마이크에서 특히 도움이 됩니다.\n- 확인 범위: 코드와 자동 시험(CI)까지 확인했고, 블루투스 헤드셋 경로·정확도 개선 효과는 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다. 헤드셋에서 마이크가 안 열리거나 끊기면 알려 주세요.\n\n",
+        "tag": "v1.45.0",
+        "name": "EngHub v1.45.0",
+        "publishedAt": "2026-11-16T00:45:34Z",
+        "url": "https://github.com/hdlee73/EngHub/releases/tag/v1.45.0",
+        "notes": "## EngHub v1.45.0\n- ⚠️ 꼭 읽어 주세요 — 기존 앱을 삭제한 뒤 설치해야 합니다: 이전에 공개돼 있던 서명 키를 새 키로 교체했습니다. 안드로이드는 서명 키가 다르면 기존 앱 위에 덮어 설치(업데이트)할 수 없어서, 앱 안의 ‘업데이트’로는 설치가 되지 않습니다. 순서: ① 앱에서 사전·단어장 등 필요한 데이터를 내보내 백업 → ② 기존 EngHub 삭제 → ③ 이 버전의 APK를 설치. 삭제하면 앱 안의 데이터도 지워지니 백업을 먼저 하세요. 이번 한 번만 필요하고, 이후 업데이트는 평소처럼 덮어 설치됩니다.\n- 릴리스 보안 강화: 앱 코드를 난독화·축소(R8)하고, 음성 인식 라이브러리(sherpa-onnx)를 받을 때 SHA-256으로 무결성을 검증합니다. 앱 용량이 줄어드는 효과도 있습니다.\n- 확인 범위: 코드와 자동 시험(CI), 난독화 릴리스 빌드까지 확인했고, 난독화 후 음성 인식(Whisper/DocVoice), 유튜브 MP3, PDF·xlsx·epub 읽기 등은 갤럭시 폴드8 실기기에서 아직 확인하지 못했습니다. 안 되는 기능이 있으면 알려 주세요.\n\n",
         "assets": [
           {
-            "name": "EngHub-v1.44.0.apk",
-            "size": 146484587,
-            "downloads": 4,
-            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.44.0/EngHub-v1.44.0.apk"
+            "name": "EngHub-v1.45.0.apk",
+            "size": 84904236,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EngHub/releases/download/v1.45.0/EngHub-v1.45.0.apk"
           }
         ],
-        "primaryAsset": "EngHub-v1.44.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.44.0"
+        "primaryAsset": "EngHub-v1.45.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EngHub/zipball/v1.45.0"
       }
     },
     {
