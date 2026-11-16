@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T07:20:15.403Z",
+  "updatedAt": "2026-11-16T09:30:12.412Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-16T05:55:38Z",
+      "pushedAt": "2026-11-16T09:19:50Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-16T07:11:06Z",
+      "pushedAt": "2026-11-16T09:24:33Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.8.1.apk",
             "size": 10830902,
-            "downloads": 11,
+            "downloads": 12,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.8.1/fss-insights-v2.8.1.apk"
           }
         ],
@@ -83,29 +83,29 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-11-15T04:57:41Z",
+      "pushedAt": "2026-11-16T08:42:22Z",
       "release": {
-        "tag": "v1.14.0",
-        "name": "EveryCorp v1.14.0",
-        "publishedAt": "2026-11-15T04:57:41Z",
-        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.14.0",
-        "notes": "# EveryCorp v1.14.0 변경 내용\n\n- 시장 랭킹 확장(키움 REST API): 상단에 코스피·코스닥 실시간 지수(`ka20001`, 등락률·상승/하락 종목 수)를 표시하고, 순위 탭에 **거래량 급증(`ka10023`) · 외국인 연속 순매수(`ka10035`) · 외국인·기관 매수(`ka90009`)**와 수동 새로고침(`↻`)을 추가했습니다\n- 실시간 캔들 보완: 주가현황 WebSocket 체결가가 일봉뿐만 아니라 분봉·주봉·월봉의 최신 캔들에도 실시간 반영됩니다\n- 관심기업 그룹 관리: 관심기업 화면에서 선택한 그룹의 이름을 바꾸거나 삭제할 수 있습니다\n- 오류·재시도 보완: 기업 비교·알림·스크리닝 화면에서 네트워크 실패 시 빈 화면 대신 오류 안내와 다시 시도 버튼을 표시하고, 백그라운드 공시/업데이트 워커가 일시 오류 시 재시도합니다\n- 서버 안정성 개선: TTL 캐시 락 누수 방지, KRX 전일 종가·키움 조회 KST 날짜 기준 통일, 시장 구분 파일 원자적 저장\n- 서버 변경 있음: 재배포 필요\n\n# EveryCorp v1.13.1 변경 내용\n\n- 설치 경고 줄이기: 앱이 직접 APK를 받아 설치하던 권한(다른 앱 설치 요청)을 ",
+        "tag": "v1.15.0",
+        "name": "EveryCorp v1.15.0",
+        "publishedAt": "2026-11-16T08:42:22Z",
+        "url": "https://github.com/hdlee73/EveryCorp/releases/tag/v1.15.0",
+        "notes": "# EveryCorp v1.15.0 변경 내용\n\n- ETF 통계(새 메뉴): 왼쪽 메뉴 → ETF 통계(ETF 화면의 'ETF 통계' 칩으로도 열림). 탭 3개, 뒤로가기는 직전 탭 → 이전 화면\n  - 전체 추이: 전체 ETF 수·순자산총액·시가총액의 일자별 추이 차트(누르거나 끌어 날짜별 값)와 일자별 표, 기간(1개월~1년) 선택\n  - 운용사별: 순자산 상위 7개 운용사 + 기타의 ETF 수·순자산·시가총액 추이, 운용사 표(ETF 수·순자산·점유율과 기간 증감). 운용사를 누르면 그 운용사 순위\n  - ETF 순위: 순자산·시가총액·순자산 증감·증감률 순, 비교 기간(1주~1년)·운용사 필터, 기준일 이후 상장은 '신규'\n- ETF 화면에 '순자산 추이' 탭: 그 ETF의 순자산총액·시가총액·상장좌수·NAV 추이, 전체/운용사 내 순위, 1주~1년 기간별 순자산·좌수 증감\n- 데이터: 서버가 KRX 일별 자료(Open API `etp/etf_bydd_trd` → 정보데이터시스템 `MDCSTAT04301`, ETF 메뉴와 같은 원천)를 매일 전 영업일분 저장(SQLite `data/etf_stats.sqlite`). 처음 시작할 때 과거 약 1년치를 ",
         "assets": [
           {
-            "name": "everycorp-v1.14.0.apk",
-            "size": 2320588,
-            "downloads": 5,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.14.0/everycorp-v1.14.0.apk"
+            "name": "everycorp-v1.15.0.apk",
+            "size": 2369744,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.15.0/everycorp-v1.15.0.apk"
           },
           {
-            "name": "everycorp-v1.14.0.apk.sha256",
+            "name": "everycorp-v1.15.0.apk.sha256",
             "size": 88,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.14.0/everycorp-v1.14.0.apk.sha256"
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.15.0/everycorp-v1.15.0.apk.sha256"
           }
         ],
-        "primaryAsset": "everycorp-v1.14.0.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.14.0"
+        "primaryAsset": "everycorp-v1.15.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/EveryCorp/zipball/v1.15.0"
       }
     },
     {
