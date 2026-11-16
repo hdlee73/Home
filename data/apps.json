@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T09:30:12.412Z",
+  "updatedAt": "2026-11-16T19:49:17.275Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-16T09:19:50Z",
+      "pushedAt": "2026-11-16T11:41:10Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-16T09:24:33Z",
+      "pushedAt": "2026-11-16T11:53:09Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -83,7 +83,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryCorp",
       "homepage": null,
-      "pushedAt": "2026-11-16T08:42:22Z",
+      "pushedAt": "2026-11-16T13:00:13Z",
       "release": {
         "tag": "v1.15.0",
         "name": "EveryCorp v1.15.0",
@@ -147,7 +147,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/Everynote",
       "homepage": null,
-      "pushedAt": "2026-10-27T05:47:00Z",
+      "pushedAt": "2026-11-16T10:22:01Z",
       "release": {
         "tag": "v1.70.1",
         "name": "Everynote v1.70.1",
@@ -182,47 +182,47 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/Everynote_Win",
       "homepage": null,
-      "pushedAt": "2026-10-27T05:48:53Z",
+      "pushedAt": "2026-11-16T10:22:02Z",
       "release": {
-        "tag": "v3.36.1",
-        "name": "Everynote v3.36.1",
-        "publishedAt": "2026-10-27T05:48:53Z",
-        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.36.1",
-        "notes": "## Everynote for Windows v3.36.1\r\n\r\n### 주요 기능\r\n- PDF·EPUB·Office·한글 문서를 열어 읽고, 펜·형광펜·테이프·메모·올가미·도형·표로 바로 필기하고 주석 달기\r\n- 여러 문서를 탭으로 열고, 문서함(폴더·노트북)에서 한곳에 보관 · 검색 · 백업 · 복원\r\n- 필압을 반영하는 5가지 펜, 두 쪽 보기, 화면 나누기(최대 4개), 책장 넘김 효과, 번역·낭독·OCR 등 학습 도구\r\n- 휴대폰과 같은 네트워크(Wi-Fi·핫스팟·USB 테더링)에서 문서 동기화\r\n- 이 컴퓨터에서 오프라인으로 동작하며, 새 버전이 나오면 알려 줌\r\n\r\n### 이번 업데이트\r\n- 한글(HWPX) 문서의 표가 깨지던 문제를 고쳤습니다. 표 칸이 한 줄 높이로 눌려 글자가 겹치거나 쪽 아래로 넘쳐 잘리던 것이 이제 내용에 맞게 늘어나고 여러 쪽으로 나뉩니다. 표 안 그림도 글자와 겹치지 않습니다.\r\n",
+        "tag": "v3.37.0",
+        "name": "Everynote v3.37.0",
+        "publishedAt": "2026-11-16T10:33:03Z",
+        "url": "https://github.com/hdlee73/Everynote_Win/releases/tag/v3.37.0",
+        "notes": "**Full Changelog**: https://github.com/hdlee73/Everynote_Win/compare/v3.36.1...v3.37.0",
         "assets": [
           {
-            "name": "Everynote-Setup-v3.36.1-arm64.exe",
-            "size": 83707493,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-Setup-v3.36.1-arm64.exe"
-          },
-          {
-            "name": "Everynote-Setup-v3.36.1-x64.exe",
-            "size": 89549133,
+            "name": "Everynote-Setup-v3.37.0-arm64.exe",
+            "size": 83710355,
             "downloads": 1,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-Setup-v3.36.1-x64.exe"
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.37.0/Everynote-Setup-v3.37.0-arm64.exe"
           },
           {
-            "name": "Everynote-v3.36.1-win-arm64.exe",
-            "size": 89562149,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-v3.36.1-win-arm64.exe"
+            "name": "Everynote-Setup-v3.37.0-x64.exe",
+            "size": 89555117,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.37.0/Everynote-Setup-v3.37.0-x64.exe"
           },
           {
-            "name": "Everynote-v3.36.1-win-x64.exe",
-            "size": 94890801,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/Everynote-v3.36.1-win-x64.exe"
+            "name": "Everynote-v3.37.0-win-arm64.exe",
+            "size": 89567534,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.37.0/Everynote-v3.37.0-win-arm64.exe"
+          },
+          {
+            "name": "Everynote-v3.37.0-win-x64.exe",
+            "size": 94895038,
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.37.0/Everynote-v3.37.0-win-x64.exe"
           },
           {
             "name": "SHA256SUMS.txt",
             "size": 392,
-            "downloads": 2,
-            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.36.1/SHA256SUMS.txt"
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote_Win/releases/download/v3.37.0/SHA256SUMS.txt"
           }
         ],
-        "primaryAsset": "Everynote-Setup-v3.36.1-x64.exe",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.36.1"
+        "primaryAsset": "Everynote-Setup-v3.37.0-x64.exe",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote_Win/zipball/v3.37.0"
       }
     },
     {
