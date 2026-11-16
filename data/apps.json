@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T01:55:16.465Z",
+  "updatedAt": "2026-11-16T06:26:36.933Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-15T23:26:26Z",
+      "pushedAt": "2026-11-16T05:55:38Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-16T01:23:07Z",
+      "pushedAt": "2026-11-16T06:16:49Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.8.1.apk",
             "size": 10830902,
-            "downloads": 9,
+            "downloads": 11,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.8.1/fss-insights-v2.8.1.apk"
           }
         ],
@@ -65,7 +65,7 @@
           {
             "name": "Everylaw-1.8.1.apk",
             "size": 4117276,
-            "downloads": 14,
+            "downloads": 15,
             "url": "https://github.com/hdlee73/EveryLaw/releases/download/v1.8.1/Everylaw-1.8.1.apk"
           }
         ],
@@ -94,13 +94,13 @@
           {
             "name": "everycorp-v1.14.0.apk",
             "size": 2320588,
-            "downloads": 3,
+            "downloads": 5,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.14.0/everycorp-v1.14.0.apk"
           },
           {
             "name": "everycorp-v1.14.0.apk.sha256",
             "size": 88,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/EveryCorp/releases/download/v1.14.0/everycorp-v1.14.0.apk.sha256"
           }
         ],
@@ -111,14 +111,14 @@
     {
       "repo": "EngHub",
       "name": "EngHub",
-      "description": "(안드로이드) 영어 사전부터 스피킹, 리스닝, 리딩 등을 모두 학습할 수 있는 안드로이드앱",
+      "description": "* 기존에 설치한 경우 기존 앱을 삭제하고 설치하세요\n(안드로이드) 영어 사전부터 스피킹, 리스닝, 리딩 등을 모두 학습할 수 있는 안드로이드앱",
       "icon": null,
       "language": "Kotlin",
       "topics": [],
       "stars": 1,
       "url": "https://github.com/hdlee73/EngHub",
       "homepage": null,
-      "pushedAt": "2026-11-16T00:45:34Z",
+      "pushedAt": "2026-11-16T05:19:05Z",
       "release": {
         "tag": "v1.45.0",
         "name": "EngHub v1.45.0",
@@ -128,7 +128,7 @@
         "assets": [
           {
             "name": "EngHub-v1.45.0.apk",
-            "size": 84904236,
+            "size": 84904728,
             "downloads": 1,
             "url": "https://github.com/hdlee73/EngHub/releases/download/v1.45.0/EngHub-v1.45.0.apk"
           }
@@ -158,7 +158,7 @@
           {
             "name": "Everynote-v1.70.1.apk",
             "size": 125406866,
-            "downloads": 5,
+            "downloads": 6,
             "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk"
           },
           {
@@ -235,23 +235,23 @@
       "stars": 0,
       "url": "https://github.com/hdlee73/Dailyhabit",
       "homepage": null,
-      "pushedAt": "2026-11-15T02:18:37Z",
+      "pushedAt": "2026-11-16T05:17:44Z",
       "release": {
-        "tag": "v1.10.2",
-        "name": "DailyHabit v1.10.2",
-        "publishedAt": "2026-11-15T02:18:32Z",
-        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.10.2",
-        "notes": "## DailyHabit v1.10.2 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- 뒤로 가기로 직전 화면으로 돌아가기 (메뉴에서 한 번 더 누르면 앱이 닫힘)\n- **새로: 앱 정보에 사용 방법 · 만든이**\n\n**설치:** `DailyHabit-1.10.2.apk`를 휴대폰에서 내려받아 설치하세요.\n천주교 기능(오늘의 복음 · 기도)이",
+        "tag": "v1.11.0",
+        "name": "DailyHabit v1.11.0",
+        "publishedAt": "2026-11-16T05:17:38Z",
+        "url": "https://github.com/hdlee73/Dailyhabit/releases/tag/v1.11.0",
+        "notes": "## DailyHabit v1.11.0 (일반용)\n- 오늘의 명언 (한국어 · 영어)\n- 앞으로 7일 구글 캘린더 일정\n- 할 일 · 매일 루틴(알림 · 체크 · 통계) · 맛집 리스트\n- 한 줄 일기 · 독서 기록(밑줄·메모)\n- 맛집 방문 기록(날짜 수정·사진) · 방문 달력 · 동네별 지도 보기\n- 월간 돌아보기 · 감사 일기 모음 · 독서 목표\n- 일기·맛집 엑셀 저장, 새 버전 알림\n- 백업 파일로 저장·복원, 앱 정보에서 업데이트 확인·설치\n- 루틴 간단히 보기 (한 줄에 두 개, 기본값)\n- 원하는 시각의 아침 알림 (오늘 일정 · 루틴)\n- PC와 동기화 (같은 와이파이) — 윈도우 DailyHabit v1.8.0의 QR 코드를 설정 → PC와 동기화에서 찍으면 짝이 맺어지고, 할 일·루틴·일기·맛집(사진 포함)·독서·장보기가 서로 맞춰집니다. 서버·계정 없이 직접 주고받고 암호화합니다.\n- 뒤로 가기로 직전 화면으로 돌아가기 (메뉴에서 한 번 더 누르면 앱이 닫힘)\n- **새로: 앱 정보에 사용 방법 · 만든이**\n- **새로: 새 디자인 ‘클리어’** — 연회색 바탕에 흰 카드, 파란 포인트. 왼쪽 메뉴와 상단 바를 새로 정리했고 다크 모드",
         "assets": [
           {
-            "name": "DailyHabit-1.10.2.apk",
+            "name": "DailyHabit-1.11.0.apk",
             "size": 18352694,
             "downloads": 1,
-            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.10.2/DailyHabit-1.10.2.apk"
+            "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.11.0/DailyHabit-1.11.0.apk"
           }
         ],
-        "primaryAsset": "DailyHabit-1.10.2.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.10.2"
+        "primaryAsset": "DailyHabit-1.11.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Dailyhabit/zipball/v1.11.0"
       }
     }
   ],
