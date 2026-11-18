@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-11-18T11:29:57.678Z",
+  "updatedAt": "2026-11-18T12:45:54.677Z",
   "owner": "hdlee73",
   "apps": [
     {
       "repo": "fss-insights-web",
       "name": "fss-insights-web",
-      "description": "www.fssinsights.com(모바일, PC 모두 접속 가능)\nhttps://hdlee73.github.io/fss-insights-web\n(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트",
+      "description": "www.fssinsights.com(모바일, PC 모두 접속 가능)\n(웹버전) 뉴스검색(키워드 저장), 시장동향, 금융회사 주요 현황, 금융당국 보도자료 등을 볼 수 있는 웹사이트",
       "icon": null,
       "language": "JavaScript",
       "topics": [],
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-18T11:17:42Z",
+      "pushedAt": "2026-11-18T12:03:46Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-18T11:17:40Z",
+      "pushedAt": "2026-11-18T12:12:35Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
