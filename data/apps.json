@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T20:47:47.435Z",
+  "updatedAt": "2026-11-18T02:51:28.862Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-17T10:05:51Z",
+      "pushedAt": "2026-11-18T02:39:12Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-17T12:45:37Z",
+      "pushedAt": "2026-11-18T02:47:43Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v2.8.1.apk",
             "size": 10830902,
-            "downloads": 0,
+            "downloads": 1,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v2.8.1/fss-insights-v2.8.1.apk"
           }
         ],
@@ -147,29 +147,29 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/Everynote",
       "homepage": null,
-      "pushedAt": "2026-11-16T10:22:01Z",
+      "pushedAt": "2026-11-17T21:57:17Z",
       "release": {
-        "tag": "v1.70.1",
-        "name": "Everynote v1.70.1",
-        "publishedAt": "2026-10-27T05:47:01Z",
-        "url": "https://github.com/hdlee73/Everynote/releases/tag/v1.70.1",
+        "tag": "v1.71.0",
+        "name": "Everynote v1.71.0",
+        "publishedAt": "2026-11-17T22:04:26Z",
+        "url": "https://github.com/hdlee73/Everynote/releases/tag/v1.71.0",
         "notes": "## 주요 기능\n- PDF·HWP·DOC·PPT·EPUB 문서 열기, 하이라이트·메모·필기·도형·표·미디어 삽입\n- 필압 필기(펜 종류·색·굵기), 획 지우기 / 부분 지우기, 올가미 선택\n- 여러 문서 탭, 두 쪽 보기, 문서 분할 보기(최대 4개)\n- 검색·번역·읽어주기·단어장 연결, 문서함 폴더 관리, 백업·복원\n\n## 이번 업데이트 (v1.70.1)\n- 한글(HWPX) 문서의 표가 깨지던 문제를 고쳤습니다. 표 칸이 한 줄 높이로 눌려 글자가 겹치거나 쪽 아래로 넘쳐 잘리던 것이 이제 내용에 맞게 늘어나고 여러 쪽으로 나뉩니다. 표 안 그림도 글자와 겹치지 않습니다.\n",
         "assets": [
           {
-            "name": "Everynote-v1.70.1.apk",
+            "name": "Everynote-v1.71.0.apk",
             "size": 125406866,
-            "downloads": 6,
-            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk"
+            "downloads": 2,
+            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.71.0/Everynote-v1.71.0.apk"
           },
           {
-            "name": "Everynote-v1.70.1.apk.sha256",
+            "name": "Everynote-v1.71.0.apk.sha256",
             "size": 88,
-            "downloads": 0,
-            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.70.1/Everynote-v1.70.1.apk.sha256"
+            "downloads": 1,
+            "url": "https://github.com/hdlee73/Everynote/releases/download/v1.71.0/Everynote-v1.71.0.apk.sha256"
           }
         ],
-        "primaryAsset": "Everynote-v1.70.1.apk",
-        "zipball": "https://api.github.com/repos/hdlee73/Everynote/zipball/v1.70.1"
+        "primaryAsset": "Everynote-v1.71.0.apk",
+        "zipball": "https://api.github.com/repos/hdlee73/Everynote/zipball/v1.71.0"
       }
     },
     {
