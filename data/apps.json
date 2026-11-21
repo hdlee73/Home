@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T06:56:10.637Z",
+  "updatedAt": "2026-11-21T15:16:41.916Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-21T03:19:20Z",
+      "pushedAt": "2026-11-21T11:29:12Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -271,6 +271,7 @@
     "fss-insights-web",
     "Home",
     "InvestOn",
+    "Manual",
     "Realtime_trans",
     "SnapRead",
     "Study_Helper_Win",
