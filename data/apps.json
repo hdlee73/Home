@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T08:45:01.485Z",
+  "updatedAt": "2026-11-22T17:04:05.873Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-20T01:10:55Z",
+      "pushedAt": "2026-11-22T11:18:06Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-22T04:55:30Z",
+      "pushedAt": "2026-11-22T09:44:25Z",
       "release": {
         "tag": "v2.8.1",
         "name": "FSS Insights v2.8.1",
@@ -246,7 +246,7 @@
           {
             "name": "DailyHabit-1.11.0.apk",
             "size": 18352694,
-            "downloads": 1,
+            "downloads": 2,
             "url": "https://github.com/hdlee73/Dailyhabit/releases/download/v1.11.0/DailyHabit-1.11.0.apk"
           }
         ],
