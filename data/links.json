@@ -61,62 +61,72 @@
     "files": [
       {
         "id": "1_Ak3C480TKHu46FPyhfRxWwdNMnuMsfv",
-        "name": "(01_금융투자)_(2501)_펀드기초 강의자료.pdf",
+        "name": "(2501)_펀드기초 강의자료.pdf",
         "folder": false
       },
       {
         "id": "1M7oon4gwP_vgzQXivOa5Lyo6rYTL-25K",
-        "name": "(01_금융투자)_(2506)_(PF)유동화 기초 강의자료.pdf",
-        "folder": false
-      },
-      {
-        "id": "15PoLOE84xchqW7lK2baSqjwCrIWniOh0",
-        "name": "(01_금융투자)_자본시장법 조문목록.pdf",
-        "folder": false
-      },
-      {
-        "id": "1Sj2QQc9yOAXNcm0aj7G6-eRf8nLTMNFv",
-        "name": "(01_금융투자)_자본시장법령(2025.12).pdf",
-        "folder": false
-      },
-      {
-        "id": "1J4gWc4sAKRDqsVaVx44HpgN8JHTsVKqW",
-        "name": "(01_금융투자)_집합투자_불건전영업행위.pdf",
-        "folder": false
-      },
-      {
-        "id": "1KYLHmbpVfb3pFgfakMf4H6wvzjpc2Hkh",
-        "name": "(02_토큰화)_(202610_자본연)자본시장 토큰화의 확산_해외 주요 사례와 국내 도입 과제.pdf",
+        "name": "(2506)_(PF)유동화 기초 강의자료.pdf",
         "folder": false
       },
       {
         "id": "15LbmJxgf85cjyOa4Mpm_lKMRdWz0EgsV",
-        "name": "(02_토큰화)_(2511_IOSCO)PD809(토큰화).pdf",
+        "name": "(2511_IOSCO)PD809(토큰화).pdf",
         "folder": false
       },
       {
         "id": "1x-mIF1zA9S7mw5kPpncKp0YASaolJjvt",
-        "name": "(02_토큰화)_(2511_MAS)guardian-fixed-income-framework-v1_1.pdf",
+        "name": "(2511_MAS)_guardian-fixed-income-framework-v1_1.pdf",
         "folder": false
       },
       {
         "id": "1T_U_ftIPkIU_ckolzrRgEfp2WJDYfTzs",
-        "name": "(02_토큰화)_(2511_MAS)project-guardian-operationalising-tokenised-funds-1.pdf",
+        "name": "(2511_MAS)_project-guardian-operationalising-tokenised-funds-1.pdf",
         "folder": false
       },
       {
-        "id": "1YE_7DZ0AjAaB2_G7cG1KWPP4itb83gI7",
-        "name": "(02_토큰화)_BlackRock_BUIDL.pdf",
+        "id": "15PoLOE84xchqW7lK2baSqjwCrIWniOh0",
+        "name": "(2512)_자본시장법 조문목록.pdf",
+        "folder": false
+      },
+      {
+        "id": "1Sj2QQc9yOAXNcm0aj7G6-eRf8nLTMNFv",
+        "name": "(2512)_자본시장법령_3단비교.pdf",
         "folder": false
       },
       {
         "id": "1UtFM0d3xhHMFrlhL2PwKL_sIY7wrPrFe",
-        "name": "(03_AI)_(202512_자본연)) AI와 자산운용： 패러다임의 전환 가능성 고찰.pdf",
+        "name": "(2512_자본연)_ AI와 자산운용_패러다임의 전환 가능성 고찰.pdf",
+        "folder": false
+      },
+      {
+        "id": "1YE_7DZ0AjAaB2_G7cG1KWPP4itb83gI7",
+        "name": "(2603)_BlackRock_BUIDL.pdf",
+        "folder": false
+      },
+      {
+        "id": "1J4gWc4sAKRDqsVaVx44HpgN8JHTsVKqW",
+        "name": "(2603)_집합투자_불건전영업행위(노트북LM).pdf",
         "folder": false
       },
       {
         "id": "1iLt_7zSJZcCu7wvZuiRJZ6RKm0xmM38H",
-        "name": "(03_AI)_(2610_FSB)Sound Practices for Responsible Adoption of Artificial lIntelligence (AI).pdf",
+        "name": "(2610_FSB)_Sound Practices for Responsible Adoption of Artificial lIntelligence (AI).pdf",
+        "folder": false
+      },
+      {
+        "id": "1KYLHmbpVfb3pFgfakMf4H6wvzjpc2Hkh",
+        "name": "(2610_자본연)_자본시장 토큰화의 확산_해외 주요 사례와 국내 도입 과제.pdf",
+        "folder": false
+      },
+      {
+        "id": "1m3kXDDYzLn_ILYWegsFoNjkUxCcybA6h",
+        "name": "(2611_IOSCO)_Tokenization of Financial Assets 2026 Monitoring Report.pdf",
+        "folder": false
+      },
+      {
+        "id": "1QTD_VNJU4L7WVUCCgYQI9XvkCIGOZbqx",
+        "name": "(2611_IOSCO_한글번역)_Tokenization of Financial Assets 2026 Monitoring Report.pdf",
         "folder": false
       }
     ],
