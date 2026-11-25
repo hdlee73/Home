@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T04:06:07.543Z",
+  "updatedAt": "2026-11-25T14:14:23.904Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-25T01:55:40Z",
+      "pushedAt": "2026-11-25T10:15:53Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-25T04:04:50Z",
+      "pushedAt": "2026-11-25T14:10:09Z",
       "release": {
         "tag": "v3.0.0",
         "name": "FSS Insights v3.0.0",
@@ -36,7 +36,7 @@
           {
             "name": "fss-insights-v3.0.0.apk",
             "size": 10887129,
-            "downloads": 4,
+            "downloads": 5,
             "url": "https://github.com/hdlee73/FSS_insights/releases/download/v3.0.0/fss-insights-v3.0.0.apk"
           }
         ],
@@ -277,6 +277,7 @@
     "Study_Helper_Win",
     "Test_web",
     "Test-Antigravity",
+    "Test-insu",
     "Watch_sentence"
   ]
 }
