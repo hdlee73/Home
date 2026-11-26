@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T23:16:06.175Z",
+  "updatedAt": "2026-11-26T05:25:01.071Z",
   "owner": "hdlee73",
   "apps": [
     {
@@ -12,7 +12,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/fss-insights-web",
       "homepage": "https://hdlee73.github.io/fss-insights-web/",
-      "pushedAt": "2026-11-25T10:15:53Z",
+      "pushedAt": "2026-11-26T05:12:15Z",
       "release": null
     },
     {
@@ -25,7 +25,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/FSS_insights",
       "homepage": null,
-      "pushedAt": "2026-11-25T22:09:59Z",
+      "pushedAt": "2026-11-26T05:09:02Z",
       "release": {
         "tag": "v3.0.0",
         "name": "FSS Insights v3.0.0",
@@ -54,7 +54,7 @@
       "stars": 1,
       "url": "https://github.com/hdlee73/EveryLaw",
       "homepage": null,
-      "pushedAt": "2026-11-09T01:39:04Z",
+      "pushedAt": "2026-11-26T05:17:44Z",
       "release": {
         "tag": "v1.8.1",
         "name": "Everylaw 1.8.1",
